@@ -95,3 +95,35 @@ test("endereço e inspeção SISP aparecem no rodapé", async ({ page }) => {
   await expect(rodape).toContainText("Marechal Rondon, km 218");
   await expect(rodape).toContainText("SISP 1774");
 });
+
+test("Sentry carrega sem erro e não envia nada fora do site publicado", async ({ page }) => {
+  const enviados = [];
+  page.on("request", (r) => {
+    if (r.url().includes("sentry.io")) enviados.push(r.url());
+  });
+  const erros = await abrir(page);
+  await page.goto("/index.html#teste-sentry");
+  await expect(page.locator("#dc-root #inicio")).toBeAttached({ timeout: 15_000 });
+  await page.waitForTimeout(500);
+  expect(erros).toEqual([]);
+  expect(enviados).toEqual([]);
+});
+
+test("no site publicado, o Sentry envia o erro de teste sem dados pessoais", async ({ page, baseURL }) => {
+  // Simula o endereço de produção servindo os arquivos locais; o envio ao Sentry é interceptado (nada sai da máquina).
+  await page.route("https://gpuelker-spec.github.io/sitio-agua-fria/**", async (route) => {
+    const caminho = new URL(route.request().url()).pathname.replace("/sitio-agua-fria", "");
+    await route.fulfill({ response: await page.request.get(`${baseURL}${caminho}`) });
+  });
+  const envios = [];
+  await page.route(/sentry\.io/, async (route) => {
+    envios.push(route.request().postData() || "");
+    await route.fulfill({ status: 200, body: "{}" });
+  });
+  await page.goto("https://gpuelker-spec.github.io/sitio-agua-fria/index.html#teste-sentry");
+  await expect.poll(() => envios.length, { timeout: 10_000 }).toBeGreaterThan(0);
+  const corpo = envios.join("\n");
+  expect(corpo).toContain("Teste do Sentry");
+  expect(corpo).not.toContain("{{auto}}"); // IP não é coletado
+  await page.unrouteAll({ behavior: "ignoreErrors" });
+});

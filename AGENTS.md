@@ -66,6 +66,7 @@ Pedido do Gustavo → Issue → branch → commits → Pull Request (cita a Issu
 | `ds-styles.css`, `ds-bundle.js` | Design system base (fontes, botões `.btn`). Evitar editar |
 | `*.jpg`, `*.png` | Fotos e selos usados na página |
 | `package.json`, `biome.json`, `knip.json`, `commitlint.config.mjs` | Ferramentas de qualidade (não fazem parte do site publicado) |
+| `src/sentry.js` → `sentry.min.js` | Monitoramento de erros (Sentry). Ver seção "Observabilidade" |
 | `.nojekyll` | Impede o GitHub Pages de processar o site com Jekyll. Não remover |
 
 ### Cuidados ao editar `index.html`
@@ -88,6 +89,13 @@ Pedido do Gustavo → Issue → branch → commits → Pull Request (cita a Issu
 Configuração: `biome.json`, `commitlint.config.mjs`, `knip.json`, `playwright.config.js`, `.github/workflows/`.
 
 **Toda mudança no site precisa de teste em `tests/e2e/`** cobrindo o novo comportamento (seção nova, link novo, animação nova). Os testes não podem depender de sites externos (Google Maps, Google Fonts).
+
+## Observabilidade (Sentry)
+- Erros de JavaScript dos visitantes vão para o Sentry (plano gratuito Developer). Código em `src/sentry.js`; o navegador carrega `sentry.min.js`, gerado por `npm run build:sentry`. **Nunca edite `sentry.min.js` à mão.** O CI falha se ele estiver desatualizado.
+- Só ativa no site publicado (`*.github.io` ou o domínio próprio). Em `localhost` e nos testes nada é enviado.
+- LGPD: `sendDefaultPii: false`, sem Session Replay e sem medição de desempenho.
+- Teste manual: abra o site publicado com `#teste-sentry` no fim do endereço e confira o erro no painel do Sentry.
+- Ao adicionar um domínio próprio, inclua-o na regex `PRODUCAO` de `src/sentry.js`.
 
 ## Nunca coloque neste repositório (ele é público)
 - Planilhas de preços, fichas técnicas, custos ou dados de clientes.

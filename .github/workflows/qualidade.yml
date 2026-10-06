@@ -21,6 +21,10 @@ jobs:
       - run: npm ci
       - run: npx biome ci .
       - run: npx knip
+      - name: sentry.min.js está atualizado com src/sentry.js
+        run: |
+          npm run build:sentry
+          git diff --exit-code sentry.min.js
 
   commits:
     name: Mensagens de commit (Commitlint)
