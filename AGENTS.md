@@ -60,10 +60,10 @@ Pedido do Gustavo → Issue → branch → commits → Pull Request (cita a Issu
 
 | Arquivo | O que é |
 |---|---|
-| `index.html` | A página inteira. Template "dc" vindo do Claude Design: HTML normal dentro de `<x-dc>`, com estilos inline e variáveis CSS `--color-*` |
-| `support.js` | Motor que renderiza o template. **Não editar** (gerado) |
-| `react*.production.min.js` | React 18.3.1 hospedado localmente (o `window.__resources` no `<head>` aponta para eles). Não trocar por CDN |
-| `ds-styles.css`, `ds-bundle.js` | Design system base (fontes, botões `.btn`). Evitar editar |
+| `index.html` | A página inteira, em HTML estático simples (sem React nem runtime de editor) |
+| `site.css` | Todo o visual: tokens de `DESIGN.md` como variáveis CSS (`--soro`, `--noite`, `--turquesa`, `--ambar`…), tipografia, layout |
+| `DESIGN.md` | **Fonte da verdade do visual** (cores, fontes, componentes, faça/não faça). Leia antes de mudar qualquer coisa visual. Espelho navegável: Design System "Sítio Água Fria" no Claude |
+| `logo-sitio.png`, `logo-selo.jpg` | Logos oficiais (vindos de `marketing-comercial`). Não redesenhe a marca |
 | `*.jpg`, `*.png` | Fotos e selos usados na página |
 | `package.json`, `biome.json`, `knip.json`, `commitlint.config.mjs` | Ferramentas de qualidade (não fazem parte do site publicado) |
 | `src/sentry.js` → `sentry.min.js` | Monitoramento de erros (Sentry). Ver seção "Observabilidade" |
@@ -72,8 +72,8 @@ Pedido do Gustavo → Issue → branch → commits → Pull Request (cita a Issu
 | `.nojekyll` | Impede o GitHub Pages de processar o site com Jekyll. Não remover |
 
 ### Cuidados ao editar `index.html`
-- Mantenha o padrão visual: fundo escuro, `var(--color-*)`, cantos arredondados (36px/56px), `font-family: var(--font-heading)` nos títulos, rótulos em caixa alta pequenos acima dos títulos.
-- Não use `{{ }}` em texto: é sintaxe do template.
+- Siga o `DESIGN.md`: papel `--soro`, faixas escuras em `--noite`, títulos em Roboto Slab (classes `display-xl`, `display-l`, `titulo`, `subtitulo`; a classe `ferrugem` dá a tinta gasta dos rótulos) com uma palavra em `<em>`, kicker com a classe `lote`, motivos da marca (ondas, horizonte, carimbo). Produto novo vira um card-rótulo `.queijo` com `style="--produto: #HEX"` na cor Pantone do rótulo dele. Use as variáveis de `site.css`, nunca cores soltas.
+- Fontes vêm do Google Fonts (Roboto Slab, Work Sans, Barlow Condensed), substitutas livres de Nexa Rust Slab e Matahari dos rótulos. Não troque por Inter.
 - Seções com `data-secao="Nome"` mostram, ao entrar nelas, um rótulo pequeno com o nome da seção abaixo do menu (transição leve, Issue #17). Ele nunca cobre a tela nem trava a rolagem ou o teclado. **Não volte a bloquear `wheel`, `touchmove` ou teclas.**
 - Links de WhatsApp usam a mensagem pronta: `https://wa.me/5514981715427?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido.`
 
@@ -102,7 +102,8 @@ Configuração: `biome.json`, `commitlint.config.mjs`, `knip.json`, `playwright.
 ## Movimento (motion)
 Padrão definido pela skill [design-motion-principles](https://github.com/kylezantos/design-motion-principles). Contexto: landing page → peso **Jakub** (polimento sutil), depois Jhey; **Emil** em navegação e botões.
 - Foto ou mapa novo: container com `class="sk"` e o `<img>`/`<iframe>` com `class="sk-img"`, `loading="lazy"`, `decoding="async"`, `width`/`height` reais. Só a foto principal fica sem `lazy` (com `fetchpriority="high"`).
-- Bloco novo que deve entrar ao rolar: adicione o seletor na lista `REVEAL` de `motion.js`. Use `stagger` só em listas (cards, itens).
+- Bloco novo que deve entrar ao rolar: coloque o atributo `data-rv` nele (irmãos com `data-rv` entram em cascata). No herói use `data-rv="heroi"`.
+- Movimento ligado à rolagem (carimbo que gira, sol que nasce na chamada final) fica em `wireScroll` de `motion.js`: só `transform`, e desligado com movimento reduzido.
 - Entrada = opacity + translateY 8px + blur 4px, ~480ms, `--mo-ease-out`. Saída mais curta e sutil (`--mo-exit`).
 - Animar **só** `transform`, `opacity` e `filter`. Nunca `width`, `height`, `top`, `left`, `margin`.
 - Nada de animação em loop para chamar atenção (pulsar, brilhar). O único loop permitido é o shimmer do skeleton, enquanto algo carrega.
@@ -122,4 +123,4 @@ Padrão definido pela skill [design-motion-principles](https://github.com/kyleza
 - Fotos de pessoas sem autorização.
 
 ## Fonte da verdade
-A versão oficial do site é a deste repositório. O editor visual antigo do Claude Design **está desatualizado**: não publique a partir dele.
+A versão oficial do site é a deste repositório. O editor visual antigo do Claude Design **está desatualizado**: não publique a partir dele. O visual de referência é o `DESIGN.md` (e o Design System "Sítio Água Fria" no Claude, que o espelha).

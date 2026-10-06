@@ -1,0 +1,969 @@
+/*
+ * site.css — visual do Sítio Água Fria. Tokens e regras: DESIGN.md.
+ * Rústico contemporâneo a partir da marca real: o azul-noite e o turquesa do logo,
+ * a tipografia slab "enferrujada" e os rótulos de queijo (disco colorido + faixa escura + fita),
+ * sobre papel cor de soro, com grid editorial e movimento ligado à rolagem.
+ */
+
+:root {
+  /* marca (DESIGN.md §2) */
+  --soro: #f3ecdf;
+  --coalho: #faf6ee;
+  --noite: #020111; /* fundo dos rótulos de queijo */
+  --grafite: #231f20; /* fundo dos potes; texto da fita */
+  --tinta: #4b4f5e;
+  --linha: #02011124;
+  --turquesa: #30b2c1; /* ondas do logo (Pantone 3115C) */
+  --turquesa-texto: #17707f;
+  --nascente: #2094a8;
+  --ambar: #fbaf40; /* Pantone 136C: Remanso, Horizonte */
+
+  /* tipografia (§3) */
+  --f-display: "Roboto Slab", "Rockwell", Georgia, serif;
+  --f-texto: "Work Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-lote: "Barlow Condensed", "Arial Narrow", sans-serif;
+
+  /* espaço e forma (§5, §6) */
+  --calha: clamp(20px, 5vw, 72px);
+  --largura: 1240px;
+  --secao: clamp(72px, 10vw, 128px);
+  --radius-sm: 4px;
+  --radius-md: 14px;
+  --radius-pill: 999px;
+  --radius-arco: 999px 999px 18px 18px;
+  --papel: 0 1px 0 #02011114, 0 18px 40px -24px #02011166;
+
+  /* textura de tinta gasta (como a Nexa Rust dos rótulos) */
+  --ferrugem: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='2' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -22 16.4'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23f)'/%3E%3C/svg%3E");
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--soro);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .01 0 0 0 0 .01 0 0 0 0 .07 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  color: var(--noite);
+  font-family: var(--f-texto);
+  font-size: 16px;
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--turquesa-texto);
+  text-underline-offset: 3px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--nascente);
+  outline-offset: 3px;
+}
+
+.pular {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--noite);
+  color: var(--soro);
+  border-radius: var(--radius-sm);
+}
+.pular:focus {
+  top: 12px;
+}
+
+/* ---------- Tipografia ---------- */
+.display-xl,
+.display-l,
+.titulo,
+.subtitulo {
+  font-family: var(--f-display);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.display-xl {
+  font-size: clamp(48px, 8.2vw, 116px);
+  line-height: 0.92;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.display-l {
+  font-size: clamp(36px, 5.2vw, 72px);
+  line-height: 0.96;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.titulo {
+  font-size: clamp(30px, 3.4vw, 46px);
+  line-height: 1.05;
+  font-weight: 800;
+}
+.subtitulo {
+  font-size: 22px;
+  line-height: 1.15;
+  font-weight: 700;
+}
+.display-xl em,
+.display-l em,
+.titulo em {
+  font-style: normal;
+  color: var(--nascente);
+}
+.ferrugem {
+  /* tinta gasta de carimbo/rótulo: furinhos aleatórios no traço */
+  -webkit-mask-image: var(--ferrugem);
+  mask-image: var(--ferrugem);
+  -webkit-mask-size: 320px;
+  mask-size: 320px;
+}
+.corpo-l {
+  font-size: 19px;
+  line-height: 1.6;
+}
+.lote {
+  font-family: var(--f-lote);
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--turquesa-texto);
+}
+
+/* ---------- Botões e links (DESIGN.md §4) ---------- */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 14px 22px;
+  border-radius: var(--radius-pill);
+  background: var(--noite);
+  color: var(--soro);
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1;
+  text-decoration: none;
+}
+.botao-pequeno {
+  min-height: 44px;
+  padding: 12px 18px;
+  font-size: 14px;
+}
+.botao-claro {
+  background: var(--turquesa);
+  color: var(--noite);
+}
+.link-acao {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: var(--noite);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--turquesa);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+.link-acao span {
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-acao:hover span {
+  transform: translateX(3px);
+}
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 24px;
+}
+
+/* ---------- Topo ---------- */
+.topo {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2.4vw, 32px);
+  padding: 12px var(--calha);
+  transition:
+    background-color 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.topo.is-fixo {
+  background-color: #f3ecdfeb;
+  box-shadow: 0 1px 0 var(--linha);
+  backdrop-filter: blur(8px);
+}
+.marca {
+  margin-right: auto;
+  line-height: 0;
+}
+.marca img {
+  height: 60px;
+  width: auto;
+}
+.topo nav {
+  display: flex;
+  gap: clamp(14px, 2vw, 28px);
+}
+.topo nav a {
+  color: var(--noite);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+}
+.topo nav a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--turquesa);
+  text-decoration-thickness: 2px;
+}
+
+/* ---------- Seções ---------- */
+main > section {
+  max-width: calc(var(--largura) + 2 * var(--calha));
+  margin-inline: auto;
+  padding-inline: var(--calha);
+}
+
+/* ---------- Herói ---------- */
+.heroi {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: end;
+  gap: 32px;
+  padding-top: clamp(32px, 6vw, 72px);
+}
+.heroi-texto {
+  grid-column: 1 / span 7;
+  display: grid;
+  gap: 24px;
+  padding-bottom: clamp(48px, 7vw, 96px);
+}
+.heroi-texto .corpo-l {
+  max-width: 34ch;
+  color: var(--tinta);
+}
+.heroi-foto {
+  grid-column: 8 / span 5;
+  position: relative;
+  padding-bottom: clamp(24px, 4vw, 56px);
+}
+.arco {
+  display: block;
+  border-radius: var(--radius-arco);
+  overflow: hidden;
+}
+.heroi-foto .arco {
+  aspect-ratio: 3 / 4;
+}
+.heroi-foto .arco img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.horizonte {
+  width: 100%;
+  height: clamp(60px, 9vw, 120px);
+  fill: none;
+  stroke: var(--noite);
+  stroke-width: 1;
+  overflow: visible;
+}
+.horizonte path {
+  vector-effect: non-scaling-stroke;
+}
+.horizonte .sol {
+  stroke: var(--ambar);
+  stroke-width: 2;
+}
+.heroi .horizonte {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -40px;
+  z-index: -1;
+  opacity: 0.35;
+}
+
+/* Carimbo: anel que gira com a rolagem + selo oficial A2A2 parado no centro */
+.carimbo {
+  position: absolute;
+  width: clamp(120px, 13vw, 160px);
+  aspect-ratio: 1;
+  left: -52px;
+  bottom: clamp(56px, 8vw, 96px);
+  background: var(--soro);
+  border-radius: 50%;
+  box-shadow: var(--papel);
+}
+.carimbo svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: var(--noite);
+  stroke-width: 1.5;
+}
+.carimbo text {
+  fill: var(--noite);
+  stroke: none;
+  font-family: var(--f-lote);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+.carimbo img {
+  position: absolute;
+  inset: 20%;
+  width: 60%;
+  height: 60%;
+  mix-blend-mode: multiply;
+}
+
+/* ---------- Faixa de fatos (com as ondas do logo) ---------- */
+.faixa-fatos {
+  padding-block: 22px;
+  border-block: 1px solid var(--linha);
+  margin-top: clamp(40px, 6vw, 72px);
+}
+.faixa-fatos ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 28px;
+  font-family: var(--f-lote);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tinta);
+}
+.faixa-fatos li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.faixa-fatos li::before {
+  /* três ondas da marca */
+  content: "";
+  width: 22px;
+  height: 12px;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 12'%3E%3Cg fill='none' stroke='%2330b2c1' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M1 2.5q2.5-2 5 0t5 0 5 0 5 0'/%3E%3Cpath d='M1 6.5q2.5-2 5 0t5 0 5 0 5 0'/%3E%3Cpath d='M1 10.5q2.5-2 5 0t5 0 5 0 5 0'/%3E%3C/g%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+/* ---------- História ---------- */
+.historia {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 32px;
+  align-items: start;
+  padding-block: var(--secao);
+}
+.historia-ano {
+  position: absolute;
+  right: var(--calha);
+  top: calc(var(--secao) - 40px);
+  font-family: var(--f-display);
+  font-size: clamp(120px, 22vw, 300px);
+  line-height: 0.8;
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--turquesa);
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: -1;
+}
+.historia-foto {
+  grid-column: 1 / span 5;
+  margin: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+}
+.historia-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.historia-texto {
+  grid-column: 7 / span 6;
+  display: grid;
+  gap: 18px;
+  padding-top: clamp(0px, 4vw, 48px);
+}
+.historia-texto p:not(.lote) {
+  max-width: 52ch;
+  color: var(--tinta);
+}
+.selos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  margin-top: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--linha);
+}
+.selos-chapa {
+  /* chapa escura: os selos oficiais são brancos sobre preto */
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  background: var(--noite);
+  border-radius: var(--radius-sm);
+}
+.selos img {
+  flex: none;
+  height: 58px;
+  width: auto;
+  mix-blend-mode: screen;
+}
+.selos img:first-child {
+  height: 70px;
+  filter: invert(1);
+}
+.selos p {
+  flex: 1 1 220px;
+  font-size: 14px;
+  line-height: 1.5;
+  max-width: 30ch;
+  color: var(--tinta);
+}
+
+/* ---------- Faixa escura (o azul-noite dos rótulos) ---------- */
+.escuro {
+  color: var(--soro);
+}
+main > section.escuro {
+  max-width: none;
+  background: var(--noite);
+  padding-inline: max(var(--calha), calc((100% - var(--largura)) / 2));
+}
+.escuro .lote {
+  color: var(--turquesa);
+}
+.escuro em {
+  color: var(--turquesa);
+}
+.escuro p:not(.lote) {
+  color: #d9dbe3;
+}
+.escuro .link-acao {
+  color: var(--soro);
+}
+
+/* ---------- Produtos: rótulos de queijo (família A dos rótulos) ---------- */
+.produtos {
+  padding-block: var(--secao);
+}
+.produtos-topo {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 18px 32px;
+  margin-bottom: clamp(40px, 6vw, 72px);
+}
+.produtos-topo .lote,
+.produtos-topo h2 {
+  grid-column: 1 / span 8;
+}
+.produtos-topo p:not(.lote) {
+  grid-column: 9 / span 4;
+  align-self: end;
+  font-size: 15px;
+}
+.queijos {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 40px) clamp(12px, 2vw, 28px);
+}
+.queijo {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+}
+.queijo-disco {
+  /* o disco na cor do produto */
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--produto);
+}
+.queijo-faixa {
+  /* a faixa escura que atravessa o disco, com o medalhão */
+  position: relative;
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 16px 8px 14px;
+  background: var(--noite);
+  box-shadow: 0 0 0 1px #f3ecdf1f;
+  text-align: center;
+}
+.queijo-marca {
+  font-family: var(--f-lote);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--turquesa);
+}
+.queijo-nome {
+  font-family: var(--f-display);
+  font-size: clamp(20px, 2.3vw, 32px);
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--soro);
+  -webkit-mask-image: var(--ferrugem);
+  mask-image: var(--ferrugem);
+  -webkit-mask-size: 260px;
+  mask-size: 260px;
+}
+.queijo-tipo {
+  font-family: var(--f-lote);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--soro);
+}
+.queijo-fita {
+  margin-top: 6px;
+  padding: 2px 12px;
+  background: var(--produto);
+  color: var(--grafite);
+  font-family: var(--f-lote);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.cozinha {
+  display: grid;
+  gap: 18px;
+  margin-top: clamp(48px, 7vw, 80px);
+}
+.etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.etiquetas li {
+  /* fita na cor do produto, como nos rótulos */
+  padding: 7px 14px;
+  background: var(--produto, var(--turquesa));
+  color: var(--grafite);
+  font-family: var(--f-lote);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ---------- Genética ---------- */
+.genetica {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 32px;
+  align-items: center;
+  padding-block: var(--secao);
+}
+.genetica-texto {
+  grid-column: 1 / span 7;
+  display: grid;
+  gap: 18px;
+}
+.genetica-texto p:not(.lote) {
+  max-width: 58ch;
+  color: var(--tinta);
+}
+.celulas {
+  grid-column: 9 / span 4;
+  width: 100%;
+  max-width: 320px;
+  justify-self: end;
+}
+.celulas circle {
+  fill: none;
+  stroke: var(--noite);
+  stroke-width: 0.8;
+  opacity: 0.6;
+}
+.celulas circle.cheio {
+  fill: var(--turquesa);
+  stroke: var(--turquesa);
+  opacity: 1;
+}
+.pilares {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  border-top: 1px solid var(--linha);
+  padding-top: 28px;
+}
+.pilares li {
+  display: grid;
+  gap: 10px;
+}
+.pilares p {
+  font-family: var(--f-display);
+  font-size: 21px;
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+/* ---------- Galeria ---------- */
+.galeria {
+  display: grid;
+  gap: 20px;
+  padding-bottom: var(--secao);
+}
+.galeria-grade {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: clamp(16px, 2.4vw, 32px);
+  align-items: end;
+}
+.galeria figure {
+  position: relative;
+  margin: 0;
+}
+.galeria figure:first-child {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.galeria figure.arco {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+.galeria img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.galeria figcaption {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  padding: 4px 10px;
+  background: var(--noite);
+  color: var(--soro);
+}
+
+/* ---------- Onde comprar ---------- */
+.locais {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 32px;
+  padding-block: var(--secao);
+  border-top: 1px solid var(--linha);
+}
+.locais-texto {
+  grid-column: 1 / span 5;
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+.locais-texto p:not(.lote) {
+  color: var(--tinta);
+  max-width: 38ch;
+}
+.ondas {
+  width: 72px;
+  height: 18px;
+  fill: none;
+  stroke: var(--turquesa);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+.ondas-grande {
+  width: 120px;
+  height: 30px;
+  margin-top: 8px;
+}
+.rota {
+  grid-column: 7 / span 6;
+  position: relative;
+  display: grid;
+  gap: 28px;
+  padding-left: 32px;
+  border-left: 2px dashed var(--turquesa);
+}
+.rota li {
+  position: relative;
+  display: grid;
+  gap: 4px;
+}
+.rota li::before {
+  content: "";
+  position: absolute;
+  left: -40px;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--soro);
+  border: 2px solid var(--noite);
+}
+.rota p {
+  color: var(--tinta);
+  font-size: 15px;
+}
+.rota .no-sitio {
+  padding: 22px 24px;
+  background: var(--coalho);
+  border: 1px solid var(--linha);
+  border-radius: var(--radius-md);
+}
+.rota .no-sitio::before {
+  top: 28px;
+  background: var(--ambar);
+}
+.mapa {
+  grid-column: 1 / -1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: var(--coalho);
+  border: 1px solid var(--linha);
+}
+.mapa iframe {
+  display: block;
+  width: 100%;
+  height: clamp(280px, 38vw, 420px);
+  border: 0;
+}
+.mapa-link {
+  grid-column: 1 / -1;
+  margin-top: -16px;
+  font-size: 14px;
+}
+
+/* ---------- Contato ---------- */
+.contato {
+  position: relative;
+  overflow: hidden;
+  padding-block: var(--secao) 0;
+}
+.contato-texto {
+  display: grid;
+  gap: 20px;
+  max-width: 640px;
+  position: relative;
+  z-index: 1;
+}
+.contato .horizonte {
+  display: block;
+  margin-top: clamp(40px, 6vw, 72px);
+  stroke: #f3ecdf59;
+}
+.contato .horizonte .sol {
+  stroke: var(--ambar);
+}
+.contato .horizonte .fraco {
+  stroke: #30b2c159;
+}
+
+/* ---------- Rodapé ---------- */
+.rodape {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+  padding: 40px max(var(--calha), calc((100% - var(--largura)) / 2)) 112px;
+  background: var(--noite);
+  color: #d9dbe3;
+  font-size: 13px;
+}
+.rodape-selo {
+  width: 88px;
+  height: auto;
+}
+.rodape-texto {
+  display: grid;
+  gap: 12px;
+}
+
+/* ---------- Botão flutuante ---------- */
+#wa-float {
+  position: fixed;
+  right: clamp(16px, 3vw, 28px);
+  bottom: clamp(16px, 3vw, 28px);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 14px 20px 14px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--turquesa);
+  color: var(--noite);
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  box-shadow: var(--papel);
+}
+
+/* ---------- Rótulo da seção ---------- */
+.corte-rotulo {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 84px;
+  margin-inline: auto;
+  width: max-content;
+  z-index: 45;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 16px 7px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--noite);
+  color: var(--soro);
+  box-shadow: var(--papel);
+  font-family: var(--f-lote);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.corte-marcas {
+  display: grid;
+  gap: 3px;
+}
+.corte-marcas span {
+  display: block;
+  width: 16px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--turquesa);
+}
+
+/* origem das transformações ligadas à rolagem (motion.js) */
+.carimbo svg {
+  transform-origin: 50% 50%;
+}
+.horizonte .sol {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+/* ---------- Responsivo (DESIGN.md §8) ---------- */
+@media (max-width: 1080px) {
+  .queijos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .produtos-topo p:not(.lote) {
+    grid-column: 1 / span 10;
+  }
+}
+
+@media (max-width: 720px) {
+  .topo nav {
+    display: none;
+  }
+  .marca img {
+    height: 44px;
+  }
+  .heroi,
+  .historia,
+  .genetica,
+  .locais,
+  .produtos-topo {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .heroi > *,
+  .historia > *,
+  .genetica > *,
+  .locais > *,
+  .produtos-topo > * {
+    /* biome-ignore lint/complexity/noImportantStyles: no celular tudo vira uma coluna, vencendo as posições do grid de 12 colunas */
+    grid-column: 1 / -1 !important;
+  }
+  .heroi-texto {
+    padding-bottom: 8px;
+  }
+  .heroi-foto {
+    padding-left: 24px;
+  }
+  .carimbo {
+    left: -12px;
+    bottom: 32px;
+    width: 112px;
+  }
+  .historia-ano {
+    top: 24px;
+    font-size: 132px;
+  }
+  .celulas {
+    justify-self: start;
+    max-width: 220px;
+  }
+  .pilares {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+  .galeria-grade {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .rota {
+    margin-left: 8px;
+  }
+  .queijo-nome {
+    font-size: clamp(16px, 5.4vw, 22px);
+  }
+  .queijo-tipo {
+    font-size: 12px;
+  }
+  .queijo-marca,
+  .queijo-fita {
+    font-size: 9px;
+  }
+}

@@ -4,7 +4,7 @@ const URL_SITE = "https://gpuelker-spec.github.io/sitio-agua-fria/";
 
 test.beforeEach(async ({ page }) => {
   await page.goto("/index.html");
-  await expect(page.locator("#dc-root #inicio")).toBeAttached({ timeout: 15_000 });
+  await expect(page.locator("#inicio")).toBeAttached({ timeout: 15_000 });
 });
 
 const meta = (page, attr, nome) => page.locator(`meta[${attr}="${nome}"]`);

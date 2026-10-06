@@ -9,6 +9,7 @@
     "includes": [
       "motion.js",
       "motion.css",
+      "site.css",
       "src/**",
       "tests/**",
       "*.config.js",

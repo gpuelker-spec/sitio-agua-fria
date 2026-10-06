@@ -9,7 +9,7 @@ async function abrir(page) {
   const erros = [];
   page.on("pageerror", (e) => erros.push(e.message));
   await page.goto("/index.html");
-  await expect(page.locator("#dc-root #inicio")).toBeAttached({ timeout: 15_000 });
+  await expect(page.locator("#inicio")).toBeAttached({ timeout: 15_000 });
   return erros;
 }
 
@@ -37,7 +37,7 @@ test("lazy loading: só a foto principal carrega com prioridade, o resto espera 
   await expect(page.locator('img[src="f1.jpg"]')).toHaveAttribute("fetchpriority", "high");
   await expect(page.locator('img[src="f1.jpg"]')).not.toHaveAttribute("loading", "lazy");
   for (const src of ["f7.jpg", "f3.jpg", "f4.jpg", "a2a2.png", "selo-sisp.jpg"]) {
-    const img = page.locator(`img[src="${src}"]`);
+    const img = page.locator(`img[src="${src}"]:not(.carimbo img)`); // o selo do herói é acima da dobra
     await expect(img).toHaveAttribute("loading", "lazy");
     await expect(img).toHaveAttribute("width", /\d+/);
     await expect(img).toHaveAttribute("height", /\d+/);
@@ -72,7 +72,7 @@ test("rolagem: os blocos entram ao aparecer e o botão flutuante entra e sai", a
   await expect
     .poll(() => page.evaluate(() => window.scrollY + window.innerHeight >= document.body.scrollHeight - 2))
     .toBe(true);
-  await expect(page.locator("#contato > div")).toHaveClass(/is-in/, { timeout: 5_000 });
+  await expect(page.locator("#contato .contato-texto")).toHaveClass(/is-in/, { timeout: 5_000 });
   await expect(page.locator(".rv:not(.is-in)")).toHaveCount(0, { timeout: 5_000 });
   await expect(botao).toHaveClass(/is-hidden/); // sai na seção Contato
 
@@ -109,11 +109,13 @@ test("teclado rola a página normalmente", async ({ page }) => {
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(1000);
 });
 
-test("menu leva à seção certa", async ({ page }) => {
+test("link do herói leva à seção certa", async ({ page }) => {
   await abrir(page);
-  await page.locator('nav a[href="#locais"]').click();
+  await page.getByRole("link", { name: "Ver a linha" }).click();
   await expect
-    .poll(() => page.evaluate(() => Math.abs(document.querySelector("#locais").getBoundingClientRect().top)))
+    .poll(() =>
+      page.evaluate(() => Math.abs(document.querySelector("#produtos").getBoundingClientRect().top)),
+    )
     .toBeLessThan(200);
 });
 
@@ -126,11 +128,15 @@ test.describe("movimento reduzido", () => {
     const erros = await abrir(page);
     await expect(page.locator("#mo-skeleton")).toHaveCount(0, { timeout: 10_000 });
     await expect(page.locator(".rv:not(.is-in)")).toHaveCount(0);
-    await expect(page.locator("[data-corte]")).toHaveCount(0);
     const animacoes = await page.evaluate(() =>
       [...document.querySelectorAll(".sk")].map((el) => getComputedStyle(el).animationName),
     );
     expect(animacoes.every((n) => n === "none")).toBe(true);
+    // rolar não mostra o rótulo nem gira o carimbo
+    await page.mouse.wheel(0, 1500);
+    await page.waitForTimeout(400);
+    await expect(page.locator('[data-corte="rotulo"]')).not.toHaveClass(/is-on/);
+    expect(await page.locator(".carimbo svg").evaluate((el) => el.style.transform)).toBe("");
     expect(erros).toEqual([]);
   });
 

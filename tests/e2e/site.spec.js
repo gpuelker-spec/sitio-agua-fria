@@ -9,7 +9,7 @@ async function abrir(page) {
   const erros = [];
   page.on("pageerror", (e) => erros.push(e.message));
   await page.goto("/index.html");
-  await expect(page.locator("#dc-root #inicio")).toBeAttached({ timeout: 15_000 });
+  await expect(page.locator("#inicio")).toBeAttached({ timeout: 15_000 });
   return erros;
 }
 
@@ -36,7 +36,7 @@ test("todas as seções existem e os links do menu apontam para elas", async ({ 
 
 test("a linha de queijos mostra os 8 produtos", async ({ page }) => {
   await abrir(page);
-  const nomes = await page.locator("#produtos .card-title").allTextContents();
+  const nomes = await page.locator("#produtos .queijo-nome").allTextContents();
   expect(nomes.map((n) => n.trim())).toEqual(QUEIJOS);
 });
 
@@ -66,7 +66,7 @@ test("links externos abrem em nova aba com segurança", async ({ page }) => {
 test("todas as imagens têm texto alternativo e existem no servidor", async ({ page, request }) => {
   await abrir(page);
   const imagens = await page
-    .locator("#dc-root img")
+    .locator("#site img")
     .evaluateAll((imgs) => imgs.map((i) => ({ src: i.getAttribute("src"), alt: i.getAttribute("alt") })));
   expect(imagens.length).toBeGreaterThan(0);
   for (const { src, alt } of imagens) {
@@ -105,7 +105,7 @@ test("Sentry carrega sem erro e não envia nada fora do site publicado", async (
   });
   const erros = await abrir(page);
   await page.goto("/index.html#teste-sentry");
-  await expect(page.locator("#dc-root #inicio")).toBeAttached({ timeout: 15_000 });
+  await expect(page.locator("#inicio")).toBeAttached({ timeout: 15_000 });
   await page.waitForTimeout(500);
   expect(erros).toEqual([]);
   expect(enviados).toEqual([]);
