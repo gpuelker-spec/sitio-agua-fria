@@ -49,6 +49,10 @@ test("dados estruturados de negócio local válidos e coerentes com o site", asy
   const wa = await page.locator('a[href*="wa.me"]').first().getAttribute("href");
   expect(wa).toContain(digitos);
   expect(ld.sameAs).toContain("https://instagram.com/laticiniositioaguafria");
+  // o mapa do site aponta para as mesmas coordenadas dos dados estruturados
+  const mapa = await page.locator("iframe").getAttribute("src");
+  expect(mapa).toContain(`${ld.geo.latitude},${ld.geo.longitude}`);
+  await expect(page.getByRole("link", { name: "Abrir no Google Maps" })).toHaveAttribute("href", ld.hasMap);
 });
 
 test("robots.txt e sitemap.xml publicados", async ({ request }) => {
