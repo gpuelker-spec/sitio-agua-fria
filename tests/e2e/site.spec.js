@@ -78,9 +78,11 @@ test("todas as imagens têm texto alternativo e existem no servidor", async ({ p
 
 test("botão flutuante de pedido existe e leva ao WhatsApp", async ({ page }) => {
   await abrir(page);
-  const botao = page.getByRole("link", { name: "Fazer pedido pelo WhatsApp" });
+  // fica escondido (is-hidden) no topo; por isso é buscado pelo id e não pelo papel acessível
+  const botao = page.locator("#wa-float");
   await expect(botao).toBeAttached();
   await expect(botao).toHaveAttribute("href", new RegExp(`^${WHATSAPP}`));
+  await expect(botao).toHaveAttribute("aria-label", "Fazer pedido pelo WhatsApp");
 });
 
 test("não há rolagem horizontal (layout cabe na tela)", async ({ page }) => {
