@@ -170,6 +170,27 @@
     visibility 0s linear var(--mo-exit);
 }
 
+/* ---------- 5b. Rótulo da seção (transição leve, Issue #17) ---------- */
+/* Pequeno, abaixo do menu, nunca cobre a tela nem trava a rolagem. */
+.corte-rotulo {
+  opacity: 0;
+  transform: translateY(-4px);
+  filter: blur(2px);
+  transition:
+    opacity var(--mo-exit) var(--mo-ease-in),
+    transform var(--mo-exit) var(--mo-ease-in),
+    filter var(--mo-exit) var(--mo-ease-in);
+}
+.corte-rotulo.is-on {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+  transition:
+    opacity 280ms var(--mo-ease-out),
+    transform 280ms var(--mo-ease-out),
+    filter 280ms var(--mo-ease-out);
+}
+
 /* ---------- 6. Feedback de toque nos botões (Emil: rápido) ---------- */
 .btn,
 #wa-float {

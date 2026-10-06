@@ -62,28 +62,59 @@ test("rolagem: os blocos entram ao aparecer e o botão flutuante entra e sai", a
   const botao = page.locator("#wa-float");
   await expect(botao).toHaveClass(/is-hidden/); // escondido no topo
 
-  // rola como uma pessoa (a transição de queijo trava a rolagem por instantes)
-  for (let i = 0; i < 60; i++) {
-    await page.mouse.wheel(0, 350);
-    await page.waitForTimeout(250);
+  // rolagem rápida até o fim: nada pode travar ou devolver a página
+  for (let i = 0; i < 40; i++) {
+    await page.mouse.wheel(0, 400);
+    await page.waitForTimeout(60);
     if (await page.evaluate(() => window.scrollY + window.innerHeight >= document.body.scrollHeight - 2))
       break;
   }
+  await expect
+    .poll(() => page.evaluate(() => window.scrollY + window.innerHeight >= document.body.scrollHeight - 2))
+    .toBe(true);
   await expect(page.locator("#contato > div")).toHaveClass(/is-in/, { timeout: 5_000 });
   await expect(page.locator(".rv:not(.is-in)")).toHaveCount(0, { timeout: 5_000 });
   await expect(botao).toHaveClass(/is-hidden/); // sai na seção Contato
 
-  // volta a aparecer ao subir para longe do Contato (rolando como uma pessoa)
+  await page.mouse.wheel(0, -1600);
+  await expect(botao).not.toHaveClass(/is-hidden/, { timeout: 5_000 }); // volta ao subir
+});
+
+test("transição leve: rótulo da seção aparece pequeno e some, sem travar a rolagem", async ({ page }) => {
+  await abrir(page);
+  const rotulo = page.locator('[data-corte="rotulo"]');
+  await expect(rotulo).not.toHaveClass(/is-on/); // não aparece ao abrir a página
+
+  const antes = await page.evaluate(() => window.scrollY);
+  await page.mouse.wheel(0, 900);
+  // a rolagem acontece na hora e não é revertida
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(antes + 500);
+  await page.waitForTimeout(300);
+  expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(antes + 500);
+
+  await expect(rotulo).toHaveClass(/is-on/);
+  await expect(page.locator('[data-corte="texto"]')).not.toBeEmpty();
+  // é um rótulo pequeno, não um overlay de tela cheia
+  const caixa = await rotulo.boundingBox();
+  const tela = page.viewportSize();
+  expect(caixa.height).toBeLessThan(80);
+  expect(caixa.width).toBeLessThan(tela.width * 0.8);
+  await expect(rotulo).not.toHaveClass(/is-on/, { timeout: 4_000 }); // some sozinho
+});
+
+test("teclado rola a página normalmente", async ({ page }) => {
+  await abrir(page);
+  await page.locator("body").click({ position: { x: 5, y: 300 } });
+  for (let i = 0; i < 4; i++) await page.keyboard.press("PageDown");
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(1000);
+});
+
+test("menu leva à seção certa", async ({ page }) => {
+  await abrir(page);
+  await page.locator('nav a[href="#locais"]').click();
   await expect
-    .poll(
-      async () => {
-        await page.mouse.wheel(0, -350);
-        await page.waitForTimeout(300);
-        return (await botao.getAttribute("class")) || "";
-      },
-      { timeout: 30_000, intervals: [0] },
-    )
-    .not.toContain("is-hidden");
+    .poll(() => page.evaluate(() => Math.abs(document.querySelector("#locais").getBoundingClientRect().top)))
+    .toBeLessThan(200);
 });
 
 test.describe("movimento reduzido", () => {
@@ -91,7 +122,7 @@ test.describe("movimento reduzido", () => {
     await page.emulateMedia({ reducedMotion: "reduce" });
   });
 
-  test("tudo aparece sem animação e a transição de queijo fica desligada", async ({ page }) => {
+  test("tudo aparece sem animação e sem rótulo de transição", async ({ page }) => {
     const erros = await abrir(page);
     await expect(page.locator("#mo-skeleton")).toHaveCount(0, { timeout: 10_000 });
     await expect(page.locator(".rv:not(.is-in)")).toHaveCount(0);

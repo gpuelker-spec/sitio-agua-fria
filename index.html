@@ -89,23 +89,13 @@
 <div style="font-family: var(--font-body); color: var(--color-text); background: var(--color-bg); min-height: 100%">
 
   <sc-if value="{{ mostrarTransicao }}" hint-placeholder-val="{{ true }}">
-    <div aria-hidden="true" style="position: fixed; inset: 0; z-index: 60; pointer-events: none; overflow: hidden">
-      <div data-corte="topo" style="position: absolute; left: -6vw; right: -6vw; top: 0; height: 50%; transform: translate3d(3vw, -100%, 0); will-change: transform; background: radial-gradient(10px 7px at 19% calc(100% - 38px), rgba(122, 92, 24, 0.17), rgba(122, 92, 24, 0) 70%), radial-gradient(7px 5px at 37% calc(100% - 66px), rgba(122, 92, 24, 0.13), rgba(122, 92, 24, 0) 70%), radial-gradient(13px 9px at 58% calc(100% - 44px), rgba(122, 92, 24, 0.16), rgba(122, 92, 24, 0) 70%), radial-gradient(6px 5px at 72% calc(100% - 78px), rgba(122, 92, 24, 0.12), rgba(122, 92, 24, 0) 70%), radial-gradient(10px 7px at 86% calc(100% - 34px), rgba(122, 92, 24, 0.15), rgba(122, 92, 24, 0) 70%), linear-gradient(180deg, #d5921f 0, #f0b23c 16px, #f7cc72 26px, #fbf3dd 40px, #f7ecca 55%, #f2e2b4 100%)">
-        <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 26px; background: linear-gradient(180deg, rgba(255, 251, 238, 0) 0, rgba(255, 251, 238, 0.85) 100%); box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55)"></div>
-      </div>
-
-      <div data-corte="base" style="position: absolute; left: -6vw; right: -6vw; bottom: 0; height: 50%; transform: translate3d(-3vw, 100%, 0); will-change: transform; background: radial-gradient(10px 7px at 24% 40px, rgba(122, 92, 24, 0.16), rgba(122, 92, 24, 0) 70%), radial-gradient(7px 5px at 44% 72px, rgba(122, 92, 24, 0.13), rgba(122, 92, 24, 0) 70%), radial-gradient(13px 9px at 66% 46px, rgba(122, 92, 24, 0.15), rgba(122, 92, 24, 0) 70%), radial-gradient(6px 5px at 81% 84px, rgba(122, 92, 24, 0.12), rgba(122, 92, 24, 0) 70%), radial-gradient(10px 7px at 91% 36px, rgba(122, 92, 24, 0.14), rgba(122, 92, 24, 0) 70%), linear-gradient(0deg, #d5921f 0, #f0b23c 16px, #f7cc72 26px, #fbf3dd 40px, #f7ecca 55%, #f2e2b4 100%)">
-        <div style="position: absolute; left: 0; right: 0; top: 0; height: 26px; background: linear-gradient(0deg, rgba(255, 251, 238, 0) 0, rgba(255, 251, 238, 0.85) 100%); box-shadow: 0 -14px 34px rgba(0, 0, 0, 0.55)"></div>
-      </div>
-
-      <div data-corte="rotulo" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.86); opacity: 0; background: #0a0c0d; border-radius: 999px; padding: 18px 34px 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6)">
-        <div style="display: flex; flex-direction: column; gap: 3px; align-items: center">
-          <span style="display: block; width: 30px; height: 3px; border-radius: 999px; background: #f0b23c"></span>
-          <span style="display: block; width: 30px; height: 3px; border-radius: 999px; background: #f0b23c"></span>
-          <span style="display: block; width: 30px; height: 3px; border-radius: 999px; background: #f0b23c"></span>
-        </div>
-        <span data-corte="texto" style="font-family: var(--font-heading); font-size: clamp(22px, 3vw, 34px); line-height: 1; color: #fffdf7"></span>
-      </div>
+    <div data-corte="rotulo" class="corte-rotulo" aria-hidden="true" style="position: fixed; left: 0; right: 0; top: 96px; margin-inline: auto; width: max-content; z-index: 45; pointer-events: none; display: flex; align-items: center; gap: 12px; padding: 10px 18px 10px 14px; border-radius: 999px; background: rgba(10, 12, 13, 0.92); border: 1px solid rgba(240, 178, 60, 0.35); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45)">
+      <span style="display: flex; flex-direction: column; gap: 3px">
+        <span style="display: block; width: 18px; height: 2px; border-radius: 999px; background: #f0b23c"></span>
+        <span style="display: block; width: 18px; height: 2px; border-radius: 999px; background: #f0b23c"></span>
+        <span style="display: block; width: 18px; height: 2px; border-radius: 999px; background: #f0b23c"></span>
+      </span>
+      <span data-corte="texto" style="font-family: var(--font-heading); font-size: 15px; line-height: 1; color: #fffdf7"></span>
     </div>
   </sc-if>
 
@@ -302,16 +292,13 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;mostrarTransicao&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Transição do queijo&quot;},&quot;velocidadeTransicao&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1,&quot;min&quot;:0.5,&quot;max&quot;:2,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Transição do queijo&quot;},&quot;mostrarSelos&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Seções&quot;},&quot;mostrarLinhaCompleta&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Seções&quot;},&quot;mostrarComoChegar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Seções&quot;}}">
 class Component extends DCLogic {
+  // Transição leve (Issue #17): ao entrar numa seção, um rótulo pequeno com o nome dela
+  // aparece abaixo do menu e some sozinho. Nunca cobre a tela nem trava a rolagem ou o teclado.
   iniciarLoop() {
     if (this.loopAtivo) return;
     this.loopAtivo = true;
-    this.fase = "parado";
-    this.e = 0;
-    this.eInicio = 0;
-    this.nome = "";
     this.indice = null;
-    this.t0 = 0;
-    this.destino = null;
+    this.ultimoY = null;
     this.ligarLinks();
     const passo = () => {
       if (!this.loopAtivo) return;
@@ -321,38 +308,27 @@ class Component extends DCLogic {
     this.raf = requestAnimationFrame(passo);
   }
 
+  reduzido() {
+    return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }
+
   ligarLinks() {
     if (this.linksLigados) return;
     this.linksLigados = true;
     this.aoClicar = (ev) => {
       if (ev.defaultPrevented || ev.metaKey || ev.ctrlKey) return;
-      const alvoEv = ev.target;
-      const a =
-        alvoEv && alvoEv.closest ? alvoEv.closest('a[href^="#"]') : null;
+      const a = ev.target && ev.target.closest ? ev.target.closest('a[href^="#"]') : null;
       if (!a) return;
       const href = a.getAttribute("href");
       if (!href || href === "#") return;
       const secao = document.querySelector(href);
       if (!secao) return;
       ev.preventDefault();
-      const temEfeito =
-        !!document.querySelector('[data-corte="topo"]') &&
-        !!document.querySelector('[data-corte="base"]');
-      if (!temEfeito) {
-        const nav = document.querySelector("[data-nav]");
-        const alturaNav = nav ? nav.offsetHeight : 0;
-        const primeira = secao === document.querySelector("[data-secao]");
-        const y = primeira
-          ? 0
-          : secao.getBoundingClientRect().top +
-            window.scrollY -
-            alturaNav -
-            12;
-        window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
-        return;
-      }
-      this.destino = secao;
-      this.disparar(secao.getAttribute("data-secao") || "");
+      const nav = document.querySelector("[data-nav]");
+      const alturaNav = nav ? nav.offsetHeight : 0;
+      const primeira = secao === document.querySelector("[data-secao]");
+      const y = primeira ? 0 : secao.getBoundingClientRect().top + window.scrollY - alturaNav - 12;
+      window.scrollTo({ top: Math.max(0, y), behavior: this.reduzido() ? "auto" : "smooth" });
     };
     document.addEventListener("click", this.aoClicar);
   }
@@ -364,90 +340,31 @@ class Component extends DCLogic {
   componentWillUnmount() {
     this.loopAtivo = false;
     this.linksLigados = false;
-    this.destravar();
     document.removeEventListener("click", this.aoClicar);
     if (this.raf != null) cancelAnimationFrame(this.raf);
+    clearTimeout(this.timerRotulo);
   }
 
-  travar() {
-    this.travaY = window.scrollY;
-    if (this.travado) return;
-    if (!this.bloqueio) {
-      this.bloqueio = (ev) => {
-        if (this.travado && ev.cancelable) ev.preventDefault();
-      };
-      this.bloqueioTeclas = (ev) => {
-        const teclas = [
-          "ArrowDown",
-          "ArrowUp",
-          "PageDown",
-          "PageUp",
-          "Home",
-          "End",
-          " ",
-        ];
-        if (this.travado && teclas.indexOf(ev.key) !== -1) ev.preventDefault();
-      };
-    }
-    this.travado = true;
-    window.addEventListener("wheel", this.bloqueio, { passive: false });
-    window.addEventListener("touchmove", this.bloqueio, { passive: false });
-    window.addEventListener("keydown", this.bloqueioTeclas);
-  }
-
-  destravar() {
-    if (!this.travado) return;
-    this.travado = false;
-    window.removeEventListener("wheel", this.bloqueio);
-    window.removeEventListener("touchmove", this.bloqueio);
-    window.removeEventListener("keydown", this.bloqueioTeclas);
-  }
-
-  limparEntrando() {
-    if (!this.entrando) return;
-    this.entrando.style.transform = "";
-    this.entrando.style.opacity = "";
-    this.entrando.style.willChange = "";
-    this.entrando = null;
-  }
-
-  disparar(nome) {
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    this.limparEntrando();
-    if (nome) this.nome = nome;
-    this.eInicio = this.e;
-    this.t0 = performance.now();
-    this.fase = "fechando";
-    this.travar();
-  }
-
-  refs() {
-    if (!this.cache || !this.cache.topo || !this.cache.topo.isConnected) {
-      this.cache = {
-        lista: Array.from(document.querySelectorAll("[data-secao]")),
-        nav: document.querySelector("[data-nav]"),
-        topo: document.querySelector('[data-corte="topo"]'),
-        base: document.querySelector('[data-corte="base"]'),
-        rotulo: document.querySelector('[data-corte="rotulo"]'),
-        texto: document.querySelector('[data-corte="texto"]'),
-      };
-    }
-    return this.cache;
+  mostrarRotulo(nome) {
+    const rot = document.querySelector('[data-corte="rotulo"]');
+    const txt = document.querySelector('[data-corte="texto"]');
+    if (!rot || !txt || !nome) return;
+    const nav = document.querySelector("[data-nav]");
+    rot.style.top = (nav ? nav.getBoundingClientRect().bottom : 0) + 12 + "px";
+    txt.textContent = nome;
+    rot.classList.add("is-on");
+    clearTimeout(this.timerRotulo);
+    const v = Math.max(0.4, Math.min(2.5, this.props.velocidadeTransicao ?? 1));
+    this.timerRotulo = setTimeout(() => rot.classList.remove("is-on"), 1100 / v);
   }
 
   update() {
-    const c = this.refs();
     const y = window.scrollY;
-    if (
-      this.fase === "parado" &&
-      this.ultimoY === y &&
-      this.indice !== null &&
-      !this.destino
-    )
-      return;
+    if (this.ultimoY === y && this.indice !== null) return;
     this.ultimoY = y;
 
-    const lista = c.lista;
+    const lista = Array.from(document.querySelectorAll("[data-secao]"));
+    if (!lista.length) return;
     const meio = window.innerHeight * 0.5;
     let idx = 0;
     for (let i = 0; i < lista.length; i++) {
@@ -463,122 +380,13 @@ class Component extends DCLogic {
       nav.style.backdropFilter = fixo ? "blur(10px)" : "none";
     }
 
-    const topo = document.querySelector('[data-corte="topo"]');
-    const base = document.querySelector('[data-corte="base"]');
-    if (!topo || !base) {
-      this.indice = idx;
-      this.limparEntrando();
-      this.destravar();
-      this.fase = "parado";
-      this.e = 0;
+    if (this.indice === null) {
+      this.indice = idx; // primeira leitura: não mostra rótulo ao abrir a página
       return;
     }
-
-    const v = Math.max(0.4, Math.min(2.5, this.props.velocidadeTransicao ?? 1));
-    const dFechar = 380 / v;
-    const dPausa = 300 / v;
-    const dAbrir = 620 / v;
-    const agora = performance.now();
-
-    if (this.travado && Math.abs(window.scrollY - this.travaY) > 1) {
-      const raizT = document.documentElement;
-      const antesT = raizT.style.scrollBehavior;
-      raizT.style.scrollBehavior = "auto";
-      window.scrollTo(0, this.travaY);
-      raizT.style.scrollBehavior = antesT;
-    }
-
-    if (this.indice === null) {
+    if (idx !== this.indice) {
       this.indice = idx;
-    } else if (idx !== this.indice) {
-      this.indice = idx;
-      const nome = lista[idx].getAttribute("data-secao") || "";
-      if (this.fase === "parado" || this.fase === "abrindo") {
-        this.destino = lista[idx];
-        this.disparar(nome);
-      } else if (nome) {
-        this.nome = nome;
-        this.destino = lista[idx];
-      }
-    }
-
-    let e = this.e;
-    if (this.fase === "fechando") {
-      const t = Math.min(1, (agora - this.t0) / dFechar);
-      const k = 1 - Math.pow(1 - t, 3);
-      e = this.eInicio + (1 - this.eInicio) * k;
-      if (t >= 1) {
-        e = 1;
-        this.fase = "pausa";
-        this.t0 = agora;
-        if (this.destino) {
-          const nav2 = document.querySelector("[data-nav]");
-          const alturaNav = nav2 ? nav2.offsetHeight : 0;
-          const primeira = this.destino === lista[0];
-          const y = primeira
-            ? 0
-            : this.destino.getBoundingClientRect().top +
-              window.scrollY -
-              alturaNav -
-              12;
-          const raiz = document.documentElement;
-          const antes = raiz.style.scrollBehavior;
-          raiz.style.scrollBehavior = "auto";
-          window.scrollTo(0, Math.max(0, y));
-          raiz.style.scrollBehavior = antes;
-          this.travaY = window.scrollY;
-          this.limparEntrando();
-          this.entrando = this.destino;
-          this.entrando.style.willChange = "transform, opacity";
-          this.entrando.style.transform = "translate3d(0, 40px, 0)";
-          this.entrando.style.opacity = "0";
-          this.destino = null;
-          this.indice = null;
-        }
-      }
-    } else if (this.fase === "pausa") {
-      e = 1;
-      if (agora - this.t0 >= dPausa) {
-        this.fase = "abrindo";
-        this.t0 = agora;
-        this.destravar();
-      }
-    } else if (this.fase === "abrindo") {
-      const t = Math.min(1, (agora - this.t0) / dAbrir);
-      const k = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-      e = 1 - k;
-      if (this.entrando) {
-        const s = Math.min(1, k / 0.75);
-        const ks = 1 - Math.pow(1 - s, 3);
-        this.entrando.style.transform =
-          "translate3d(0, " + (1 - ks) * 40 + "px, 0)";
-        this.entrando.style.opacity = ks;
-      }
-      if (t >= 1) {
-        e = 0;
-        this.fase = "parado";
-        this.limparEntrando();
-      }
-    } else {
-      e = 0;
-    }
-    this.e = e;
-
-    const desloc = (1 - e) * 3;
-    topo.style.transform =
-      "translate3d(" + desloc + "vw, " + (e - 1) * 100 + "%, 0)";
-    base.style.transform =
-      "translate3d(" + -desloc + "vw, " + (1 - e) * 100 + "%, 0)";
-
-    const rot = document.querySelector('[data-corte="rotulo"]');
-    const txt = document.querySelector('[data-corte="texto"]');
-    if (rot && txt) {
-      const o = Math.max(0, (e - 0.68) / 0.32);
-      rot.style.opacity = o;
-      rot.style.transform =
-        "translate(-50%, -50%) scale(" + (0.86 + o * 0.14) + ")";
-      if (this.nome && txt.textContent !== this.nome)
-        txt.textContent = this.nome;
+      if (idx > 0) this.mostrarRotulo(lista[idx].getAttribute("data-secao") || "");
     }
   }
 
