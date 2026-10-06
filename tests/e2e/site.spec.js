@@ -90,12 +90,13 @@ test("não há rolagem horizontal (layout cabe na tela)", async ({ page }) => {
   const sobra = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   expect(sobra).toBeLessThanOrEqual(1);
   // no celular, conteúdo largo demais faz o navegador "afastar" a página: a largura tem que ser a da tela
-  const largos = await page.evaluate(() =>
-    [...document.querySelectorAll("#site *")]
-      .filter((e) => e.getBoundingClientRect().right > window.innerWidth - 2 && !e.closest("svg"))
-      .slice(0, 12)
-      .map((e) => `${e.tagName}.${e.className}:${Math.round(e.getBoundingClientRect().right)}`)
-      .join(" | "),
+  const largos = await page.evaluate(
+    () =>
+      [...document.querySelectorAll("#site *")]
+        .filter((e) => e.getBoundingClientRect().right > window.innerWidth - 2)
+        .slice(0, 12)
+        .map((e) => `${e.tagName}.${e.getAttribute("class")}:${Math.round(e.getBoundingClientRect().right)}`)
+        .join(" | ") || "nenhum elemento",
   );
   expect(await page.evaluate(() => window.innerWidth), largos).toBe(page.viewportSize().width);
 });
