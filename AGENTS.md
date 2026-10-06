@@ -67,6 +67,7 @@ Pedido do Gustavo → Issue → branch → commits → Pull Request (cita a Issu
 | `*.jpg`, `*.png` | Fotos e selos usados na página |
 | `package.json`, `biome.json`, `knip.json`, `commitlint.config.mjs` | Ferramentas de qualidade (não fazem parte do site publicado) |
 | `src/sentry.js` → `sentry.min.js` | Monitoramento de erros (Sentry). Ver seção "Observabilidade" |
+| `motion.css`, `motion.js` | Camada de movimento: barra de progresso, skeletons, lazy loading, entradas ao rolar, botão flutuante que entra/sai. Ver seção "Movimento" |
 | `.nojekyll` | Impede o GitHub Pages de processar o site com Jekyll. Não remover |
 
 ### Cuidados ao editar `index.html`
@@ -96,6 +97,16 @@ Configuração: `biome.json`, `commitlint.config.mjs`, `knip.json`, `playwright.
 - LGPD: `sendDefaultPii: false`, sem Session Replay e sem medição de desempenho.
 - Teste manual: abra o site publicado com `#teste-sentry` no fim do endereço e confira o erro no painel do Sentry.
 - Ao adicionar um domínio próprio, inclua-o na regex `PRODUCAO` de `src/sentry.js`.
+
+## Movimento (motion)
+Padrão definido pela skill [design-motion-principles](https://github.com/kylezantos/design-motion-principles). Contexto: landing page → peso **Jakub** (polimento sutil), depois Jhey; **Emil** em navegação e botões.
+- Foto ou mapa novo: container com `class="sk"` e o `<img>`/`<iframe>` com `class="sk-img"`, `loading="lazy"`, `decoding="async"`, `width`/`height` reais. Só a foto principal fica sem `lazy` (com `fetchpriority="high"`).
+- Bloco novo que deve entrar ao rolar: adicione o seletor na lista `REVEAL` de `motion.js`. Use `stagger` só em listas (cards, itens).
+- Entrada = opacity + translateY 8px + blur 4px, ~480ms, `--mo-ease-out`. Saída mais curta e sutil (`--mo-exit`).
+- Animar **só** `transform`, `opacity` e `filter`. Nunca `width`, `height`, `top`, `left`, `margin`.
+- Nada de animação em loop para chamar atenção (pulsar, brilhar). O único loop permitido é o shimmer do skeleton, enquanto algo carrega.
+- Todo movimento novo precisa funcionar com `prefers-reduced-motion: reduce` (bloco no fim de `motion.css`).
+- Teste: carregamento (skeleton → conteúdo), rolagem completa, computador e celular, e com movimento reduzido.
 
 ## Nunca coloque neste repositório (ele é público)
 - Planilhas de preços, fichas técnicas, custos ou dados de clientes.

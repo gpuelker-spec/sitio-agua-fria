@@ -1,0 +1,224 @@
+/*
+ * motion.css — movimento da interface do Sítio Água Fria
+ *
+ * Baseado na skill design-motion-principles (Emil Kowalski, Jakub Krehel, Jhey Tompkins).
+ * Contexto: landing page → peso principal Jakub (polimento sutil, 200–500ms),
+ * secundário Jhey, Emil em navegação e botões (rápido, sem exagero).
+ *
+ * Regras seguidas:
+ * - Só transform, opacity e filter são animados (nada de width/height/top/left).
+ * - Entrada = opacity + translateY 8px + blur 4px. Saída mais sutil que a entrada.
+ * - Nada de easing "ease" puro: curvas customizadas abaixo.
+ * - Tudo respeita prefers-reduced-motion (bloco no fim do arquivo).
+ * - Animações em loop só enquanto algo carrega (shimmer do skeleton), nunca para chamar atenção.
+ */
+
+:root {
+  --mo-ease-out: cubic-bezier(0.22, 1, 0.36, 1); /* chegando: rápido no início, pousa suave */
+  --mo-ease-in: cubic-bezier(0.4, 0, 1, 1); /* saindo: começa suave, acelera */
+  --mo-enter: 480ms;
+  --mo-exit: 220ms;
+  --mo-press: 120ms;
+  --mo-sk-base: #16191b; /* = --color-surface */
+  --mo-sk-shine: #1f2427;
+}
+
+/* ---------- 1. Barra de progresso de carregamento (topo) ---------- */
+#mo-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 80;
+  pointer-events: none;
+  background: #2ad4f2;
+  transform-origin: 0 50%;
+  transform: scaleX(0.04);
+  transition:
+    transform 420ms var(--mo-ease-out),
+    opacity var(--mo-exit) var(--mo-ease-in);
+}
+#mo-progress.is-done {
+  opacity: 0;
+}
+
+/* ---------- 2. Skeleton da página (enquanto o site monta) ---------- */
+#mo-skeleton {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: #0a0c0d;
+  padding-inline: max(clamp(20px, 5vw, 72px), calc((100% - 1180px) / 2 + clamp(20px, 5vw, 72px)));
+  overflow: hidden;
+  transition:
+    opacity 320ms var(--mo-ease-in),
+    filter 320ms var(--mo-ease-in),
+    visibility 0s linear 320ms;
+}
+#mo-skeleton.is-gone {
+  opacity: 0;
+  filter: blur(4px);
+  visibility: hidden;
+}
+.mo-sk-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-block: 20px;
+}
+.mo-sk-hero {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+  padding-top: clamp(32px, 5vw, 80px);
+}
+.mo-sk-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.mo-bar {
+  display: block;
+  height: 14px;
+  border-radius: 999px;
+}
+.mo-block {
+  display: block;
+  border-radius: 56px;
+  aspect-ratio: 3 / 4;
+  width: min(420px, 100%);
+  justify-self: center;
+}
+
+/* Superfície de skeleton: usada no skeleton da página e em cada foto/mapa */
+.mo-bar,
+.mo-block,
+.sk {
+  background-color: var(--mo-sk-base);
+  background-image: linear-gradient(100deg, transparent 30%, var(--mo-sk-shine) 50%, transparent 70%);
+  background-size: 220% 100%;
+  background-repeat: no-repeat;
+  animation: mo-shimmer 1.4s linear infinite;
+}
+@keyframes mo-shimmer {
+  from {
+    background-position: 130% 0;
+  }
+  to {
+    background-position: -30% 0;
+  }
+}
+
+/* ---------- 3. Skeleton por elemento + lazy loading ---------- */
+.sk {
+  position: relative;
+}
+.sk.is-loaded {
+  animation: none;
+  background-image: none;
+}
+.sk-img {
+  opacity: 0;
+  transform: scale(1.015);
+  transition:
+    opacity 520ms var(--mo-ease-out),
+    transform 520ms var(--mo-ease-out),
+    filter 520ms var(--mo-ease-out);
+}
+.sk-img.is-loaded {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- 4. Entrada ao rolar (uma vez só) ---------- */
+.mo-js .rv {
+  opacity: 0;
+  transform: translateY(8px);
+  filter: blur(4px);
+  transition:
+    opacity var(--mo-enter) var(--mo-ease-out),
+    transform var(--mo-enter) var(--mo-ease-out),
+    filter var(--mo-enter) var(--mo-ease-out);
+  transition-delay: calc(var(--rv-i, 0) * 60ms);
+}
+.mo-js .rv.is-in {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+/* ---------- 5. Botão flutuante de WhatsApp: entra e sai ---------- */
+#wa-float {
+  transition:
+    opacity var(--mo-enter) var(--mo-ease-out),
+    transform var(--mo-enter) var(--mo-ease-out),
+    filter var(--mo-enter) var(--mo-ease-out),
+    visibility 0s;
+}
+#wa-float.is-hidden {
+  opacity: 0;
+  transform: translateY(8px);
+  filter: blur(2px);
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity var(--mo-exit) var(--mo-ease-in),
+    transform var(--mo-exit) var(--mo-ease-in),
+    filter var(--mo-exit) var(--mo-ease-in),
+    visibility 0s linear var(--mo-exit);
+}
+
+/* ---------- 6. Feedback de toque nos botões (Emil: rápido) ---------- */
+.btn,
+#wa-float {
+  -webkit-tap-highlight-color: transparent;
+}
+.btn {
+  transition: transform var(--mo-press) var(--mo-ease-out);
+}
+.btn:active,
+#wa-float:active {
+  transform: scale(0.97);
+}
+#wa-float:active {
+  transition-duration: var(--mo-press);
+}
+
+/* ---------- 7. Movimento reduzido: sem animação, mesmo resultado final ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .mo-bar,
+  .mo-block,
+  .sk {
+    animation: none;
+    background-image: none;
+  }
+  .sk-img {
+    transform: none;
+  }
+  .mo-js .rv {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  #mo-progress,
+  #mo-skeleton,
+  .sk-img,
+  #wa-float,
+  #wa-float.is-hidden,
+  .btn {
+    /* biome-ignore lint/complexity/noImportantStyles: movimento reduzido precisa vencer os estilos inline do template */
+    transition-duration: 0.01ms !important;
+    /* biome-ignore lint/complexity/noImportantStyles: idem */
+    transition-delay: 0s !important;
+  }
+  #wa-float.is-hidden {
+    transform: none;
+    filter: none;
+  }
+  .btn:active,
+  #wa-float:active {
+    transform: none;
+  }
+}

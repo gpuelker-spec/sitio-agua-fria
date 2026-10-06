@@ -8,9 +8,33 @@
 <link rel="icon" href="logo-1.jpg">
 <script>window.__resources={"https://unpkg.com/react@18.3.1/umd/react.production.min.js":"react.production.min.js","https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js":"react-dom.production.min.js"};</script>
 <script src="sentry.min.js"></script>
+<link rel="preload" as="image" href="f1.jpg" fetchpriority="high">
+<link rel="stylesheet" href="motion.css">
+<script src="motion.js" defer></script>
 <script src="./support.js"></script>
 </head>
-<body>
+<body style="margin: 0; background: #0a0c0d">
+<div id="mo-progress" role="progressbar" aria-label="Carregando o site" aria-valuemin="0" aria-valuemax="100"></div>
+<div id="mo-skeleton" aria-busy="true" aria-label="Carregando">
+  <div class="mo-sk-nav">
+    <span class="mo-bar" style="width: 82px; height: 44px; border-radius: 10px; margin-right: auto"></span>
+    <span class="mo-bar" style="width: 64px"></span>
+    <span class="mo-bar" style="width: 72px"></span>
+    <span class="mo-bar" style="width: 140px; height: 38px"></span>
+  </div>
+  <div class="mo-sk-hero">
+    <div class="mo-sk-col">
+      <span class="mo-bar" style="width: 46%; height: 12px"></span>
+      <span class="mo-bar" style="width: 88%; height: 52px; border-radius: 18px"></span>
+      <span class="mo-bar" style="width: 64%; height: 52px; border-radius: 18px"></span>
+      <span class="mo-bar" style="width: 92%; margin-top: 10px"></span>
+      <span class="mo-bar" style="width: 80%"></span>
+      <span class="mo-bar" style="width: 58%"></span>
+      <span style="display: flex; gap: 12px; margin-top: 16px"><span class="mo-bar" style="width: 104px; height: 38px"></span><span class="mo-bar" style="width: 128px; height: 38px"></span></span>
+    </div>
+    <span class="mo-block"></span>
+  </div>
+</div>
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="ds-styles.css">
@@ -87,7 +111,7 @@
 
   <nav data-nav="1" class="nav" style="position: sticky; top: 0; z-index: 40; background: rgba(10, 12, 13, 0); border-bottom: 1px solid rgba(243, 247, 248, 0); box-shadow: none; transition: background-color 260ms ease, box-shadow 260ms ease, border-color 260ms ease; padding-inline: max(clamp(20px, 5vw, 72px), calc((100% - 1180px) / 2 + clamp(20px, 5vw, 72px))); gap: clamp(14px, 2.4vw, 28px); flex-wrap: wrap; padding-block: 20px">
     <a href="#inicio" style="margin-right: auto; display: block; line-height: 0">
-      <img src="logo-1.jpg" alt="Sítio Água Fria" style="height: 44px; width: auto; mix-blend-mode: screen">
+      <img src="logo-1.jpg" alt="Sítio Água Fria" width="618" height="326" decoding="async" style="height: 44px; width: auto; mix-blend-mode: screen">
     </a>
     <a href="#historia" style="font-size: 14px; text-decoration: none; white-space: nowrap; color: var(--color-text)">História</a>
     <a href="#produtos" style="font-size: 14px; text-decoration: none; white-space: nowrap; color: var(--color-text)">Produtos</a>
@@ -112,21 +136,21 @@
       </div>
       <div style="position: relative; justify-self: center; width: min(420px, 100%)">
         <div style="position: absolute; right: -10%; top: -14%; width: 62%; aspect-ratio: 1; border-radius: 50%; background: var(--color-accent-900)"></div>
-        <img src="f1.jpg" alt="Queijos Remanso embalados sobre a mesa" style="position: relative; width: 100%; border-radius: 56px; filter: saturate(0.92) brightness(0.94)">
+        <span class="sk" style="display: block; position: relative; border-radius: 56px; overflow: hidden; aspect-ratio: 3 / 4"><img src="f1.jpg" alt="Queijos Remanso embalados sobre a mesa" width="768" height="1024" fetchpriority="high" decoding="async" class="sk-img" style="display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(0.92) brightness(0.94)"></span>
       </div>
     </section>
 
     <sc-if value="{{ mostrarSelos }}" hint-placeholder-val="{{ true }}">
       <section aria-label="Selos" style="display: flex; align-items: center; gap: clamp(24px, 4vw, 56px); flex-wrap: wrap; padding: 0 0 clamp(40px, 6vw, 80px)">
-        <img src="a2a2.png" alt="Produto 100% A2A2" style="height: 92px; width: auto; filter: invert(1); mix-blend-mode: screen">
-        <img src="selo-sisp.jpg" alt="SISP — inspecionado pelo estado de São Paulo, nº 1774" style="height: 72px; width: auto; mix-blend-mode: screen">
+        <img src="a2a2.png" alt="Produto 100% A2A2" width="500" height="500" loading="lazy" decoding="async" style="height: 92px; width: auto; filter: invert(1); mix-blend-mode: screen">
+        <img src="selo-sisp.jpg" alt="SISP — inspecionado pelo estado de São Paulo, nº 1774" width="648" height="446" loading="lazy" decoding="async" style="height: 72px; width: auto; mix-blend-mode: screen">
         <p style="font-size: 14.5px; line-height: 1.6; margin: 0; max-width: 30ch; color: var(--color-neutral-300)">Rebanho 100% A2A2 e inspeção SISP — venda formal em todo o estado de São Paulo.</p>
       </section>
     </sc-if>
 
     <section id="historia" data-secao="História" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(28px, 5vw, 80px); align-items: center; padding: clamp(32px, 5vw, 72px) 0">
-      <figure style="margin: 0; border-radius: 56px; overflow: hidden; width: min(380px, 100%)">
-        <img src="f7.jpg" alt="Peça de queijo recém-embalada" style="width: 100%; display: block; filter: saturate(0.92) brightness(0.95)">
+      <figure class="sk" style="margin: 0; border-radius: 56px; overflow: hidden; width: min(380px, 100%); aspect-ratio: 4 / 3">
+        <img src="f7.jpg" alt="Peça de queijo recém-embalada" width="1400" height="1050" loading="lazy" decoding="async" class="sk-img" style="width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.92) brightness(0.95)">
       </figure>
       <div>
         <span style="display: block; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--color-accent-300); margin-bottom: 18px">Nossa história</span>
@@ -198,11 +222,11 @@
     <section id="galeria" aria-label="Da produção à mesa" style="padding: clamp(24px, 4vw, 56px) 0">
       <span style="display: block; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--color-accent-300); margin-bottom: 18px">Da produção à mesa</span>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: clamp(16px, 2.4vw, 28px)">
-        <figure style="margin: 0; border-radius: 36px; overflow: hidden; aspect-ratio: 4 / 3">
-          <img src="f3.jpg" alt="Peças de queijo cortadas na bancada do laticínio" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.92) brightness(0.95)">
+        <figure class="sk" style="margin: 0; border-radius: 36px; overflow: hidden; aspect-ratio: 4 / 3">
+          <img src="f3.jpg" alt="Peças de queijo cortadas na bancada do laticínio" width="1280" height="960" loading="lazy" decoding="async" class="sk-img" style="width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.92) brightness(0.95)">
         </figure>
-        <figure style="margin: 0; border-radius: 36px; overflow: hidden; aspect-ratio: 4 / 3">
-          <img src="f4.jpg" alt="Queijo Horizonte com cubos servidos no prato" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: center 35%; display: block; filter: saturate(0.92) brightness(0.95)">
+        <figure class="sk" style="margin: 0; border-radius: 36px; overflow: hidden; aspect-ratio: 4 / 3">
+          <img src="f4.jpg" alt="Queijo Horizonte com cubos servidos no prato" width="943" height="1280" loading="lazy" decoding="async" class="sk-img" style="width: 100%; height: 100%; object-fit: cover; object-position: center 35%; display: block; filter: saturate(0.92) brightness(0.95)">
         </figure>
       </div>
     </section>
@@ -244,8 +268,8 @@
           </sc-if>
         </div>
       </div>
-      <div style="margin-top: clamp(28px, 4vw, 48px); border-radius: 36px; overflow: hidden; background: var(--color-surface)">
-        <iframe title="Mapa: Sítio Água Fria, Rodovia Marechal Rondon km 218, Pirambóia/SP" src="https://maps.google.com/maps?q=Rodovia%20Marechal%20Rondon%20km%20218%2C%20Piramb%C3%B3ia%20SP&amp;z=13&amp;output=embed" loading="lazy" style="display: block; width: 100%; height: clamp(260px, 38vw, 380px); border: 0; filter: grayscale(0.25)"></iframe>
+      <div class="sk" style="margin-top: clamp(28px, 4vw, 48px); border-radius: 36px; overflow: hidden; background-color: var(--color-surface)">
+        <iframe class="sk-img" title="Mapa: Sítio Água Fria, Rodovia Marechal Rondon km 218, Pirambóia/SP" src="https://maps.google.com/maps?q=Rodovia%20Marechal%20Rondon%20km%20218%2C%20Piramb%C3%B3ia%20SP&amp;z=13&amp;output=embed" loading="lazy" style="display: block; width: 100%; height: clamp(260px, 38vw, 380px); border: 0; filter: grayscale(0.25)"></iframe>
       </div>
       <p style="font-size: 14px; margin: 14px 0 0; color: var(--color-neutral-400)"><a href="https://www.google.com/maps/search/?api=1&amp;query=Rodovia%20Marechal%20Rondon%20km%20218%2C%20Piramb%C3%B3ia%20SP" target="_blank" rel="noopener">Abrir no Google Maps</a></p>
     </section>
@@ -265,7 +289,7 @@
       </div>
     </section>
 
-    <a href="https://wa.me/5514981715427?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido." target="_blank" rel="noopener" aria-label="Fazer pedido pelo WhatsApp" style="position: fixed; right: clamp(16px, 3vw, 28px); bottom: clamp(16px, 3vw, 28px); z-index: 50; display: flex; align-items: center; gap: 10px; padding: 14px 20px 14px 16px; border-radius: 999px; background: #25d366; color: #0a0c0d; font-weight: 600; font-size: 15px; text-decoration: none; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45)">
+    <a href="https://wa.me/5514981715427?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido." target="_blank" rel="noopener" id="wa-float" class="is-hidden" aria-label="Fazer pedido pelo WhatsApp" style="position: fixed; right: clamp(16px, 3vw, 28px); bottom: clamp(16px, 3vw, 28px); z-index: 50; display: flex; align-items: center; gap: 10px; padding: 14px 20px 14px 16px; border-radius: 999px; background: #25d366; color: #0a0c0d; font-weight: 600; font-size: 15px; text-decoration: none; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45)">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.6-5.4A8.4 8.4 0 1 1 21 11.5z"></path></svg>
       <span>Pedir</span>
     </a>
@@ -388,6 +412,7 @@ class Component extends DCLogic {
   }
 
   disparar(nome) {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     this.limparEntrando();
     if (nome) this.nome = nome;
     this.eInicio = this.e;
@@ -560,7 +585,7 @@ class Component extends DCLogic {
   renderVals() {
     this.iniciarLoop();
     return {
-      mostrarTransicao: this.props.mostrarTransicao ?? true,
+      mostrarTransicao: (this.props.mostrarTransicao ?? true) && !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches),
       velocidadeTransicao: this.props.velocidadeTransicao ?? 1,
       mostrarSelos: this.props.mostrarSelos ?? true,
       mostrarLinhaCompleta: this.props.mostrarLinhaCompleta ?? true,
