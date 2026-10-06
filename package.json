@@ -7,12 +7,15 @@
     "format": "biome check --write .",
     "knip": "knip",
     "commitlint": "commitlint --from origin/main --to HEAD --verbose",
-    "serve": "python3 -m http.server 4173"
+    "serve": "python3 -m http.server 4173",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.15",
     "@commitlint/cli": "21.2.3",
     "@commitlint/config-conventional": "21.2.3",
+    "@playwright/test": "1.56.0",
     "knip": "6.40.0"
   }
 }
