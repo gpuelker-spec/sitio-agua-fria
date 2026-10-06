@@ -19,8 +19,8 @@
   --mo-enter: 480ms;
   --mo-exit: 220ms;
   --mo-press: 120ms;
-  --mo-sk-base: #16191b; /* = --color-surface */
-  --mo-sk-shine: #1f2427;
+  --mo-sk-base: #e9e0cf; /* soro mais escuro */
+  --mo-sk-shine: #faf6ee; /* coalho */
 }
 
 /* ---------- 1. Barra de progresso de carregamento (topo) ---------- */
@@ -32,7 +32,7 @@
   height: 3px;
   z-index: 80;
   pointer-events: none;
-  background: #2ad4f2;
+  background: #b9772a; /* casca */
   transform-origin: 0 50%;
   transform: scaleX(0.04);
   transition:
@@ -48,7 +48,7 @@
   position: fixed;
   inset: 0;
   z-index: 70;
-  background: #0a0c0d;
+  background: #f3ecdf; /* soro */
   padding-inline: max(clamp(20px, 5vw, 72px), calc((100% - 1180px) / 2 + clamp(20px, 5vw, 72px)));
   overflow: hidden;
   transition:
@@ -192,14 +192,14 @@
 }
 
 /* ---------- 6. Feedback de toque nos botões (Emil: rápido) ---------- */
-.btn,
+.botao,
 #wa-float {
   -webkit-tap-highlight-color: transparent;
 }
-.btn {
+.botao {
   transition: transform var(--mo-press) var(--mo-ease-out);
 }
-.btn:active,
+.botao:active,
 #wa-float:active {
   transform: scale(0.97);
 }
@@ -228,7 +228,7 @@
   .sk-img,
   #wa-float,
   #wa-float.is-hidden,
-  .btn {
+  .botao {
     /* biome-ignore lint/complexity/noImportantStyles: movimento reduzido precisa vencer os estilos inline do template */
     transition-duration: 0.01ms !important;
     /* biome-ignore lint/complexity/noImportantStyles: idem */
@@ -238,7 +238,7 @@
     transform: none;
     filter: none;
   }
-  .btn:active,
+  .botao:active,
   #wa-float:active {
     transform: none;
   }

@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://gpuelker-spec.github.io/sitio-agua-fria/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Queijos Remanso do Sítio Água Fria e o texto: Queijo de leite 100% A2A2">
+<meta property="og:image:alt" content="Queijos Remanso do Sítio Água Fria em moldura de arco e o texto: Queijo de leite 100% A2A2">
 <meta name="twitter:card" content="summary_large_image">
 <!-- Dados estruturados para o Google (negócio local) -->
 <script type="application/ld+json">
@@ -151,402 +151,247 @@
   "hasMap": "https://maps.app.goo.gl/AoeBUp4ukStZk7P8A"
 }
 </script>
-<script>window.__resources={"https://unpkg.com/react@18.3.1/umd/react.production.min.js":"react.production.min.js","https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js":"react-dom.production.min.js"};</script>
-<script src="sentry.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=IBM+Plex+Mono:wght@500&family=Work+Sans:wght@400;500;600&display=swap">
 <link rel="preload" as="image" href="f1.jpg" fetchpriority="high">
+<link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="motion.css">
+<script src="sentry.min.js"></script>
 <script src="motion.js" defer></script>
-<script src="./support.js"></script>
 </head>
-<body style="margin: 0; background: #0a0c0d">
+<body>
+<a class="pular" href="#inicio">Pular para o conteúdo</a>
 <div id="mo-progress" role="progressbar" aria-label="Carregando o site" aria-valuemin="0" aria-valuemax="100"></div>
 <div id="mo-skeleton" aria-busy="true" aria-label="Carregando">
   <div class="mo-sk-nav">
-    <span class="mo-bar" style="width: 82px; height: 44px; border-radius: 10px; margin-right: auto"></span>
+    <span class="mo-bar" style="width: 72px; height: 44px; border-radius: 4px; margin-right: auto"></span>
     <span class="mo-bar" style="width: 64px"></span>
     <span class="mo-bar" style="width: 72px"></span>
-    <span class="mo-bar" style="width: 140px; height: 38px"></span>
+    <span class="mo-bar" style="width: 150px; height: 40px"></span>
   </div>
   <div class="mo-sk-hero">
     <div class="mo-sk-col">
-      <span class="mo-bar" style="width: 46%; height: 12px"></span>
-      <span class="mo-bar" style="width: 88%; height: 52px; border-radius: 18px"></span>
-      <span class="mo-bar" style="width: 64%; height: 52px; border-radius: 18px"></span>
-      <span class="mo-bar" style="width: 92%; margin-top: 10px"></span>
-      <span class="mo-bar" style="width: 80%"></span>
-      <span class="mo-bar" style="width: 58%"></span>
-      <span style="display: flex; gap: 12px; margin-top: 16px"><span class="mo-bar" style="width: 104px; height: 38px"></span><span class="mo-bar" style="width: 128px; height: 38px"></span></span>
+      <span class="mo-bar" style="width: 52%; height: 12px"></span>
+      <span class="mo-bar" style="width: 90%; height: 64px; border-radius: 10px"></span>
+      <span class="mo-bar" style="width: 70%; height: 64px; border-radius: 10px"></span>
+      <span class="mo-bar" style="width: 84%; margin-top: 12px"></span>
+      <span class="mo-bar" style="width: 62%"></span>
     </div>
     <span class="mo-block"></span>
   </div>
 </div>
-<x-dc>
-<helmet>
-<link rel="stylesheet" href="ds-styles.css">
-<script src="ds-bundle.js"></script>
-<style>
-  :root {
-    --color-bg: #0a0c0d;
-    --color-surface: #16191b;
-    --color-text: #f3f7f8;
-    --color-divider: rgba(243, 247, 248, 0.14);
-    --color-accent: #2ad4f2;
-    --color-accent-2: #f0b23c;
-    --color-neutral-100: #f7f9f9;
-    --color-neutral-200: #e2e7e8;
-    --color-neutral-300: #c2c9cb;
-    --color-neutral-400: #9aa3a6;
-    --color-neutral-500: #737d80;
-    --color-neutral-600: #545e61;
-    --color-neutral-700: #3a4346;
-    --color-neutral-800: #24292b;
-    --color-neutral-900: #101314;
-    --color-accent-100: #dff8fe;
-    --color-accent-200: #b7eefc;
-    --color-accent-300: #86e2f8;
-    --color-accent-400: #4fd8f4;
-    --color-accent-500: #2ad4f2;
-    --color-accent-600: #17b4d0;
-    --color-accent-700: #1291a9;
-    --color-accent-800: #0d6b7d;
-    --color-accent-900: #0a4653;
-    --color-accent-2-100: #fdf1da;
-    --color-accent-2-200: #fbe1b0;
-    --color-accent-2-300: #f8cd7c;
-    --color-accent-2-400: #f4bb4e;
-    --color-accent-2-500: #f0b23c;
-    --color-accent-2-600: #cc9024;
-    --color-accent-2-700: #a1701a;
-    --color-accent-2-800: #755013;
-    --color-accent-2-900: #45300c;
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
-    --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.55);
-    --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.6);
-  }
-  html { scroll-behavior: smooth; }
-  body { margin: 0; text-wrap: pretty; overflow-x: clip; background: var(--color-bg); color: var(--color-text); }
-  a { color: var(--color-accent-300); text-underline-offset: 3px; }
-  a:hover { color: var(--color-accent); }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-</style>
-</helmet>
 
-<div style="font-family: var(--font-body); color: var(--color-text); background: var(--color-bg); min-height: 100%">
-
-  <sc-if value="{{ mostrarTransicao }}" hint-placeholder-val="{{ true }}">
-    <div data-corte="rotulo" class="corte-rotulo" aria-hidden="true" style="position: fixed; left: 0; right: 0; top: 96px; margin-inline: auto; width: max-content; z-index: 45; pointer-events: none; display: flex; align-items: center; gap: 12px; padding: 10px 18px 10px 14px; border-radius: 999px; background: rgba(10, 12, 13, 0.92); border: 1px solid rgba(240, 178, 60, 0.35); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45)">
-      <span style="display: flex; flex-direction: column; gap: 3px">
-        <span style="display: block; width: 18px; height: 2px; border-radius: 999px; background: #f0b23c"></span>
-        <span style="display: block; width: 18px; height: 2px; border-radius: 999px; background: #f0b23c"></span>
-        <span style="display: block; width: 18px; height: 2px; border-radius: 999px; background: #f0b23c"></span>
-      </span>
-      <span data-corte="texto" style="font-family: var(--font-heading); font-size: 15px; line-height: 1; color: #fffdf7"></span>
-    </div>
-  </sc-if>
-
-  <nav data-nav="1" class="nav" style="position: sticky; top: 0; z-index: 40; background: rgba(10, 12, 13, 0); border-bottom: 1px solid rgba(243, 247, 248, 0); box-shadow: none; transition: background-color 260ms ease, box-shadow 260ms ease, border-color 260ms ease; padding-inline: max(clamp(20px, 5vw, 72px), calc((100% - 1180px) / 2 + clamp(20px, 5vw, 72px))); gap: clamp(14px, 2.4vw, 28px); flex-wrap: wrap; padding-block: 20px">
-    <a href="#inicio" style="margin-right: auto; display: block; line-height: 0">
-      <img src="logo-1.jpg" alt="Sítio Água Fria" width="618" height="326" decoding="async" style="height: 44px; width: auto; mix-blend-mode: screen">
-    </a>
-    <a href="#historia" style="font-size: 14px; text-decoration: none; white-space: nowrap; color: var(--color-text)">História</a>
-    <a href="#produtos" style="font-size: 14px; text-decoration: none; white-space: nowrap; color: var(--color-text)">Produtos</a>
-    <a href="#locais" style="font-size: 14px; text-decoration: none; white-space: nowrap; color: var(--color-text)">Onde comprar</a>
-    <a href="https://wa.me/5514981715427?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido." target="_blank" rel="noopener" class="btn btn-primary" style="text-decoration: none">Pedir no WhatsApp</a>
-  </nav>
-
-  <div style="max-width: 1180px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 72px)">
-
-    <section id="inicio" data-secao="Início" style="position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(32px, 5vw, 72px); align-items: center; padding: clamp(32px, 5vw, 80px) 0 clamp(40px, 6vw, 88px)">
-      <div>
-        <span style="display: block; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--color-accent-300); margin-bottom: 18px">Laticínio artesanal · Pirambóia/SP</span>
-        <h1 style="font-family: var(--font-heading); font-size: clamp(38px, 5.4vw, 66px); line-height: 1.07; letter-spacing: -0.02em; margin: 0 0 24px">
-          <span style="display: block">Queijo de leite</span>
-          <span style="display: block; color: var(--color-accent)">100% A2A2.</span>
-        </h1>
-        <p style="font-size: 17px; line-height: 1.65; max-width: 46ch; margin: 0 0 30px; color: var(--color-neutral-200)">Leite do nosso rebanho, pasto verde irrigado o ano inteiro e produção em lotes pequenos, feita à mão no sítio. Entrega em Botucatu e região.</p>
-        <div style="display: flex; gap: 12px; flex-wrap: wrap">
-          <a href="#produtos" class="btn btn-primary" style="text-decoration: none">Ver a linha</a>
-          <a href="#locais" class="btn btn-secondary" style="text-decoration: none; color: var(--color-text)">Onde comprar</a>
-        </div>
-      </div>
-      <div style="position: relative; justify-self: center; width: min(420px, 100%)">
-        <div style="position: absolute; right: -10%; top: -14%; width: 62%; aspect-ratio: 1; border-radius: 50%; background: var(--color-accent-900)"></div>
-        <span class="sk" style="display: block; position: relative; border-radius: 56px; overflow: hidden; aspect-ratio: 3 / 4"><img src="f1.jpg" alt="Queijos Remanso embalados sobre a mesa" width="768" height="1024" fetchpriority="high" decoding="async" class="sk-img" style="display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(0.92) brightness(0.94)"></span>
-      </div>
-    </section>
-
-    <sc-if value="{{ mostrarSelos }}" hint-placeholder-val="{{ true }}">
-      <section aria-label="Selos" style="display: flex; align-items: center; gap: clamp(24px, 4vw, 56px); flex-wrap: wrap; padding: 0 0 clamp(40px, 6vw, 80px)">
-        <img src="a2a2.png" alt="Produto 100% A2A2" width="500" height="500" loading="lazy" decoding="async" style="height: 92px; width: auto; filter: invert(1); mix-blend-mode: screen">
-        <img src="selo-sisp.jpg" alt="SISP — inspecionado pelo estado de São Paulo, nº 1774" width="648" height="446" loading="lazy" decoding="async" style="height: 72px; width: auto; mix-blend-mode: screen">
-        <p style="font-size: 14.5px; line-height: 1.6; margin: 0; max-width: 30ch; color: var(--color-neutral-300)">Rebanho 100% A2A2 e inspeção SISP — venda formal em todo o estado de São Paulo.</p>
-      </section>
-    </sc-if>
-
-    <section id="historia" data-secao="História" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(28px, 5vw, 80px); align-items: center; padding: clamp(32px, 5vw, 72px) 0">
-      <figure class="sk" style="margin: 0; border-radius: 56px; overflow: hidden; width: min(380px, 100%); aspect-ratio: 4 / 3">
-        <img src="f7.jpg" alt="Peça de queijo recém-embalada" width="1400" height="1050" loading="lazy" decoding="async" class="sk-img" style="width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.92) brightness(0.95)">
-      </figure>
-      <div>
-        <span style="display: block; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--color-accent-300); margin-bottom: 18px">Nossa história</span>
-        <h2 style="font-family: var(--font-heading); font-size: clamp(28px, 3.4vw, 40px); line-height: 1.12; letter-spacing: -0.018em; margin: 0 0 22px">Um laticínio de família, desde 2017</h2>
-        <p style="font-size: 16px; line-height: 1.7; max-width: 52ch; margin: 0 0 16px; color: var(--color-neutral-200)">O sítio fica na Rodovia Marechal Rondon, km 218, em Pirambóia/SP. Foi ali que o laticínio começou, em 2017, e é ali que tudo continua sendo feito.</p>
-        <p style="font-size: 16px; line-height: 1.7; max-width: 52ch; margin: 0 0 16px; color: var(--color-neutral-200)">Henrique cuida da produção — é ele quem faz cada peça. Raquel responde pela genética do rebanho, com produção de embriões feita no próprio sítio, e pelo comercial junto com o Gustavo.</p>
-        <p style="font-size: 16px; line-height: 1.7; max-width: 52ch; margin: 0; color: var(--color-neutral-200)">Os nomes dos queijos vêm da paisagem daqui: Nascente, Poente, Remanso, Garoa, Brisa, Horizonte.</p>
-      </div>
-    </section>
-
-    <section id="produtos" data-secao="Produtos" style="padding: clamp(40px, 6vw, 88px) 0 clamp(32px, 4vw, 64px)">
-      <span style="display: block; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--color-accent-300); margin-bottom: 18px">Produtos</span>
-      <h2 style="font-family: var(--font-heading); font-size: clamp(28px, 3.4vw, 40px); line-height: 1.12; letter-spacing: -0.018em; margin: 0 0 14px">Nossa linha</h2>
-      <p style="font-size: 16px; line-height: 1.7; max-width: 50ch; margin: 0 0 40px; color: var(--color-neutral-200)">Queijos de leite A2A2, do frescal ao parmesão curado. A disponibilidade muda conforme a cura e o lote da semana — pergunte no WhatsApp o que tem pronto.</p>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: clamp(16px, 2vw, 24px)">
-        <div class="card elev-sm" style="padding: 26px 24px; gap: 8px">
-          <span class="card-kicker" style="color: var(--color-accent-300)">Minas frescal</span>
-          <h3 class="card-title" style="font-size: 24px; margin: 0">Nascente</h3>
-        </div>
-        <div class="card elev-sm" style="padding: 26px 24px; gap: 8px">
-          <span class="card-kicker" style="color: var(--color-accent-300)">Minas padrão</span>
-          <h3 class="card-title" style="font-size: 24px; margin: 0">Poente</h3>
-        </div>
-        <div class="card elev-sm" style="padding: 26px 24px; gap: 8px">
-          <span class="card-kicker" style="color: var(--color-accent-300)">Meia cura</span>
-          <h3 class="card-title" style="font-size: 24px; margin: 0">Remanso</h3>
-        </div>
-        <div class="card elev-sm" style="padding: 26px 24px; gap: 8px">
-          <span class="card-kicker" style="color: var(--color-accent-300)">Mussarela</span>
-          <h3 class="card-title" style="font-size: 24px; margin: 0">Garoa</h3>
-        </div>
-        <div class="card elev-sm" style="padding: 26px 24px; gap: 8px">
-          <span class="card-kicker" style="color: var(--color-accent-300)">Brie</span>
-          <h3 class="card-title" style="font-size: 24px; margin: 0">Brisa</h3>
-        </div>
-        <div class="card elev-sm" style="padding: 26px 24px; gap: 8px">
-          <span class="card-kicker" style="color: var(--color-accent-300)">Queijo artesanal</span>
-          <h3 class="card-title" style="font-size: 24px; margin: 0">Horizontinho</h3>
-        </div>
-        <div class="card elev-sm" style="padding: 26px 24px; gap: 8px">
-          <span class="card-kicker" style="color: var(--color-accent-300)">Parmesão</span>
-          <h3 class="card-title" style="font-size: 24px; margin: 0">Horizonte</h3>
-        </div>
-        <div class="card elev-sm" style="padding: 26px 24px; gap: 8px">
-          <span class="card-kicker" style="color: var(--color-accent-300)">Queijo</span>
-          <h3 class="card-title" style="font-size: 24px; margin: 0">Coalho</h3>
-        </div>
-      </div>
-
-      <sc-if value="{{ mostrarLinhaCompleta }}" hint-placeholder-val="{{ true }}">
-        <div style="margin-top: clamp(28px, 4vw, 44px)">
-          <h3 style="font-family: var(--font-heading); font-size: 22px; line-height: 1.2; margin: 0 0 18px">Também sai da nossa cozinha</h3>
-          <div style="display: flex; gap: 10px; flex-wrap: wrap">
-            <span class="tag tag-accent">Requeijão de corte</span>
-            <span class="tag tag-accent-2">Doce de leite 400g e 280g</span>
-            <span class="tag tag-accent">Iogurte natural 1L e 500ml</span>
-            <span class="tag tag-accent-2">Iogurte de morango 1L e 500ml</span>
-            <span class="tag tag-outline" style="color: var(--color-text)">Manteiga</span>
-          </div>
-        </div>
-      </sc-if>
-
-      <div style="background: var(--color-surface); border-radius: 36px; padding: 30px 32px; margin-top: clamp(32px, 4vw, 52px); max-width: 66ch">
-        <h3 style="font-family: var(--font-heading); font-size: 21px; line-height: 1.2; margin: 0 0 12px">O que significa A2A2</h3>
-        <p style="font-size: 15.5px; line-height: 1.7; margin: 0; color: var(--color-neutral-200)">A2A2 é o tipo de beta-caseína, a proteína do leite. Nosso rebanho é 100% A2A2, selecionado geneticamente para isso. Não é leite sem lactose e não prometemos efeito de cura — é uma proteína diferente, que muita gente relata digerir melhor.</p>
-      </div>
-    </section>
-
-    <section id="galeria" aria-label="Da produção à mesa" style="padding: clamp(24px, 4vw, 56px) 0">
-      <span style="display: block; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--color-accent-300); margin-bottom: 18px">Da produção à mesa</span>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: clamp(16px, 2.4vw, 28px)">
-        <figure class="sk" style="margin: 0; border-radius: 36px; overflow: hidden; aspect-ratio: 4 / 3">
-          <img src="f3.jpg" alt="Peças de queijo cortadas na bancada do laticínio" width="1280" height="960" loading="lazy" decoding="async" class="sk-img" style="width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.92) brightness(0.95)">
-        </figure>
-        <figure class="sk" style="margin: 0; border-radius: 36px; overflow: hidden; aspect-ratio: 4 / 3">
-          <img src="f4.jpg" alt="Queijo Horizonte com cubos servidos no prato" width="943" height="1280" loading="lazy" decoding="async" class="sk-img" style="width: 100%; height: 100%; object-fit: cover; object-position: center 35%; display: block; filter: saturate(0.92) brightness(0.95)">
-        </figure>
-      </div>
-    </section>
-
-    <section id="locais" data-secao="Onde comprar" style="padding: clamp(40px, 6vw, 88px) 0">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(28px, 5vw, 72px); align-items: start">
-        <div>
-          <span style="display: block; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--color-accent-300); margin-bottom: 18px">Locais de venda</span>
-          <h2 style="font-family: var(--font-heading); font-size: clamp(28px, 3.4vw, 40px); line-height: 1.12; letter-spacing: -0.018em; margin: 0 0 18px">Onde comprar</h2>
-          <p style="font-size: 16px; line-height: 1.7; max-width: 36ch; margin: 0; color: var(--color-neutral-200)">A maior parte dos pedidos vem pelo WhatsApp e é entregue pessoalmente. Também estamos nestes pontos:</p>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 24px">
-          <div style="display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 18px; align-items: start">
-            <span style="width: 18px; height: 18px; border-radius: 50%; background: var(--color-accent); margin-top: 5px"></span>
-            <div>
-              <h3 style="font-family: var(--font-heading); font-size: 21px; line-height: 1.2; margin: 0 0 6px">Entrega em Botucatu</h3>
-              <p style="font-size: 15px; line-height: 1.6; margin: 0; color: var(--color-neutral-300)">Entrega pessoal, combinada por WhatsApp.</p>
-            </div>
-          </div>
-          <div style="display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 18px; align-items: start">
-            <span style="width: 18px; height: 18px; border-radius: 50%; background: var(--color-accent-2); margin-top: 5px"></span>
-            <div>
-              <h3 style="font-family: var(--font-heading); font-size: 21px; line-height: 1.2; margin: 0 0 6px">Padaria parceira em Botucatu</h3>
-              <p style="font-size: 15px; line-height: 1.6; margin: 0; color: var(--color-neutral-300)">Nossos queijos na prateleira, toda semana.</p>
-            </div>
-          </div>
-          <div style="display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 18px; align-items: start">
-            <span style="width: 18px; height: 18px; border-radius: 50%; background: var(--color-accent-700); margin-top: 5px"></span>
-            <div>
-              <h3 style="font-family: var(--font-heading); font-size: 21px; line-height: 1.2; margin: 0 0 6px">Piracicaba</h3>
-              <p style="font-size: 15px; line-height: 1.6; margin: 0; color: var(--color-neutral-300)">Braço de vendas na cidade, com entrega combinada.</p>
-            </div>
-          </div>
-          <sc-if value="{{ mostrarComoChegar }}" hint-placeholder-val="{{ true }}">
-            <div style="background: var(--color-accent-900); border-radius: 32px; padding: 26px 28px; margin-top: 4px">
-              <h3 style="font-family: var(--font-heading); font-size: 19px; line-height: 1.2; margin: 0 0 8px">No próprio sítio</h3>
-              <p style="font-size: 15px; line-height: 1.6; margin: 0; color: var(--color-accent-100)">Rodovia Marechal Rondon, km 218 — Pirambóia/SP. Avise antes pelo WhatsApp para separarmos o pedido.</p>
-            </div>
-          </sc-if>
-        </div>
-      </div>
-      <div class="sk" style="margin-top: clamp(28px, 4vw, 48px); border-radius: 36px; overflow: hidden; background-color: var(--color-surface)">
-        <iframe class="sk-img" title="Mapa: Laticínio Sítio Água Fria, Rodovia Marechal Rondon km 218, Pirambóia/SP" src="https://maps.google.com/maps?q=-22.9636734,-48.1857975&amp;z=14&amp;hl=pt-BR&amp;output=embed" loading="lazy" style="display: block; width: 100%; height: clamp(260px, 38vw, 380px); border: 0; filter: grayscale(0.25)"></iframe>
-      </div>
-      <p style="font-size: 14px; margin: 14px 0 0; color: var(--color-neutral-400)"><a href="https://maps.app.goo.gl/AoeBUp4ukStZk7P8A" target="_blank" rel="noopener">Abrir no Google Maps</a></p>
-    </section>
-
-    <section id="contato" data-secao="Contato" style="padding: clamp(24px, 4vw, 56px) 0 clamp(40px, 5vw, 72px)">
-      <div style="background: var(--color-surface); border-radius: 56px; padding: clamp(32px, 5vw, 64px) clamp(24px, 4vw, 64px); position: relative; overflow: hidden">
-        <div style="position: absolute; right: -60px; bottom: -90px; width: 260px; height: 260px; border-radius: 50%; background: var(--color-accent-900); opacity: 0.55"></div>
-        <div style="position: relative">
-          <span style="display: block; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; color: var(--color-accent-300); margin-bottom: 16px">Contato</span>
-          <h2 style="font-family: var(--font-heading); font-size: clamp(26px, 3.2vw, 38px); line-height: 1.12; letter-spacing: -0.018em; margin: 0 0 14px">Faça seu pedido</h2>
-          <p style="font-size: 16px; line-height: 1.7; max-width: 46ch; margin: 0 0 30px; color: var(--color-neutral-200)">Manda mensagem com o que você procura e a gente responde com o que está pronto na semana.</p>
-          <div style="display: flex; gap: 14px; flex-wrap: wrap; align-items: center">
-            <a href="https://wa.me/5514981715427?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido." target="_blank" rel="noopener" class="btn btn-primary" style="text-decoration: none">WhatsApp (14) 98171-5427</a>
-            <a href="https://instagram.com/laticiniositioaguafria" target="_blank" rel="noopener" class="btn btn-secondary" style="text-decoration: none; color: var(--color-text)">@laticiniositioaguafria</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <a href="https://wa.me/5514981715427?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido." target="_blank" rel="noopener" id="wa-float" class="is-hidden" aria-label="Fazer pedido pelo WhatsApp" style="position: fixed; right: clamp(16px, 3vw, 28px); bottom: clamp(16px, 3vw, 28px); z-index: 50; display: flex; align-items: center; gap: 10px; padding: 14px 20px 14px 16px; border-radius: 999px; background: #25d366; color: #0a0c0d; font-weight: 600; font-size: 15px; text-decoration: none; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45)">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.6-5.4A8.4 8.4 0 1 1 21 11.5z"></path></svg>
-      <span>Pedir</span>
-    </a>
-
-    <footer style="padding: 40px 0 56px; font-size: 13px; line-height: 1.6; color: var(--color-neutral-400)">Laticínio Sítio Água Fria · Rod. Marechal Rondon, km 218, Pirambóia/SP · Inspecionado SISP 1774</footer>
-
+<div id="site">
+  <div data-corte="rotulo" class="corte-rotulo" aria-hidden="true">
+    <span class="corte-marcas"><span></span><span></span><span></span></span>
+    <span data-corte="texto"></span>
   </div>
+
+  <header class="topo" data-nav>
+    <a href="#inicio" class="marca" aria-label="Sítio Água Fria, início">
+      <img src="logo-1.jpg" alt="Sítio Água Fria" width="618" height="326" decoding="async">
+    </a>
+    <nav aria-label="Seções">
+      <a href="#historia">História</a>
+      <a href="#produtos">Queijos</a>
+      <a href="#locais">Onde comprar</a>
+    </nav>
+    <a class="botao botao-pequeno" href="https://wa.me/5514981715427?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido." target="_blank" rel="noopener">Pedir no WhatsApp</a>
+  </header>
+
+  <main>
+    <section id="inicio" class="heroi" data-secao="Início">
+      <div class="heroi-texto">
+        <p class="lote" data-rv="heroi">Laticínio artesanal · Pirambóia/SP · desde 2017</p>
+        <h1 class="display-xl" data-rv="heroi">Queijo de leite <em>100% A2A2.</em></h1>
+        <p class="corpo-l" data-rv="heroi">Leite do nosso rebanho, pasto verde irrigado o ano inteiro e produção em lotes pequenos, feita à mão no sítio. Entrega em Botucatu e região.</p>
+        <div class="acoes" data-rv="heroi">
+          <a class="botao" href="https://wa.me/5514981715427?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido." target="_blank" rel="noopener">Pedir no WhatsApp</a>
+          <a class="link-acao" href="#produtos">Ver a linha <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="heroi-foto" data-rv="heroi">
+        <span class="sk arco"><img src="f1.jpg" alt="Queijos Remanso embalados sobre a mesa" width="768" height="1024" fetchpriority="high" decoding="async" class="sk-img"></span>
+        <div class="carimbo selo-a2a2" aria-hidden="true">
+          <svg viewBox="0 0 200 200"><defs><path id="c-selo-a2a2" d="M100 100m-78 0a78 78 0 1 1 156 0a78 78 0 1 1-156 0"/></defs>
+            <circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="62"/>
+            <text><textPath href="#c-selo-a2a2">REBANHO 100% A2A2 · LEITE DO PRÓPRIO SÍTIO · </textPath></text>
+            <text class="centro" x="100" y="106" text-anchor="middle">A2A2</text>
+          </svg>
+        </div>
+      </div>
+      <svg class="horizonte" viewBox="0 0 1200 140" preserveAspectRatio="none" aria-hidden="true">
+        <path class="sol" d="M540 96a60 60 0 0 1 120 0"/>
+        <path d="M0 96h1200"/>
+        <path d="M600 96 0 140M600 96 300 140M600 96 600 140M600 96 900 140M600 96 1200 140"/>
+      </svg>
+    </section>
+
+    <section class="faixa-fatos" aria-label="Diferenciais">
+      <ul>
+        <li>Leite do próprio rebanho</li>
+        <li>Pasto irrigado o ano inteiro</li>
+        <li>Lotes pequenos, feitos à mão</li>
+        <li>Inspeção SISP 1774</li>
+      </ul>
+    </section>
+
+    <section id="historia" class="historia" data-secao="História">
+      <div class="historia-ano" aria-hidden="true">2017</div>
+      <figure class="historia-foto sk" data-rv>
+        <img src="f7.jpg" alt="Peça de queijo recém-embalada" width="1400" height="1050" loading="lazy" decoding="async" class="sk-img">
+      </figure>
+      <div class="historia-texto">
+        <p class="lote" data-rv>Nossa história</p>
+        <h2 class="titulo" data-rv>Um laticínio de família, <em>desde 2017</em></h2>
+        <p data-rv>O sítio fica na Rodovia Marechal Rondon, km 218, em Pirambóia/SP. Foi ali que o laticínio começou, em 2017, e é ali que tudo continua sendo feito.</p>
+        <p data-rv>Henrique cuida da produção — é ele quem faz cada peça. Raquel responde pela genética do rebanho, com produção de embriões feita no próprio sítio, e pelo comercial junto com o Gustavo.</p>
+        <p data-rv>Os nomes dos queijos vêm da paisagem daqui: Nascente, Poente, Remanso, Garoa, Brisa, Horizonte.</p>
+        <div class="selos" data-rv>
+          <span class="selos-chapa">
+            <img src="a2a2.png" alt="Produto 100% A2A2" width="500" height="500" loading="lazy" decoding="async">
+            <img src="selo-sisp.jpg" alt="SISP — inspecionado pelo estado de São Paulo, nº 1774" width="648" height="446" loading="lazy" decoding="async">
+          </span>
+          <p>Rebanho 100% A2A2 e inspeção SISP — venda formal em todo o estado de São Paulo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="produtos" class="produtos escuro" data-secao="Queijos">
+      <div class="produtos-topo">
+        <p class="lote" data-rv>Produtos</p>
+        <h2 class="display-l" data-rv>Nossa linha, <em>com nome de paisagem</em></h2>
+        <p data-rv>Queijos de leite A2A2, do frescal ao parmesão curado. A disponibilidade muda conforme a cura e o lote da semana — pergunte no WhatsApp o que tem pronto.</p>
+      </div>
+      <ul class="queijos" role="list">
+          <li class="queijo" data-rv>
+            <svg class="glifo" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17h16"/><path d="M7 17a5 5 0 0 1 10 0"/><path d="M12 7V5M6.5 9.5 5 8M17.5 9.5 19 8"/></svg>
+            <span class="lote">Minas frescal</span>
+            <h3 class="queijo-nome">Nascente</h3>
+          </li>
+          <li class="queijo" data-rv>
+            <svg class="glifo" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13h16"/><path d="M7 13a5 5 0 0 1 10 0"/><path d="M6 17h12M8 20h8"/></svg>
+            <span class="lote">Minas padrão</span>
+            <h3 class="queijo-nome">Poente</h3>
+          </li>
+          <li class="queijo" data-rv>
+            <svg class="glifo" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9c3-2 6 2 9 0s6 2 9 0"/><path d="M3 14h18"/><path d="M6 18h12"/></svg>
+            <span class="lote">Meia cura</span>
+            <h3 class="queijo-nome">Remanso</h3>
+          </li>
+          <li class="queijo" data-rv>
+            <svg class="glifo" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h14"/><circle cx="7" cy="13" r=".6"/><circle cx="11" cy="15" r=".6"/><circle cx="15" cy="13" r=".6"/><circle cx="9" cy="18" r=".6"/><circle cx="13" cy="19" r=".6"/><circle cx="17" cy="17" r=".6"/></svg>
+            <span class="lote">Mussarela</span>
+            <h3 class="queijo-nome">Garoa</h3>
+          </li>
+          <li class="queijo" data-rv>
+            <svg class="glifo" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h11a3 3 0 1 0-3-3"/><path d="M3 14h15a3 3 0 1 1-3 3"/><path d="M3 19h6"/></svg>
+            <span class="lote">Brie</span>
+            <h3 class="queijo-nome">Brisa</h3>
+          </li>
+          <li class="queijo" data-rv>
+            <svg class="glifo" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 15h8"/><circle cx="12" cy="11" r="1.5"/></svg>
+            <span class="lote">Queijo artesanal</span>
+            <h3 class="queijo-nome">Horizontinho</h3>
+          </li>
+          <li class="queijo" data-rv>
+            <svg class="glifo" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 15h20"/><path d="M9 15a3 3 0 0 1 6 0"/></svg>
+            <span class="lote">Parmesão</span>
+            <h3 class="queijo-nome">Horizonte</h3>
+          </li>
+          <li class="queijo" data-rv>
+            <svg class="glifo" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="3.5"/></svg>
+            <span class="lote">Queijo</span>
+            <h3 class="queijo-nome">Coalho</h3>
+          </li>
+      </ul>
+      <div class="cozinha" data-rv>
+        <h3 class="subtitulo">Também sai da nossa cozinha</h3>
+        <ul class="etiquetas" role="list">
+          <li>Requeijão de corte</li>
+          <li>Doce de leite 400g e 280g</li>
+          <li>Iogurte natural 1L e 500ml</li>
+          <li>Iogurte de morango 1L e 500ml</li>
+          <li>Manteiga</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="genetica" class="genetica" aria-labelledby="genetica-titulo">
+      <div class="genetica-texto">
+        <p class="lote" data-rv>Do pasto à genética</p>
+        <h2 id="genetica-titulo" class="titulo" data-rv>O que significa <em>A2A2</em></h2>
+        <p data-rv>A2A2 é o tipo de beta-caseína, a proteína do leite. Nosso rebanho é 100% A2A2, selecionado geneticamente para isso. Não é leite sem lactose e não prometemos efeito de cura — é uma proteína diferente, que muita gente relata digerir melhor.</p>
+      </div>
+      <svg class="celulas" viewBox="0 0 112 84" aria-hidden="true" data-rv><circle cx="8" cy="8" r="4"/><circle cx="22" cy="8" r="4"/><circle cx="36" cy="8" r="4"/><circle cx="50" cy="8" r="4" class="cheio"/><circle cx="64" cy="8" r="4"/><circle cx="78" cy="8" r="4"/><circle cx="92" cy="8" r="4"/><circle cx="106" cy="8" r="4"/><circle cx="8" cy="22" r="4"/><circle cx="22" cy="22" r="4"/><circle cx="36" cy="22" r="4" class="cheio"/><circle cx="50" cy="22" r="4"/><circle cx="64" cy="22" r="4" class="cheio"/><circle cx="78" cy="22" r="4"/><circle cx="92" cy="22" r="4"/><circle cx="106" cy="22" r="4"/><circle cx="8" cy="36" r="4"/><circle cx="22" cy="36" r="4"/><circle cx="36" cy="36" r="4"/><circle cx="50" cy="36" r="4"/><circle cx="64" cy="36" r="4"/><circle cx="78" cy="36" r="4" class="cheio"/><circle cx="92" cy="36" r="4"/><circle cx="106" cy="36" r="4"/><circle cx="8" cy="50" r="4"/><circle cx="22" cy="50" r="4"/><circle cx="36" cy="50" r="4"/><circle cx="50" cy="50" r="4" class="cheio"/><circle cx="64" cy="50" r="4"/><circle cx="78" cy="50" r="4"/><circle cx="92" cy="50" r="4" class="cheio"/><circle cx="106" cy="50" r="4"/><circle cx="8" cy="64" r="4"/><circle cx="22" cy="64" r="4"/><circle cx="36" cy="64" r="4"/><circle cx="50" cy="64" r="4"/><circle cx="64" cy="64" r="4" class="cheio"/><circle cx="78" cy="64" r="4"/><circle cx="92" cy="64" r="4"/><circle cx="106" cy="64" r="4"/><circle cx="8" cy="78" r="4"/><circle cx="22" cy="78" r="4"/><circle cx="36" cy="78" r="4"/><circle cx="50" cy="78" r="4"/><circle cx="64" cy="78" r="4"/><circle cx="78" cy="78" r="4" class="cheio"/><circle cx="92" cy="78" r="4"/><circle cx="106" cy="78" r="4"/></svg>
+      <ul class="pilares" role="list">
+        <li data-rv><span class="lote">01 · Rebanho</span><p>100% A2A2, selecionado geneticamente.</p></li>
+        <li data-rv><span class="lote">02 · Genética</span><p>Produção de embriões feita no próprio sítio.</p></li>
+        <li data-rv><span class="lote">03 · Pasto</span><p>Verde e irrigado o ano inteiro.</p></li>
+      </ul>
+    </section>
+
+    <section id="galeria" class="galeria" aria-label="Da produção à mesa">
+      <p class="lote" data-rv>Da produção à mesa</p>
+      <div class="galeria-grade">
+        <figure class="sk" data-rv>
+          <img src="f3.jpg" alt="Peças de queijo cortadas na bancada do laticínio" width="1280" height="960" loading="lazy" decoding="async" class="sk-img">
+          <figcaption class="lote">Bancada · corte das peças</figcaption>
+        </figure>
+        <figure class="sk arco" data-rv>
+          <img src="f4.jpg" alt="Queijo Horizonte com cubos servidos no prato" width="943" height="1280" loading="lazy" decoding="async" class="sk-img">
+          <figcaption class="lote">Horizonte · parmesão curado</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="locais" class="locais" data-secao="Onde comprar">
+      <div class="locais-texto">
+        <p class="lote" data-rv>Locais de venda</p>
+        <h2 class="titulo" data-rv>Onde <em>comprar</em></h2>
+        <p data-rv>A maior parte dos pedidos vem pelo WhatsApp e é entregue pessoalmente. Também estamos nestes pontos:</p>
+        <svg class="porteira" viewBox="0 0 120 32" aria-hidden="true"><path d="M2 6h116M2 16h116M2 26h116M8 26 112 6"/><path d="M2 2v28M118 2v28"/></svg>
+      </div>
+      <ol class="rota" role="list">
+        <li data-rv><h3 class="subtitulo">Entrega em Botucatu</h3><p>Entrega pessoal, combinada por WhatsApp.</p></li>
+        <li data-rv><h3 class="subtitulo">Padaria parceira em Botucatu</h3><p>Nossos queijos na prateleira, toda semana.</p></li>
+        <li data-rv><h3 class="subtitulo">Piracicaba</h3><p>Braço de vendas na cidade, com entrega combinada.</p></li>
+        <li class="no-sitio" data-rv><h3 class="subtitulo">No próprio sítio</h3><p>Rodovia Marechal Rondon, km 218 — Pirambóia/SP. Avise antes pelo WhatsApp para separarmos o pedido.</p></li>
+      </ol>
+      <div class="mapa sk" data-rv>
+        <iframe class="sk-img" title="Mapa: Laticínio Sítio Água Fria, Rodovia Marechal Rondon km 218, Pirambóia/SP" src="https://maps.google.com/maps?q=-22.9636734,-48.1857975&amp;z=14&amp;hl=pt-BR&amp;output=embed" loading="lazy"></iframe>
+      </div>
+      <p class="mapa-link"><a href="https://maps.app.goo.gl/AoeBUp4ukStZk7P8A" target="_blank" rel="noopener">Abrir no Google Maps</a></p>
+    </section>
+
+    <section id="contato" class="contato escuro" data-secao="Contato">
+      <div class="contato-texto" data-rv>
+        <p class="lote">Contato</p>
+        <h2 class="display-l">Faça seu <em>pedido</em></h2>
+        <p>Manda mensagem com o que você procura e a gente responde com o que está pronto na semana.</p>
+        <div class="acoes">
+          <a class="botao botao-claro" href="https://wa.me/5514981715427?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido." target="_blank" rel="noopener">WhatsApp (14) 98171-5427</a>
+          <a class="link-acao" href="https://instagram.com/laticiniositioaguafria" target="_blank" rel="noopener">@laticiniositioaguafria <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <svg class="horizonte horizonte-poente" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
+        <path class="sol" d="M760 120a90 90 0 0 1 180 0"/>
+        <path d="M0 120h1200"/>
+        <path d="M0 136h1200" class="fraco"/><path d="M0 148h1200" class="fraco"/>
+      </svg>
+    </section>
+  </main>
+
+  <a href="https://wa.me/5514981715427?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido." target="_blank" rel="noopener" id="wa-float" class="is-hidden" aria-label="Fazer pedido pelo WhatsApp">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.6-5.4A8.4 8.4 0 1 1 21 11.5z"></path></svg>
+    <span>Pedir</span>
+  </a>
+
+  <footer class="rodape">
+    <svg class="ondas" viewBox="0 0 120 30" aria-hidden="true"><path d="M2 8c10-6 20 6 30 0s20 6 30 0 20 6 30 0 20 6 26 2"/><path d="M2 16c10-6 20 6 30 0s20 6 30 0 20 6 30 0 20 6 26 2"/><path d="M2 24c10-6 20 6 30 0s20 6 30 0 20 6 30 0 20 6 26 2"/></svg>
+    <p>Laticínio Sítio Água Fria · Rod. Marechal Rondon, km 218, Pirambóia/SP · Inspecionado SISP 1774</p>
+  </footer>
 </div>
-
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;mostrarTransicao&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Transição do queijo&quot;},&quot;velocidadeTransicao&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1,&quot;min&quot;:0.5,&quot;max&quot;:2,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Transição do queijo&quot;},&quot;mostrarSelos&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Seções&quot;},&quot;mostrarLinhaCompleta&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Seções&quot;},&quot;mostrarComoChegar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Seções&quot;}}">
-class Component extends DCLogic {
-  // Transição leve (Issue #17): ao entrar numa seção, um rótulo pequeno com o nome dela
-  // aparece abaixo do menu e some sozinho. Nunca cobre a tela nem trava a rolagem ou o teclado.
-  iniciarLoop() {
-    if (this.loopAtivo) return;
-    this.loopAtivo = true;
-    this.indice = null;
-    this.ultimoY = null;
-    this.ligarLinks();
-    const passo = () => {
-      if (!this.loopAtivo) return;
-      this.raf = requestAnimationFrame(passo);
-      this.update();
-    };
-    this.raf = requestAnimationFrame(passo);
-  }
-
-  reduzido() {
-    return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-  }
-
-  ligarLinks() {
-    if (this.linksLigados) return;
-    this.linksLigados = true;
-    this.aoClicar = (ev) => {
-      if (ev.defaultPrevented || ev.metaKey || ev.ctrlKey) return;
-      const a = ev.target && ev.target.closest ? ev.target.closest('a[href^="#"]') : null;
-      if (!a) return;
-      const href = a.getAttribute("href");
-      if (!href || href === "#") return;
-      const secao = document.querySelector(href);
-      if (!secao) return;
-      ev.preventDefault();
-      const nav = document.querySelector("[data-nav]");
-      const alturaNav = nav ? nav.offsetHeight : 0;
-      const primeira = secao === document.querySelector("[data-secao]");
-      const y = primeira ? 0 : secao.getBoundingClientRect().top + window.scrollY - alturaNav - 12;
-      window.scrollTo({ top: Math.max(0, y), behavior: this.reduzido() ? "auto" : "smooth" });
-    };
-    document.addEventListener("click", this.aoClicar);
-  }
-
-  componentDidMount() {
-    this.iniciarLoop();
-  }
-
-  componentWillUnmount() {
-    this.loopAtivo = false;
-    this.linksLigados = false;
-    document.removeEventListener("click", this.aoClicar);
-    if (this.raf != null) cancelAnimationFrame(this.raf);
-    clearTimeout(this.timerRotulo);
-  }
-
-  mostrarRotulo(nome) {
-    const rot = document.querySelector('[data-corte="rotulo"]');
-    const txt = document.querySelector('[data-corte="texto"]');
-    if (!rot || !txt || !nome) return;
-    const nav = document.querySelector("[data-nav]");
-    rot.style.top = (nav ? nav.getBoundingClientRect().bottom : 0) + 12 + "px";
-    txt.textContent = nome;
-    rot.classList.add("is-on");
-    clearTimeout(this.timerRotulo);
-    const v = Math.max(0.4, Math.min(2.5, this.props.velocidadeTransicao ?? 1));
-    this.timerRotulo = setTimeout(() => rot.classList.remove("is-on"), 1100 / v);
-  }
-
-  update() {
-    const y = window.scrollY;
-    if (this.ultimoY === y && this.indice !== null) return;
-    this.ultimoY = y;
-
-    const lista = Array.from(document.querySelectorAll("[data-secao]"));
-    if (!lista.length) return;
-    const meio = window.innerHeight * 0.5;
-    let idx = 0;
-    for (let i = 0; i < lista.length; i++) {
-      if (lista[i].getBoundingClientRect().top <= meio) idx = i;
-    }
-
-    const nav = document.querySelector("[data-nav]");
-    if (nav) {
-      const fixo = idx > 0;
-      nav.style.backgroundColor = fixo ? "rgba(12, 15, 16, 0.94)" : "rgba(10, 12, 13, 0)";
-      nav.style.borderBottomColor = fixo ? "rgba(243, 247, 248, 0.12)" : "rgba(243, 247, 248, 0)";
-      nav.style.boxShadow = fixo ? "0 10px 30px rgba(0, 0, 0, 0.45)" : "none";
-      nav.style.backdropFilter = fixo ? "blur(10px)" : "none";
-    }
-
-    if (this.indice === null) {
-      this.indice = idx; // primeira leitura: não mostra rótulo ao abrir a página
-      return;
-    }
-    if (idx !== this.indice) {
-      this.indice = idx;
-      if (idx > 0) this.mostrarRotulo(lista[idx].getAttribute("data-secao") || "");
-    }
-  }
-
-  renderVals() {
-    this.iniciarLoop();
-    return {
-      mostrarTransicao: (this.props.mostrarTransicao ?? true) && !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches),
-      velocidadeTransicao: this.props.velocidadeTransicao ?? 1,
-      mostrarSelos: this.props.mostrarSelos ?? true,
-      mostrarLinhaCompleta: this.props.mostrarLinhaCompleta ?? true,
-      mostrarComoChegar: this.props.mostrarComoChegar ?? true,
-    };
-  }
-}
-
-</script>
 </body>
 </html>
