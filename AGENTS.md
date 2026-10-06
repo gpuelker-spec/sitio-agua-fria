@@ -82,8 +82,12 @@ Pedido do Gustavo → Issue → branch → commits → Pull Request (cita a Issu
 | `npm run format` | Biome corrige formatação automaticamente |
 | `npm run knip` | Knip: dependências e arquivos não usados |
 | `npm run commitlint` | Confere as mensagens de commit da branch |
+| `npx playwright install chromium` | Baixa o navegador de teste (só na primeira vez) |
+| `npm test` | Playwright: testes end-to-end no computador (1280px) e no celular (Pixel 7) |
 
-Configuração: `biome.json`, `commitlint.config.mjs`, `knip.json`, `.github/workflows/`.
+Configuração: `biome.json`, `commitlint.config.mjs`, `knip.json`, `playwright.config.js`, `.github/workflows/`.
+
+**Toda mudança no site precisa de teste em `tests/e2e/`** cobrindo o novo comportamento (seção nova, link novo, animação nova). Os testes não podem depender de sites externos (Google Maps, Google Fonts).
 
 ## Nunca coloque neste repositório (ele é público)
 - Planilhas de preços, fichas técnicas, custos ou dados de clientes.
