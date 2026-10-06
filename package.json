@@ -9,13 +9,16 @@
     "commitlint": "commitlint --from origin/main --to HEAD --verbose",
     "serve": "python3 -m http.server 4173",
     "test": "playwright test",
-    "test:ui": "playwright test --ui"
+    "test:ui": "playwright test --ui",
+    "build:sentry": "esbuild src/sentry.js --bundle --minify --format=iife --target=es2018 --outfile=sentry.min.js"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.15",
     "@commitlint/cli": "21.2.3",
     "@commitlint/config-conventional": "21.2.3",
     "@playwright/test": "1.56.0",
+    "@sentry/browser": "11.4.0",
+    "esbuild": "0.28.2",
     "knip": "6.40.0"
   }
 }
