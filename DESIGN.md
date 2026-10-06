@@ -93,7 +93,7 @@ As fontes dos rótulos são comerciais; o site usa substitutas livres do Google 
 - **Botão principal (`.botao`):** fundo `noite`, texto `soro`, `radius-pill`, 14px × 22px, Work Sans 600. Pressionado: `scale(0.97)`. Variante `.botao-claro`: fundo `turquesa`, texto `noite`, para chão escuro.
 - **Link de ação:** texto `noite` com sublinhado de 1px e seta →. A seta anda 3px no hover.
 - **Rótulo de queijo (`.queijo`):** o card é um mini-rótulo. Disco na cor `--produto` em cima; faixa `noite` com o lockup "·Sítio· Água Fria", nome em slab 900 caixa alta (com `ferrugem`), tipo em `lote` na cor do produto; fita "Produto artesanal" na base.
-- **Etiqueta de pote:** fundo `grafite`, fita lateral na cor `--produto`, nome em `lote`.
+- **Etiqueta de pote (`.etiquetas li`):** fita na cor `--produto` do rótulo, texto `grafite` em `lote` caixa alta, cantos retos.
 - **Carimbo:** anel de texto em `lote` ("REBANHO 100% A2A2 · LEITE DO PRÓPRIO SÍTIO") com o selo `a2a2.png` no centro. Gira com a rolagem, nunca sozinho.
 - **Ondas (`.ondas`):** 3 traços turquesa paralelos; `.ondas-grande` como divisor de seção.
 - **Faixa escura:** chão `noite`, texto `soro`, ênfase `turquesa`, raio 0 nas bordas da tela.
