@@ -570,6 +570,8 @@ main > section.escuro {
   background: var(--produto);
 }
 .queijo-faixa {
+  min-width: 0;
+  max-width: 100%;
   /* a faixa escura que atravessa o disco, com o medalhão */
   position: relative;
   width: 100%;
@@ -996,7 +998,8 @@ main > section.escuro {
     margin-left: 8px;
   }
   .queijo-nome {
-    font-size: clamp(16px, 5.4vw, 22px);
+    /* "Horizontinho" precisa caber na faixa do rótulo em telas de 360px */
+    font-size: clamp(14px, 4.2vw, 20px);
   }
   .queijo-tipo {
     font-size: 12px;
