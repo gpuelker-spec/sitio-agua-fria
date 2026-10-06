@@ -68,6 +68,7 @@ Pedido do Gustavo → Issue → branch → commits → Pull Request (cita a Issu
 | `package.json`, `biome.json`, `knip.json`, `commitlint.config.mjs` | Ferramentas de qualidade (não fazem parte do site publicado) |
 | `src/sentry.js` → `sentry.min.js` | Monitoramento de erros (Sentry). Ver seção "Observabilidade" |
 | `motion.css`, `motion.js` | Camada de movimento: barra de progresso, skeletons, lazy loading, entradas ao rolar, botão flutuante que entra/sai. Ver seção "Movimento" |
+| `og-image.jpg`, `robots.txt`, `sitemap.xml` | Prévia de compartilhamento e SEO. Ver seção "SEO e compartilhamento" |
 | `.nojekyll` | Impede o GitHub Pages de processar o site com Jekyll. Não remover |
 
 ### Cuidados ao editar `index.html`
@@ -107,6 +108,13 @@ Padrão definido pela skill [design-motion-principles](https://github.com/kyleza
 - Nada de animação em loop para chamar atenção (pulsar, brilhar). O único loop permitido é o shimmer do skeleton, enquanto algo carrega.
 - Todo movimento novo precisa funcionar com `prefers-reduced-motion: reduce` (bloco no fim de `motion.css`).
 - Teste: carregamento (skeleton → conteúdo), rolagem completa, computador e celular, e com movimento reduzido.
+
+## SEO e compartilhamento
+- `<head>` do `index.html`: título, descrição, `canonical`, Open Graph (prévia no WhatsApp/Instagram) e dados estruturados `LocalBusiness` (JSON-LD).
+- Imagem de prévia: `og-image.jpg` (1200×630). Se trocar a foto ou o texto, mantenha esse tamanho.
+- `robots.txt` e `sitemap.xml` na raiz. Atualize o `<lastmod>` do sitemap quando o conteúdo mudar.
+- **Ao ativar o domínio próprio (Issue #5):** troque `https://gpuelker-spec.github.io/sitio-agua-fria/` pelo novo endereço em `index.html` (canonical, og:url, og:image, JSON-LD), `robots.txt`, `sitemap.xml`, `src/sentry.js` e nos testes `tests/e2e/seo.spec.js`.
+- Telefone, endereço e Instagram precisam bater entre os textos visíveis, os links e o JSON-LD (há teste para isso).
 
 ## Nunca coloque neste repositório (ele é público)
 - Planilhas de preços, fichas técnicas, custos ou dados de clientes.
