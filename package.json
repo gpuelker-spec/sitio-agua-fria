@@ -1,0 +1,18 @@
+{
+  "name": "sitio-agua-fria",
+  "private": true,
+  "description": "Landing page do Laticínio Sítio Água Fria (GitHub Pages)",
+  "scripts": {
+    "lint": "biome ci .",
+    "format": "biome check --write .",
+    "knip": "knip",
+    "commitlint": "commitlint --from origin/main --to HEAD --verbose",
+    "serve": "python3 -m http.server 4173"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15",
+    "@commitlint/cli": "21.2.3",
+    "@commitlint/config-conventional": "21.2.3",
+    "knip": "6.40.0"
+  }
+}

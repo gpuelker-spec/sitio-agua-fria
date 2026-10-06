@@ -36,11 +36,18 @@ Pedido do Gustavo → Issue → branch → commits → Pull Request (cita a Issu
 - Nome: `<prefixo>/<número-da-issue>-<descrição-curta>`. Ex.: `feat/3-depoimentos`, `fix/2-posicao-mapa`.
 - Uma branch e um PR por Issue.
 
+### Commits (Conventional Commits, verificado pelo Commitlint)
+- Formato: `<tipo>: <descrição em português>`, até 100 caracteres. Ex.: `feat: adiciona seção de depoimentos (#3)`.
+- Tipos: `feat` (nova função), `fix` (correção), `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`.
+- Cite a Issue no fim da mensagem quando fizer sentido: `(#N)`.
+
 ### 3. Pull Request
 - Título claro em português.
 - Descrição **obrigatoriamente** menciona a Issue com palavra de fechamento: `Closes #N` (ou `Fixes #N`). Isso fecha a Issue automaticamente no merge.
 - Use o template em `.github/pull_request_template.md`: o que mudou, como foi testado, prints antes/depois quando houver mudança visual.
 - Se a mudança afeta o site, teste antes de abrir o PR: a página carrega, sem erro no console, em largura de computador (~1280px) **e** de celular (~390px).
+
+- O PR só pode entrar com o **CI verde** (GitHub Actions). Se falhar, corrija na mesma branch.
 
 ### 4. Merge = deploy
 - PR que **muda o site** só entra na `main` com OK explícito do Gustavo.
@@ -58,6 +65,7 @@ Pedido do Gustavo → Issue → branch → commits → Pull Request (cita a Issu
 | `react*.production.min.js` | React 18.3.1 hospedado localmente (o `window.__resources` no `<head>` aponta para eles). Não trocar por CDN |
 | `ds-styles.css`, `ds-bundle.js` | Design system base (fontes, botões `.btn`). Evitar editar |
 | `*.jpg`, `*.png` | Fotos e selos usados na página |
+| `package.json`, `biome.json`, `knip.json`, `commitlint.config.mjs` | Ferramentas de qualidade (não fazem parte do site publicado) |
 | `.nojekyll` | Impede o GitHub Pages de processar o site com Jekyll. Não remover |
 
 ### Cuidados ao editar `index.html`
@@ -65,6 +73,17 @@ Pedido do Gustavo → Issue → branch → commits → Pull Request (cita a Issu
 - Não use `{{ }}` em texto: é sintaxe do template.
 - Seções com `data-secao="Nome"` disparam a animação de "corte de queijo". Só adicione o atributo se quiser essa transição.
 - Links de WhatsApp usam a mensagem pronta: `https://wa.me/5514981715427?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido.`
+
+## Qualidade e testes (rodam sozinhos em todo PR)
+| Comando | O que faz |
+|---|---|
+| `npm ci` | Instala as ferramentas (só na primeira vez) |
+| `npm run lint` | Biome: lint + formatação de `motion.*`, testes e configs (arquivos gerados ficam de fora) |
+| `npm run format` | Biome corrige formatação automaticamente |
+| `npm run knip` | Knip: dependências e arquivos não usados |
+| `npm run commitlint` | Confere as mensagens de commit da branch |
+
+Configuração: `biome.json`, `commitlint.config.mjs`, `knip.json`, `.github/workflows/`.
 
 ## Nunca coloque neste repositório (ele é público)
 - Planilhas de preços, fichas técnicas, custos ou dados de clientes.
