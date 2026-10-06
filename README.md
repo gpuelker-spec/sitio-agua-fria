@@ -7,3 +7,7 @@ Landing page do Laticínio Sítio Água Fria (Pirambóia/SP), publicada com GitH
 
 Fonte do design: `Main.dc.html` (Claude Design), publicado aqui como `index.html`.
 React 18.3.1 hospedado junto (sem depender de CDN).
+
+## Como contribuir
+
+Toda tarefa vira Issue e toda mudança entra por Pull Request. Veja [AGENTS.md](AGENTS.md).
