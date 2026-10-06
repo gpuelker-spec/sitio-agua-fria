@@ -36,7 +36,7 @@ test("lazy loading: só a foto principal carrega com prioridade, o resto espera 
   await abrir(page);
   await expect(page.locator('img[src="f1.jpg"]')).toHaveAttribute("fetchpriority", "high");
   await expect(page.locator('img[src="f1.jpg"]')).not.toHaveAttribute("loading", "lazy");
-  for (const src of ["f7.jpg", "f3.jpg", "f4.jpg", "a2a2.png", "selo-sisp.jpg"]) {
+  for (const src of ["f7.jpg", "f3.jpg", "f4.jpg", "selo-a2a2.png", "selo-sisp.png", "logo-selo.png"]) {
     const img = page.locator(`img[src="${src}"]:not(.carimbo img)`); // o selo do herói é acima da dobra
     await expect(img).toHaveAttribute("loading", "lazy");
     await expect(img).toHaveAttribute("width", /\d+/);
@@ -86,7 +86,9 @@ test("transição leve: rótulo da seção aparece pequeno e some, sem travar a 
   await expect(rotulo).not.toHaveClass(/is-on/); // não aparece ao abrir a página
 
   const antes = await page.evaluate(() => window.scrollY);
-  await page.mouse.wheel(0, 900);
+  // rola até a primeira seção depois do herói
+  const ate = await page.evaluate(() => document.querySelector("#historia").getBoundingClientRect().top);
+  await page.mouse.wheel(0, Math.max(900, ate - 200));
   // a rolagem acontece na hora e não é revertida
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(antes + 500);
   await page.waitForTimeout(300);
@@ -100,6 +102,26 @@ test("transição leve: rótulo da seção aparece pequeno e some, sem travar a 
   expect(caixa.height).toBeLessThan(80);
   expect(caixa.width).toBeLessThan(tela.width * 0.8);
   await expect(rotulo).not.toHaveClass(/is-on/, { timeout: 4_000 }); // some sozinho
+});
+
+test("campo do herói: vacas e aspersores; a água e os selos se mexem com a rolagem", async ({ page }) => {
+  await abrir(page);
+  const vacas = await page.locator(".campo .vaca").count();
+  expect(vacas).toBeGreaterThanOrEqual(3);
+  expect(vacas).toBeLessThanOrEqual(4);
+  await expect(page.locator(".campo .jato")).not.toHaveCount(0);
+
+  const selo = page.locator(".selo-medalha").first();
+  await selo.scrollIntoViewIfNeeded();
+  const antes = await selo.evaluate((el) => el.style.translate);
+  await page.mouse.wheel(0, 300);
+  await expect.poll(() => selo.evaluate((el) => el.style.translate)).not.toBe(antes);
+  expect(
+    await page
+      .locator(".campo .jato")
+      .first()
+      .evaluate((el) => el.style.strokeDashoffset),
+  ).not.toBe("");
 });
 
 test("teclado rola a página normalmente", async ({ page }) => {
@@ -137,6 +159,12 @@ test.describe("movimento reduzido", () => {
     await page.waitForTimeout(400);
     await expect(page.locator('[data-corte="rotulo"]')).not.toHaveClass(/is-on/);
     expect(await page.locator(".carimbo svg").evaluate((el) => el.style.transform)).toBe("");
+    expect(
+      await page
+        .locator(".selo-medalha")
+        .first()
+        .evaluate((el) => el.style.translate),
+    ).toBe("");
     expect(erros).toEqual([]);
   });
 

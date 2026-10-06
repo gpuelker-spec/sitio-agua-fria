@@ -7,6 +7,7 @@
  *   [data-rv="heroi"]  entra logo depois do carregamento, sem esperar a rolagem.
  *   .sk > .sk-img      placeholder até a imagem ou o mapa carregar.
  *   [data-secao]       seção que mostra o rótulo com seu nome ao entrar.
+ *   [data-flutua="k"]  elemento que flutua com a rolagem (paralaxe; k = intensidade, ex. 0.08).
  */
 (() => {
   var doc = document.documentElement;
@@ -121,6 +122,8 @@
     var contato = root.querySelector("#contato");
     var carimbo = root.querySelector(".carimbo svg");
     var solPoente = root.querySelector(".horizonte-poente .sol");
+    var jatos = Array.from(root.querySelectorAll(".campo .jato"));
+    var flutuantes = Array.from(root.querySelectorAll("[data-flutua]"));
     var contatoVisivel = false;
     var indice = null;
     var agendado = false;
@@ -142,6 +145,19 @@
       if (reduce) return;
       // carimbo gira devagar com a rolagem (nunca sozinho)
       if (carimbo) carimbo.style.transform = `rotate(${(y * 0.06) % 360}deg)`;
+      // a água dos aspersores corre conforme a página rola
+      jatos.forEach((j) => {
+        j.style.strokeDashoffset = `${-y * 0.12}`;
+      });
+      // selos flutuam: andam um pouco mais devagar que a página (paralaxe leve)
+      flutuantes.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.bottom < -100 || r.top > h + 100) return;
+        const k = Number(el.getAttribute("data-flutua")) || 0.08;
+        const d = (r.top + r.height / 2 - h / 2) * k;
+        el.style.translate = `0 ${d.toFixed(1)}px`;
+        el.style.rotate = `${(d * 0.15).toFixed(2)}deg`;
+      });
       // o sol da chamada final nasce conforme a seção entra na tela
       if (solPoente && contato) {
         const r = contato.getBoundingClientRect();
