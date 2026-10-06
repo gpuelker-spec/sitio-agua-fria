@@ -73,7 +73,7 @@ Pedido do Gustavo → Issue → branch → commits → Pull Request (cita a Issu
 ### Cuidados ao editar `index.html`
 - Mantenha o padrão visual: fundo escuro, `var(--color-*)`, cantos arredondados (36px/56px), `font-family: var(--font-heading)` nos títulos, rótulos em caixa alta pequenos acima dos títulos.
 - Não use `{{ }}` em texto: é sintaxe do template.
-- Seções com `data-secao="Nome"` disparam a animação de "corte de queijo". Só adicione o atributo se quiser essa transição.
+- Seções com `data-secao="Nome"` mostram, ao entrar nelas, um rótulo pequeno com o nome da seção abaixo do menu (transição leve, Issue #17). Ele nunca cobre a tela nem trava a rolagem ou o teclado. **Não volte a bloquear `wheel`, `touchmove` ou teclas.**
 - Links de WhatsApp usam a mensagem pronta: `https://wa.me/5514981715427?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido.`
 
 ## Qualidade e testes (rodam sozinhos em todo PR)
