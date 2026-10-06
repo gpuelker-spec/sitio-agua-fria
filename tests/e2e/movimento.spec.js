@@ -37,7 +37,7 @@ test("lazy loading: só a foto principal carrega com prioridade, o resto espera 
   await expect(page.locator('img[src="f1.jpg"]')).toHaveAttribute("fetchpriority", "high");
   await expect(page.locator('img[src="f1.jpg"]')).not.toHaveAttribute("loading", "lazy");
   for (const src of ["f7.jpg", "f3.jpg", "f4.jpg", "a2a2.png", "selo-sisp.jpg"]) {
-    const img = page.locator(`img[src="${src}"]`);
+    const img = page.locator(`img[src="${src}"]:not(.carimbo img)`); // o selo do herói é acima da dobra
     await expect(img).toHaveAttribute("loading", "lazy");
     await expect(img).toHaveAttribute("width", /\d+/);
     await expect(img).toHaveAttribute("height", /\d+/);

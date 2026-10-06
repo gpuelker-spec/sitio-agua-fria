@@ -1,27 +1,27 @@
 /*
  * site.css — visual do Sítio Água Fria. Tokens e regras: DESIGN.md.
- * Rústico contemporâneo: papel, carimbo e traço (rústico) + grid editorial e tipografia grande (moderno).
+ * Rústico contemporâneo a partir da marca real: o azul-noite e o turquesa do logo,
+ * a tipografia slab "enferrujada" e os rótulos de queijo (disco colorido + faixa escura + fita),
+ * sobre papel cor de soro, com grid editorial e movimento ligado à rolagem.
  */
 
 :root {
-  /* cores (DESIGN.md §2) */
+  /* marca (DESIGN.md §2) */
   --soro: #f3ecdf;
   --coalho: #faf6ee;
-  --feno: #e7d3a8;
-  --carvao: #1f1a14;
-  --tinta: #5e5447;
-  --linha: #1f1a1429;
-  --casca: #b9772a;
-  --casca-texto: #8a5418;
-  --pasto: #263a24;
-  --terra: #5a3e2b;
-  --agua: #2e6f7e;
-  --nascente: #2ad4f2;
+  --noite: #020111; /* fundo dos rótulos de queijo */
+  --grafite: #231f20; /* fundo dos potes; texto da fita */
+  --tinta: #4b4f5e;
+  --linha: #02011124;
+  --turquesa: #30b2c1; /* ondas do logo (Pantone 3115C) */
+  --turquesa-texto: #17707f;
+  --nascente: #2094a8;
+  --ambar: #fbaf40; /* Pantone 136C: Remanso, Horizonte */
 
   /* tipografia (§3) */
-  --f-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --f-display: "Roboto Slab", "Rockwell", Georgia, serif;
   --f-texto: "Work Sans", "Helvetica Neue", Arial, sans-serif;
-  --f-lote: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
+  --f-lote: "Barlow Condensed", "Arial Narrow", sans-serif;
 
   /* espaço e forma (§5, §6) */
   --calha: clamp(20px, 5vw, 72px);
@@ -31,7 +31,10 @@
   --radius-md: 14px;
   --radius-pill: 999px;
   --radius-arco: 999px 999px 18px 18px;
-  --papel: 0 1px 0 #1f1a1414, 0 18px 40px -24px #1f1a1459;
+  --papel: 0 1px 0 #02011114, 0 18px 40px -24px #02011166;
+
+  /* textura de tinta gasta (como a Nexa Rust dos rótulos) */
+  --ferrugem: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='2' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -22 16.4'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23f)'/%3E%3C/svg%3E");
 }
 
 *,
@@ -49,9 +52,8 @@ html {
 body {
   margin: 0;
   background-color: var(--soro);
-  /* papel: ruído muito sutil */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .12 0 0 0 0 .1 0 0 0 0 .08 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
-  color: var(--carvao);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .01 0 0 0 0 .01 0 0 0 0 .07 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  color: var(--noite);
   font-family: var(--f-texto);
   font-size: 16px;
   line-height: 1.65;
@@ -66,7 +68,7 @@ img {
 }
 
 a {
-  color: var(--agua);
+  color: var(--turquesa-texto);
   text-underline-offset: 3px;
 }
 
@@ -84,12 +86,8 @@ ol {
   padding: 0;
 }
 
-em {
-  font-style: italic;
-}
-
 :focus-visible {
-  outline: 2px solid var(--agua);
+  outline: 2px solid var(--nascente);
   outline-offset: 3px;
 }
 
@@ -99,7 +97,7 @@ em {
   top: -60px;
   z-index: 100;
   padding: 10px 16px;
-  background: var(--carvao);
+  background: var(--noite);
   color: var(--soro);
   border-radius: var(--radius-sm);
 }
@@ -113,37 +111,43 @@ em {
 .titulo,
 .subtitulo {
   font-family: var(--f-display);
-  font-variation-settings:
-    "SOFT" 100,
-    "WONK" 1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   text-wrap: balance;
 }
 .display-xl {
-  font-size: clamp(56px, 9vw, 128px);
+  font-size: clamp(48px, 8.2vw, 116px);
   line-height: 0.92;
-  font-weight: 380;
+  font-weight: 900;
+  text-transform: uppercase;
 }
 .display-l {
-  font-size: clamp(40px, 5.6vw, 76px);
-  line-height: 0.98;
-  font-weight: 400;
+  font-size: clamp(36px, 5.2vw, 72px);
+  line-height: 0.96;
+  font-weight: 900;
+  text-transform: uppercase;
 }
 .titulo {
-  font-size: clamp(30px, 3.6vw, 48px);
-  line-height: 1.04;
-  font-weight: 420;
+  font-size: clamp(30px, 3.4vw, 46px);
+  line-height: 1.05;
+  font-weight: 800;
 }
 .subtitulo {
-  font-size: 24px;
+  font-size: 22px;
   line-height: 1.15;
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-weight: 700;
 }
 .display-xl em,
 .display-l em,
 .titulo em {
-  font-weight: 300;
+  font-style: normal;
+  color: var(--nascente);
+}
+.ferrugem {
+  /* tinta gasta de carimbo/rótulo: furinhos aleatórios no traço */
+  -webkit-mask-image: var(--ferrugem);
+  mask-image: var(--ferrugem);
+  -webkit-mask-size: 320px;
+  mask-size: 320px;
 }
 .corpo-l {
   font-size: 19px;
@@ -151,12 +155,12 @@ em {
 }
 .lote {
   font-family: var(--f-lote);
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.2;
-  font-weight: 500;
-  letter-spacing: 0.12em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--casca-texto);
+  color: var(--turquesa-texto);
 }
 
 /* ---------- Botões e links (DESIGN.md §4) ---------- */
@@ -167,7 +171,7 @@ em {
   min-height: 48px;
   padding: 14px 22px;
   border-radius: var(--radius-pill);
-  background: var(--pasto);
+  background: var(--noite);
   color: var(--soro);
   font-weight: 600;
   font-size: 15px;
@@ -180,19 +184,19 @@ em {
   font-size: 14px;
 }
 .botao-claro {
-  background: var(--soro);
-  color: var(--pasto);
+  background: var(--turquesa);
+  color: var(--noite);
 }
 .link-acao {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   min-height: 44px;
-  color: var(--carvao);
+  color: var(--noite);
   font-weight: 500;
   text-decoration: underline;
-  text-decoration-color: var(--casca);
-  text-decoration-thickness: 1px;
+  text-decoration-color: var(--turquesa);
+  text-decoration-thickness: 2px;
   text-underline-offset: 6px;
 }
 .link-acao span {
@@ -216,9 +220,7 @@ em {
   display: flex;
   align-items: center;
   gap: clamp(14px, 2.4vw, 32px);
-  padding: 14px var(--calha);
-  max-width: calc(var(--largura) + 2 * var(--calha));
-  margin-inline: auto;
+  padding: 12px var(--calha);
   transition:
     background-color 260ms cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 260ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -227,38 +229,39 @@ em {
   background-color: #f3ecdfeb;
   box-shadow: 0 1px 0 var(--linha);
   backdrop-filter: blur(8px);
-  max-width: none;
 }
 .marca {
   margin-right: auto;
   line-height: 0;
 }
 .marca img {
-  height: 44px;
+  height: 60px;
   width: auto;
-  border-radius: var(--radius-sm);
 }
 .topo nav {
   display: flex;
   gap: clamp(14px, 2vw, 28px);
 }
 .topo nav a {
-  color: var(--carvao);
+  color: var(--noite);
   text-decoration: none;
   font-size: 15px;
   font-weight: 500;
 }
 .topo nav a:hover {
   text-decoration: underline;
-  text-decoration-color: var(--casca);
+  text-decoration-color: var(--turquesa);
+  text-decoration-thickness: 2px;
 }
 
-/* ---------- Herói ---------- */
+/* ---------- Seções ---------- */
 main > section {
   max-width: calc(var(--largura) + 2 * var(--calha));
   margin-inline: auto;
   padding-inline: var(--calha);
 }
+
+/* ---------- Herói ---------- */
 .heroi {
   position: relative;
   display: grid;
@@ -266,7 +269,6 @@ main > section {
   align-items: end;
   gap: 32px;
   padding-top: clamp(32px, 6vw, 72px);
-  padding-bottom: 0;
 }
 .heroi-texto {
   grid-column: 1 / span 7;
@@ -277,9 +279,6 @@ main > section {
 .heroi-texto .corpo-l {
   max-width: 34ch;
   color: var(--tinta);
-}
-.heroi-texto em {
-  color: var(--casca);
 }
 .heroi-foto {
   grid-column: 8 / span 5;
@@ -298,25 +297,21 @@ main > section {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(0.9) sepia(0.08);
 }
 .horizonte {
-  grid-column: 1 / -1;
   width: 100%;
   height: clamp(60px, 9vw, 120px);
-  margin-top: -1px;
   fill: none;
-  stroke: var(--terra);
+  stroke: var(--noite);
   stroke-width: 1;
-  vector-effect: non-scaling-stroke;
   overflow: visible;
 }
 .horizonte path {
   vector-effect: non-scaling-stroke;
 }
 .horizonte .sol {
-  stroke: var(--casca);
-  stroke-width: 1.5;
+  stroke: var(--ambar);
+  stroke-width: 2;
 }
 .heroi .horizonte {
   position: absolute;
@@ -324,45 +319,46 @@ main > section {
   right: 0;
   bottom: -40px;
   z-index: -1;
-  opacity: 0.55;
+  opacity: 0.35;
 }
 
-/* Carimbo (roda de queijo) */
+/* Carimbo: anel que gira com a rolagem + selo oficial A2A2 parado no centro */
 .carimbo {
   position: absolute;
-  width: clamp(110px, 12vw, 150px);
+  width: clamp(120px, 13vw, 160px);
   aspect-ratio: 1;
-  left: -48px;
+  left: -52px;
   bottom: clamp(56px, 8vw, 96px);
   background: var(--soro);
   border-radius: 50%;
   box-shadow: var(--papel);
 }
 .carimbo svg {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   fill: none;
-  stroke: var(--casca);
+  stroke: var(--noite);
   stroke-width: 1.5;
 }
 .carimbo text {
-  fill: var(--casca-texto);
+  fill: var(--noite);
   stroke: none;
   font-family: var(--f-lote);
-  font-size: 12.5px;
-  letter-spacing: 0.18em;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
 }
-.carimbo .centro {
-  font-family: var(--f-display);
-  font-size: 40px;
-  letter-spacing: -0.02em;
-  font-variation-settings:
-    "SOFT" 100,
-    "WONK" 1;
-  fill: var(--carvao);
+.carimbo img {
+  position: absolute;
+  inset: 20%;
+  width: 60%;
+  height: 60%;
+  mix-blend-mode: multiply;
 }
 
-/* ---------- Faixa de fatos (porteira) ---------- */
+/* ---------- Faixa de fatos (com as ondas do logo) ---------- */
 .faixa-fatos {
   padding-block: 22px;
   border-block: 1px solid var(--linha);
@@ -374,8 +370,9 @@ main > section {
   justify-content: space-between;
   gap: 12px 28px;
   font-family: var(--f-lote);
-  font-size: 12px;
-  letter-spacing: 0.12em;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--tinta);
 }
@@ -385,12 +382,13 @@ main > section {
   gap: 12px;
 }
 .faixa-fatos li::before {
-  /* marca de porteira: três travessas */
+  /* três ondas da marca */
   content: "";
-  width: 18px;
-  height: 9px;
-  border-block: 1px solid var(--casca);
-  background: linear-gradient(var(--casca), var(--casca)) center / 100% 1px no-repeat;
+  width: 22px;
+  height: 12px;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 12'%3E%3Cg fill='none' stroke='%2330b2c1' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M1 2.5q2.5-2 5 0t5 0 5 0 5 0'/%3E%3Cpath d='M1 6.5q2.5-2 5 0t5 0 5 0 5 0'/%3E%3Cpath d='M1 10.5q2.5-2 5 0t5 0 5 0 5 0'/%3E%3C/g%3E%3C/svg%3E")
+    center / contain no-repeat;
 }
 
 /* ---------- História ---------- */
@@ -407,15 +405,12 @@ main > section {
   right: var(--calha);
   top: calc(var(--secao) - 40px);
   font-family: var(--f-display);
-  font-variation-settings:
-    "SOFT" 100,
-    "WONK" 1;
   font-size: clamp(120px, 22vw, 300px);
   line-height: 0.8;
-  font-weight: 300;
+  font-weight: 900;
   color: transparent;
-  -webkit-text-stroke: 1px var(--casca);
-  opacity: 0.3;
+  -webkit-text-stroke: 1.5px var(--turquesa);
+  opacity: 0.35;
   pointer-events: none;
   z-index: -1;
 }
@@ -430,7 +425,6 @@ main > section {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(0.9) sepia(0.08);
 }
 .historia-texto {
   grid-column: 7 / span 6;
@@ -442,9 +436,6 @@ main > section {
   max-width: 52ch;
   color: var(--tinta);
 }
-.historia-texto em {
-  color: var(--casca);
-}
 .selos {
   display: flex;
   flex-wrap: wrap;
@@ -455,13 +446,13 @@ main > section {
   border-top: 1px solid var(--linha);
 }
 .selos-chapa {
-  flex: none;
   /* chapa escura: os selos oficiais são brancos sobre preto */
+  flex: none;
   display: flex;
   align-items: center;
   gap: 14px;
   padding: 10px 16px;
-  background: var(--carvao);
+  background: var(--noite);
   border-radius: var(--radius-sm);
 }
 .selos img {
@@ -482,29 +473,29 @@ main > section {
   color: var(--tinta);
 }
 
-/* ---------- Faixa escura ---------- */
+/* ---------- Faixa escura (o azul-noite dos rótulos) ---------- */
 .escuro {
   color: var(--soro);
 }
 main > section.escuro {
   max-width: none;
-  background: var(--pasto);
+  background: var(--noite);
   padding-inline: max(var(--calha), calc((100% - var(--largura)) / 2));
 }
 .escuro .lote {
-  color: var(--nascente);
+  color: var(--turquesa);
 }
 .escuro em {
-  color: var(--feno);
+  color: var(--turquesa);
 }
 .escuro p:not(.lote) {
-  color: #e9e1d2;
+  color: #d9dbe3;
 }
 .escuro .link-acao {
   color: var(--soro);
 }
 
-/* ---------- Produtos ---------- */
+/* ---------- Produtos: rótulos de queijo (família A dos rótulos) ---------- */
 .produtos {
   padding-block: var(--secao);
 }
@@ -526,55 +517,76 @@ main > section.escuro {
 .queijos {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-top: 1px solid #f3ecdf33;
-  border-left: 1px solid #f3ecdf33;
+  gap: clamp(20px, 3vw, 40px) clamp(12px, 2vw, 28px);
 }
 .queijo {
+  position: relative;
   display: grid;
-  gap: 10px;
-  align-content: start;
-  min-height: 190px;
-  padding: 26px 24px;
-  border-right: 1px solid #f3ecdf33;
-  border-bottom: 1px solid #f3ecdf33;
+  place-items: center;
+  aspect-ratio: 1;
 }
-.queijo .glifo {
-  width: 40px;
-  height: 40px;
-  margin-bottom: auto;
-  fill: none;
-  stroke: var(--feno);
-  stroke-width: 1.25;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.queijo-disco {
+  /* o disco na cor do produto */
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--produto);
 }
-.queijo .glifo circle {
-  fill: var(--feno);
-  stroke: none;
+.queijo-faixa {
+  /* a faixa escura que atravessa o disco, com o medalhão */
+  position: relative;
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 16px 8px 14px;
+  background: var(--noite);
+  box-shadow: 0 0 0 1px #f3ecdf1f;
+  text-align: center;
 }
-.queijo .glifo circle[r="7"],
-.queijo .glifo circle[r="3.5"] {
-  fill: none;
-  stroke: var(--feno);
-}
-.queijo .lote {
-  color: var(--nascente);
-  margin-top: 28px;
+.queijo-marca {
+  font-family: var(--f-lote);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--turquesa);
 }
 .queijo-nome {
   font-family: var(--f-display);
-  font-variation-settings:
-    "SOFT" 100,
-    "WONK" 1;
-  font-size: clamp(26px, 2.4vw, 34px);
+  font-size: clamp(20px, 2.3vw, 32px);
   line-height: 1;
-  font-weight: 400;
-  letter-spacing: -0.015em;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--soro);
+  -webkit-mask-image: var(--ferrugem);
+  mask-image: var(--ferrugem);
+  -webkit-mask-size: 260px;
+  mask-size: 260px;
+}
+.queijo-tipo {
+  font-family: var(--f-lote);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--soro);
+}
+.queijo-fita {
+  margin-top: 6px;
+  padding: 2px 12px;
+  background: var(--produto);
+  color: var(--grafite);
+  font-family: var(--f-lote);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 .cozinha {
   display: grid;
   gap: 18px;
-  margin-top: clamp(40px, 6vw, 64px);
+  margin-top: clamp(48px, 7vw, 80px);
 }
 .etiquetas {
   display: flex;
@@ -582,25 +594,15 @@ main > section.escuro {
   gap: 12px;
 }
 .etiquetas li {
-  position: relative;
-  padding: 8px 14px 8px 26px;
-  background: var(--feno);
-  color: var(--carvao);
-  border-radius: var(--radius-sm);
-  font-size: 14px;
-  font-weight: 500;
-}
-.etiquetas li::before {
-  /* furo da etiqueta */
-  content: "";
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  width: 6px;
-  height: 6px;
-  margin-top: -3px;
-  border-radius: 50%;
-  background: var(--pasto);
+  /* fita na cor do produto, como nos rótulos */
+  padding: 7px 14px;
+  background: var(--produto, var(--turquesa));
+  color: var(--grafite);
+  font-family: var(--f-lote);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 /* ---------- Genética ---------- */
@@ -620,9 +622,6 @@ main > section.escuro {
   max-width: 58ch;
   color: var(--tinta);
 }
-.genetica-texto em {
-  color: var(--casca);
-}
 .celulas {
   grid-column: 9 / span 4;
   width: 100%;
@@ -631,12 +630,14 @@ main > section.escuro {
 }
 .celulas circle {
   fill: none;
-  stroke: var(--terra);
+  stroke: var(--noite);
   stroke-width: 0.8;
+  opacity: 0.6;
 }
 .celulas circle.cheio {
-  fill: var(--casca);
-  stroke: var(--casca);
+  fill: var(--turquesa);
+  stroke: var(--turquesa);
+  opacity: 1;
 }
 .pilares {
   grid-column: 1 / -1;
@@ -652,11 +653,9 @@ main > section.escuro {
 }
 .pilares p {
   font-family: var(--f-display);
-  font-variation-settings:
-    "SOFT" 100,
-    "WONK" 1;
-  font-size: 22px;
-  line-height: 1.2;
+  font-size: 21px;
+  line-height: 1.25;
+  font-weight: 600;
 }
 
 /* ---------- Galeria ---------- */
@@ -672,9 +671,8 @@ main > section.escuro {
   align-items: end;
 }
 .galeria figure {
+  position: relative;
   margin: 0;
-  display: grid;
-  gap: 12px;
 }
 .galeria figure:first-child {
   aspect-ratio: 4 / 3;
@@ -689,19 +687,14 @@ main > section.escuro {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(0.9) sepia(0.08);
 }
 .galeria figcaption {
   position: absolute;
   left: 16px;
   bottom: 14px;
-  padding: 6px 10px;
-  background: var(--soro);
-  color: var(--carvao);
-  border-radius: var(--radius-sm);
-}
-.galeria figure {
-  position: relative;
+  padding: 4px 10px;
+  background: var(--noite);
+  color: var(--soro);
 }
 
 /* ---------- Onde comprar ---------- */
@@ -722,17 +715,18 @@ main > section.escuro {
   color: var(--tinta);
   max-width: 38ch;
 }
-.locais-texto em {
-  color: var(--casca);
-}
-.porteira {
-  width: 120px;
-  height: 32px;
-  margin-top: 8px;
+.ondas {
+  width: 72px;
+  height: 18px;
   fill: none;
-  stroke: var(--terra);
-  stroke-width: 1.25;
+  stroke: var(--turquesa);
+  stroke-width: 1.6;
   stroke-linecap: round;
+}
+.ondas-grande {
+  width: 120px;
+  height: 30px;
+  margin-top: 8px;
 }
 .rota {
   grid-column: 7 / span 6;
@@ -740,7 +734,7 @@ main > section.escuro {
   display: grid;
   gap: 28px;
   padding-left: 32px;
-  border-left: 1px dashed var(--casca);
+  border-left: 2px dashed var(--turquesa);
 }
 .rota li {
   position: relative;
@@ -750,13 +744,13 @@ main > section.escuro {
 .rota li::before {
   content: "";
   position: absolute;
-  left: -38px;
-  top: 8px;
-  width: 11px;
-  height: 11px;
+  left: -40px;
+  top: 6px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: var(--soro);
-  border: 1.5px solid var(--casca);
+  border: 2px solid var(--noite);
 }
 .rota p {
   color: var(--tinta);
@@ -769,9 +763,8 @@ main > section.escuro {
   border-radius: var(--radius-md);
 }
 .rota .no-sitio::before {
-  left: -38px;
-  top: 30px;
-  background: var(--casca);
+  top: 28px;
+  background: var(--ambar);
 }
 .mapa {
   grid-column: 1 / -1;
@@ -785,7 +778,6 @@ main > section.escuro {
   width: 100%;
   height: clamp(280px, 38vw, 420px);
   border: 0;
-  filter: sepia(0.25) saturate(0.85);
 }
 .mapa-link {
   grid-column: 1 / -1;
@@ -809,33 +801,33 @@ main > section.escuro {
 .contato .horizonte {
   display: block;
   margin-top: clamp(40px, 6vw, 72px);
-  stroke: #f3ecdf66;
+  stroke: #f3ecdf59;
 }
 .contato .horizonte .sol {
-  stroke: var(--nascente);
+  stroke: var(--ambar);
 }
 .contato .horizonte .fraco {
-  stroke: #f3ecdf2e;
+  stroke: #30b2c159;
 }
 
 /* ---------- Rodapé ---------- */
 .rodape {
-  display: grid;
-  gap: 16px;
-  justify-items: start;
-  max-width: calc(var(--largura) + 2 * var(--calha));
-  margin-inline: auto;
-  padding: 40px var(--calha) 96px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+  padding: 40px max(var(--calha), calc((100% - var(--largura)) / 2)) 112px;
+  background: var(--noite);
+  color: #d9dbe3;
   font-size: 13px;
-  color: var(--tinta);
 }
-.ondas {
-  width: 72px;
-  height: 18px;
-  fill: none;
-  stroke: var(--agua);
-  stroke-width: 1.5;
-  stroke-linecap: round;
+.rodape-selo {
+  width: 88px;
+  height: auto;
+}
+.rodape-texto {
+  display: grid;
+  gap: 12px;
 }
 
 /* ---------- Botão flutuante ---------- */
@@ -850,8 +842,8 @@ main > section.escuro {
   min-height: 48px;
   padding: 14px 20px 14px 16px;
   border-radius: var(--radius-pill);
-  background: var(--pasto);
-  color: var(--soro);
+  background: var(--turquesa);
+  color: var(--noite);
   font-weight: 600;
   font-size: 15px;
   text-decoration: none;
@@ -871,14 +863,15 @@ main > section.escuro {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 8px 16px 8px 12px;
+  padding: 7px 16px 7px 12px;
   border-radius: var(--radius-pill);
-  background: var(--carvao);
+  background: var(--noite);
   color: var(--soro);
   box-shadow: var(--papel);
   font-family: var(--f-lote);
-  font-size: 12px;
-  letter-spacing: 0.12em;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 .corte-marcas {
@@ -890,7 +883,16 @@ main > section.escuro {
   width: 16px;
   height: 2px;
   border-radius: 2px;
-  background: var(--casca);
+  background: var(--turquesa);
+}
+
+/* origem das transformações ligadas à rolagem (motion.js) */
+.carimbo svg {
+  transform-origin: 50% 50%;
+}
+.horizonte .sol {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
 }
 
 /* ---------- Responsivo (DESIGN.md §8) ---------- */
@@ -906,6 +908,9 @@ main > section.escuro {
 @media (max-width: 720px) {
   .topo nav {
     display: none;
+  }
+  .marca img {
+    height: 44px;
   }
   .heroi,
   .historia,
@@ -931,7 +936,7 @@ main > section.escuro {
   .carimbo {
     left: -12px;
     bottom: 32px;
-    width: 104px;
+    width: 112px;
   }
   .historia-ano {
     top: 24px;
@@ -949,22 +954,16 @@ main > section.escuro {
     grid-template-columns: minmax(0, 1fr);
   }
   .rota {
-    margin-left: 6px;
-  }
-  .queijo {
-    min-height: 160px;
-    padding: 20px 16px;
+    margin-left: 8px;
   }
   .queijo-nome {
-    font-size: clamp(20px, 6.2vw, 26px);
+    font-size: clamp(16px, 5.4vw, 22px);
   }
-}
-
-/* origem das transformações ligadas à rolagem (motion.js) */
-.carimbo svg {
-  transform-origin: 50% 50%;
-}
-.horizonte .sol {
-  transform-box: fill-box;
-  transform-origin: 50% 100%;
+  .queijo-tipo {
+    font-size: 12px;
+  }
+  .queijo-marca,
+  .queijo-fita {
+    font-size: 9px;
+  }
 }

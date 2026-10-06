@@ -61,8 +61,9 @@ Pedido do Gustavo → Issue → branch → commits → Pull Request (cita a Issu
 | Arquivo | O que é |
 |---|---|
 | `index.html` | A página inteira, em HTML estático simples (sem React nem runtime de editor) |
-| `site.css` | Todo o visual: tokens de `DESIGN.md` como variáveis CSS (`--soro`, `--casca`, `--pasto`…), tipografia, layout |
+| `site.css` | Todo o visual: tokens de `DESIGN.md` como variáveis CSS (`--soro`, `--noite`, `--turquesa`, `--ambar`…), tipografia, layout |
 | `DESIGN.md` | **Fonte da verdade do visual** (cores, fontes, componentes, faça/não faça). Leia antes de mudar qualquer coisa visual. Espelho navegável: Design System "Sítio Água Fria" no Claude |
+| `logo-sitio.png`, `logo-selo.jpg` | Logos oficiais (vindos de `marketing-comercial`). Não redesenhe a marca |
 | `*.jpg`, `*.png` | Fotos e selos usados na página |
 | `package.json`, `biome.json`, `knip.json`, `commitlint.config.mjs` | Ferramentas de qualidade (não fazem parte do site publicado) |
 | `src/sentry.js` → `sentry.min.js` | Monitoramento de erros (Sentry). Ver seção "Observabilidade" |
@@ -71,8 +72,8 @@ Pedido do Gustavo → Issue → branch → commits → Pull Request (cita a Issu
 | `.nojekyll` | Impede o GitHub Pages de processar o site com Jekyll. Não remover |
 
 ### Cuidados ao editar `index.html`
-- Siga o `DESIGN.md`: papel `--soro`, títulos em Fraunces (classes `display-xl`, `display-l`, `titulo`, `subtitulo`) com uma palavra em `<em>`, kicker com a classe `lote`, motivos em traço (porteira, horizonte, ondas, carimbo). Use as variáveis de `site.css`, nunca cores soltas.
-- Fontes vêm do Google Fonts (Fraunces, Work Sans, IBM Plex Mono). Não troque por Inter/Roboto.
+- Siga o `DESIGN.md`: papel `--soro`, faixas escuras em `--noite`, títulos em Roboto Slab (classes `display-xl`, `display-l`, `titulo`, `subtitulo`; a classe `ferrugem` dá a tinta gasta dos rótulos) com uma palavra em `<em>`, kicker com a classe `lote`, motivos da marca (ondas, horizonte, carimbo). Produto novo vira um card-rótulo `.queijo` com `style="--produto: #HEX"` na cor Pantone do rótulo dele. Use as variáveis de `site.css`, nunca cores soltas.
+- Fontes vêm do Google Fonts (Roboto Slab, Work Sans, Barlow Condensed), substitutas livres de Nexa Rust Slab e Matahari dos rótulos. Não troque por Inter.
 - Seções com `data-secao="Nome"` mostram, ao entrar nelas, um rótulo pequeno com o nome da seção abaixo do menu (transição leve, Issue #17). Ele nunca cobre a tela nem trava a rolagem ou o teclado. **Não volte a bloquear `wheel`, `touchmove` ou teclas.**
 - Links de WhatsApp usam a mensagem pronta: `https://wa.me/5514981715427?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido.`
 
