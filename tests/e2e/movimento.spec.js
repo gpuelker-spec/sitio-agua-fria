@@ -133,7 +133,7 @@ test("teclado rola a página normalmente", async ({ page }) => {
 
 test("link do herói leva à seção certa", async ({ page }) => {
   await abrir(page);
-  await page.getByRole("link", { name: "Ver a linha" }).click();
+  await page.getByRole("link", { name: "Conheça nossos produtos" }).click();
   await expect
     .poll(() =>
       page.evaluate(() => Math.abs(document.querySelector("#produtos").getBoundingClientRect().top)),

@@ -76,6 +76,14 @@ test("todas as imagens têm texto alternativo e existem no servidor", async ({ p
   }
 });
 
+test("textos da família: Cuesta, quem faz acontecer e sem entrega na cidade", async ({ page }) => {
+  await abrir(page);
+  await expect(page.locator("#inicio")).toContainText("Cuesta de Botucatu");
+  await expect(page.locator(".equipe dt")).toHaveText(["Henrique", "Raquel", "Raquel e Gustavo"]);
+  await expect(page.locator("#genetica")).toContainText("não é leite sem lactose");
+  await expect(page.locator("#locais .rota")).not.toContainText("Entrega em Botucatu");
+});
+
 test("botão flutuante de pedido existe e leva ao WhatsApp", async ({ page }) => {
   await abrir(page);
   // fica escondido (is-hidden) no topo; por isso é buscado pelo id e não pelo papel acessível
