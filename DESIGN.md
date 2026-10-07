@@ -69,7 +69,7 @@ As fontes dos rótulos são comerciais; o site usa substitutas livres do Google 
 
 | Família | Fonte | No rótulo | Uso |
 |---|---|---|---|
-| `display` | **Roboto Slab** 400–900 | Nexa Rust Slab Black | Títulos. `display-xl`/`display-l` em 900, caixa alta. Com a classe `ferrugem`, ganham a tinta gasta. |
+| `display` | **Roboto Slab** 400–900 | Nexa Rust Slab Black | Títulos. `display-xl`/`display-l` em 900, caixa alta, tinta lisa. |
 | `texto` | **Work Sans** 400/500/600 | — | Parágrafos, botões, navegação. |
 | `lote` | **Barlow Condensed** 500–700 | Matahari Condensed | Kicker, tipo do queijo, fita, metadados. Caixa alta, espaçamento +0.1em. |
 
@@ -85,16 +85,18 @@ As fontes dos rótulos são comerciais; o site usa substitutas livres do Google 
 
 **Ênfase:** a palavra de destaque vai em `<em>`, **sem itálico**: muda só a cor (`nascente` em papel, `turquesa` no escuro).
 
-**Ferrugem:** máscara de ruído (`--ferrugem` em `site.css`) que falha a tinta dos títulos, como a Nexa Rust. Sutil: o título tem que continuar 100% legível. Não use em texto corrido.
+**Sem textura nas letras:** a textura de tinta gasta ("ferrugem") foi retirada a pedido do Gustavo (Issue #24). Títulos sempre em tinta lisa.
 
 ## 4. Componentes
 
-- **Logo:** `logo-sitio.png` no menu (60px de altura, 44px no celular). `logo-selo.jpg` no rodapé. Não redesenhar, não recolorir.
+- **Logo:** `logo-sitio.png` no menu (60px de altura, 44px no celular). `logo-selo.png` (fundo transparente) no rodapé, flutuando com a rolagem. Não redesenhar, não recolorir.
 - **Botão principal (`.botao`):** fundo `noite`, texto `soro`, `radius-pill`, 14px × 22px, Work Sans 600. Pressionado: `scale(0.97)`. Variante `.botao-claro`: fundo `turquesa`, texto `noite`, para chão escuro.
 - **Link de ação:** texto `noite` com sublinhado de 1px e seta →. A seta anda 3px no hover.
-- **Rótulo de queijo (`.queijo`):** o card é um mini-rótulo. Disco na cor `--produto` em cima; faixa `noite` com o lockup "·Sítio· Água Fria", nome em slab 900 caixa alta (com `ferrugem`), tipo em `lote` na cor do produto; fita "Produto artesanal" na base.
+- **Rótulo de queijo (`.queijo`):** o card é um mini-rótulo. Disco na cor `--produto` em cima; faixa `noite` com o lockup "·Sítio· Água Fria", nome em slab 900 caixa alta, tipo em `lote` na cor do produto; fita "Produto artesanal" na base.
 - **Etiqueta de pote (`.etiquetas li`):** fita na cor `--produto` do rótulo, texto `grafite` em `lote` caixa alta, cantos retos.
-- **Carimbo:** anel de texto em `lote` ("REBANHO 100% A2A2 · LEITE DO PRÓPRIO SÍTIO") com o selo `a2a2.png` no centro. Gira com a rolagem, nunca sozinho.
+- **Carimbo:** anel de texto em `lote` ("REBANHO 100% A2A2 · LEITE DO PRÓPRIO SÍTIO") com o selo `selo-a2a2.png` no centro. Gira com a rolagem, nunca sozinho.
+- **Selo em medalha (`.selo-medalha`):** os selos oficiais (`selo-a2a2.png`, `selo-sisp.png`, em `noite` sobre transparente) impressos num disco `coalho` com fio `linha` e sombra `papel`. Flutuam com a rolagem (`data-flutua`) e levantam no hover. Nunca como imagem retangular colada.
+- **Campo (`.campo`):** a cena do herói em traço: horizonte com sol `ambar`, sulcos do pasto em perspectiva, cerca, árvores, aspersores com jatos `turquesa` pontilhados (a água corre com a rolagem) e 3–4 vacas holandesas em traço com manchas `noite`. No celular o desenho fica maior e corta as pontas.
 - **Ondas (`.ondas`):** 3 traços turquesa paralelos; `.ondas-grande` como divisor de seção.
 - **Faixa escura:** chão `noite`, texto `soro`, ênfase `turquesa`, raio 0 nas bordas da tela.
 
@@ -133,7 +135,7 @@ As fontes dos rótulos são comerciais; o site usa substitutas livres do Google 
 
 ## 9. Guia de prompt para agentes
 
-- "Nova seção no estilo Sítio Água Fria: papel `soro`, título Roboto Slab 900 caixa alta com `ferrugem` e uma palavra em `<em>` (cor `nascente`), kicker em Barlow Condensed caixa alta, ondas turquesa como divisor, layout assimétrico."
+- "Nova seção no estilo Sítio Água Fria: papel `soro`, título Roboto Slab 900 caixa alta e uma palavra em `<em>` (cor `nascente`), kicker em Barlow Condensed caixa alta, ondas turquesa como divisor, layout assimétrico."
 - "Card de produto: rótulo `.queijo` com `--produto` na cor Pantone do rótulo, faixa `noite`, nome em slab, tipo em `lote`, fita 'Produto artesanal'."
 - "Faixa escura de destaque: chão `noite`, texto `soro`, ênfase `turquesa`, horizonte em traço."
 - Movimento: siga `AGENTS.md` → seção Movimento (motion-principles; sempre com `prefers-reduced-motion`).

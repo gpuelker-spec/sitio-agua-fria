@@ -16,7 +16,7 @@ async function abrir(page) {
 test("carrega sem erros de JavaScript e com o título certo", async ({ page }) => {
   const erros = await abrir(page);
   await expect(page).toHaveTitle(/Sítio Água Fria/);
-  await expect(page.locator("h1")).toContainText("100% A2A2");
+  await expect(page.locator("h1")).toContainText("Queijo feito com leite 100% A2A2");
   expect(erros).toEqual([]);
 });
 
@@ -89,6 +89,16 @@ test("não há rolagem horizontal (layout cabe na tela)", async ({ page }) => {
   await abrir(page);
   const sobra = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   expect(sobra).toBeLessThanOrEqual(1);
+  // no celular, conteúdo largo demais faz o navegador "afastar" a página: a largura tem que ser a da tela
+  const largos = await page.evaluate(
+    () =>
+      [...document.querySelectorAll("#site *")]
+        .filter((e) => e.getBoundingClientRect().right > window.innerWidth - 2)
+        .slice(0, 12)
+        .map((e) => `${e.tagName}.${e.getAttribute("class")}:${Math.round(e.getBoundingClientRect().right)}`)
+        .join(" | ") || "nenhum elemento",
+  );
+  expect(await page.evaluate(() => window.innerWidth), largos).toBe(page.viewportSize().width);
 });
 
 test("endereço e inspeção SISP aparecem no rodapé", async ({ page }) => {
