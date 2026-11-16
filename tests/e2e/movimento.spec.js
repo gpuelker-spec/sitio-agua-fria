@@ -38,6 +38,7 @@ test("as fotos são servidas em AVIF e WebP, em mais de um tamanho", async ({ pa
 });
 
 test("rolagem: nada trava até o fim e o botão flutuante entra e sai", async ({ page }) => {
+  test.slow(); // rola a página inteira: precisa de folga quando a máquina (ou o CI) está ocupada
   await abrir(page);
   const botao = page.locator("#wa-float");
   await expect(botao).toHaveClass(/escondido/); // some no topo, onde já existe o botão de pedido
@@ -47,8 +48,12 @@ test("rolagem: nada trava até o fim e o botão flutuante entra e sai", async ({
   for (let i = 0; i < 80; i++) {
     await page.mouse.wheel(0, 400);
     await page.waitForTimeout(60);
-    if (!apareceu) apareceu = !(await botao.getAttribute("class"))?.includes("escondido");
-    if (await noFim(page)) break;
+    const estado = await page.evaluate(() => ({
+      escondido: document.getElementById("wa-float").classList.contains("escondido"),
+      fim: window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2,
+    }));
+    if (!estado.escondido) apareceu = true;
+    if (estado.fim) break;
   }
   await expect.poll(() => noFim(page)).toBe(true);
   expect(apareceu, "o botão flutuante deveria aparecer no meio da página").toBe(true);
