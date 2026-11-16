@@ -1,0 +1,196 @@
+/* BASE: o que vale para a página toda (texto, títulos, links, foco do teclado). */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: 16px;
+}
+
+body {
+  margin: 0;
+  background: var(--leite);
+  color: var(--noite);
+  font: 400 1.0625rem / 1.6 var(--fonte-texto);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+
+[role="list"] {
+  list-style: none;
+  padding: 0;
+}
+
+img,
+picture,
+svg,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--agua-funda);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.escuro :focus-visible {
+  outline-color: var(--agua);
+}
+
+/* largura do conteúdo: toda seção tem um .miolo por dentro */
+.miolo {
+  width: 100%;
+  max-width: calc(var(--largura) + 2 * var(--calha));
+  margin-inline: auto;
+  padding-inline: var(--calha);
+}
+
+.secao {
+  padding-block: var(--espaco-secao);
+}
+
+.escuro {
+  background: var(--noite);
+  color: var(--leite);
+}
+
+/* texto só para leitor de tela */
+.so-leitor {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* link "pular para o conteúdo": aparece só quando recebe o foco do teclado */
+.pular {
+  position: absolute;
+  left: 12px;
+  top: -80px;
+  z-index: 50;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--noite);
+  color: var(--leite);
+}
+
+.pular:focus {
+  top: 12px;
+}
+
+/* ---------- tipografia ---------- */
+
+h1,
+.titulo,
+.subtitulo {
+  font-family: var(--fonte-titulo);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.75rem, 7.6vw + 0.9rem, 7.25rem);
+  font-weight: 370;
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+}
+
+.titulo {
+  font-size: clamp(2.125rem, 3.6vw + 1.1rem, 3.875rem);
+  font-weight: 380;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.titulo-longo {
+  font-size: clamp(1.875rem, 2.4vw + 1.1rem, 3.125rem);
+  line-height: 1.07;
+}
+
+.subtitulo {
+  font-size: 1.5rem;
+  font-weight: 540;
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+}
+
+/* a palavra de destaque dos títulos: itálico turquesa */
+h1 em,
+.titulo em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--agua-funda);
+}
+
+h1 em {
+  white-space: nowrap;
+}
+
+.escuro .titulo em {
+  color: var(--agua);
+}
+
+/* chamada: a linha pequena em maiúsculas acima dos títulos */
+.chamada {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--agua-funda);
+}
+
+.escuro .chamada {
+  color: var(--agua);
+}
+
+.chamada + .titulo {
+  margin-top: 14px;
+}
+
+.texto-g {
+  font-size: 1.125rem;
+}
+
+.apoio {
+  color: var(--tinta);
+}
+
+.escuro .apoio {
+  color: var(--nevoa);
+}

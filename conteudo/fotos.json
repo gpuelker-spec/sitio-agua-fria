@@ -1,0 +1,106 @@
+{
+  "_nota": [
+    "Lista das fotos do site. Só fotos REAIS do sítio (nada de banco de imagens nem de IA).",
+    "origem: nome (ou um pedaço único do nome) do arquivo original. Os originais NÃO ficam no repositório.",
+    "alt: descrição em português para quem não enxerga a foto. Descreva só o que aparece.",
+    "larguras: tamanhos gerados, em pixels. recorte (opcional): x, y, l (largura) e a (altura) como fração de 0 a 1.",
+    "foco (opcional): ponto que não pode ser cortado quando a foto é enquadrada, no formato do CSS object-position.",
+    "Para gerar os arquivos em img/: npm run fotos -- \"C:\\pasta\\das\\fotos\\originais\". Passo a passo no AGENTS.md."
+  ],
+  "fotos": {
+    "pasto-rebanho": {
+      "origem": "20210324_173151.jpg",
+      "alt": "Vacas do rebanho pastando em um campo verde no fim da tarde, com morros ao fundo",
+      "larguras": [800, 1280, 1920],
+      "foco": "50% 62%"
+    },
+    "pasto-rebanho-retrato": {
+      "origem": "20210324_173151.jpg",
+      "alt": "Vacas do rebanho pastando em um campo verde no fim da tarde, com morros ao fundo",
+      "recorte": { "x": 0.3, "y": 0, "l": 0.41, "a": 1 },
+      "larguras": [480, 660, 800]
+    },
+    "bezerro-2017": {
+      "origem": "20170728_175212.jpg",
+      "alt": "Bezerro tomando leite na mamadeira, junto à cerca de madeira do curral",
+      "larguras": [480, 800, 1200],
+      "foco": "64% 55%"
+    },
+    "vaca-jersey": {
+      "origem": "20210820_123932.jpg",
+      "alt": "Vaca do rebanho em pé no pasto, olhando para a câmera",
+      "larguras": [480, 800, 1200],
+      "foco": "55% 50%"
+    },
+    "bezerro-recem-nascido": {
+      "origem": "20220903_101202.jpg",
+      "alt": "Vaca lambendo o bezerro recém-nascido deitado no capim",
+      "recorte": { "x": 0, "y": 0.03, "l": 1, "a": 0.6 },
+      "larguras": [480, 800, 1200],
+      "foco": "45% 55%"
+    },
+    "pasto-entardecer": {
+      "origem": "20210203_183112.jpg",
+      "alt": "Rebanho no pasto alto e verde ao entardecer, com mata ao fundo",
+      "larguras": [480, 800, 1200],
+      "foco": "40% 60%"
+    },
+    "queijo-ondas": {
+      "origem": "20220111_182408.jpg",
+      "alt": "Queijo redondo com as três ondas da marca gravadas na casca, cortado sobre uma tábua de madeira",
+      "recorte": { "x": 0, "y": 0, "l": 1, "a": 0.72 },
+      "larguras": [480, 800, 1200],
+      "foco": "56% 34%"
+    },
+    "nascente": {
+      "origem": "20210714_165420.jpg",
+      "alt": "Queijos Nascente embalados, com o rótulo azul",
+      "larguras": [400, 800]
+    },
+    "remanso": {
+      "origem": "20210410_093040.jpg",
+      "alt": "Queijos Remanso embalados, com o rótulo amarelo",
+      "larguras": [400, 800]
+    },
+    "brisa": {
+      "origem": "20210628_145449.jpg",
+      "alt": "Queijos Brisa embalados em papel branco, com o rótulo lilás",
+      "larguras": [400, 800]
+    },
+    "horizonte": {
+      "origem": "photo_2024-06-26_13-27-57.jpg",
+      "alt": "Pedaço do queijo Horizonte com cubos servidos no prato",
+      "larguras": [400, 800],
+      "foco": "50% 60%"
+    },
+    "requeijao": {
+      "origem": "20211101_123538.jpg",
+      "alt": "Requeijões de corte embalados, com o rótulo laranja",
+      "larguras": [400, 800]
+    },
+    "manteiga": {
+      "origem": "20.05.13_82b05dd3.jpg",
+      "alt": "Potes de manteiga de 200 g com o rótulo do Sítio Água Fria",
+      "recorte": { "x": 0.1, "y": 0.1, "l": 0.72, "a": 0.44 },
+      "larguras": [240, 480]
+    },
+    "doce-de-leite": {
+      "origem": "20190927_194815.jpg",
+      "alt": "Vidro de doce de leite do Sítio Água Fria",
+      "recorte": { "x": 0.02, "y": 0.1, "l": 0.56, "a": 0.9 },
+      "larguras": [240, 480]
+    },
+    "iogurte": {
+      "origem": "20210409_170114.jpg",
+      "alt": "Garrafas de iogurte natural enfileiradas na bancada do laticínio",
+      "recorte": { "x": 0.2, "y": 0.34, "l": 0.44, "a": 0.6 },
+      "larguras": [240, 480]
+    },
+    "entrada-sitio": {
+      "origem": "19.17.09_fd45b75d.jpg",
+      "alt": "Porteira de madeira do Sítio Água Fria, com ipê-rosa florido e a estrada de terra coberta de flores",
+      "larguras": [480, 773],
+      "foco": "50% 45%"
+    }
+  }
+}

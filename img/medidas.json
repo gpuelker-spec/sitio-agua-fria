@@ -1,0 +1,137 @@
+{
+  "bezerro-2017": {
+    "largura": 4128,
+    "altura": 3096,
+    "larguras": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "bezerro-recem-nascido": {
+    "largura": 3000,
+    "altura": 2400,
+    "larguras": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "brisa": {
+    "largura": 3024,
+    "altura": 4032,
+    "larguras": [
+      400,
+      800
+    ]
+  },
+  "doce-de-leite": {
+    "largura": 2258,
+    "altura": 2722,
+    "larguras": [
+      240,
+      480
+    ]
+  },
+  "entrada-sitio": {
+    "largura": 773,
+    "altura": 1278,
+    "larguras": [
+      480,
+      773
+    ]
+  },
+  "horizonte": {
+    "largura": 943,
+    "altura": 1280,
+    "larguras": [
+      400,
+      800
+    ]
+  },
+  "iogurte": {
+    "largura": 1774,
+    "altura": 1145,
+    "larguras": [
+      240,
+      480
+    ]
+  },
+  "manteiga": {
+    "largura": 1089,
+    "altura": 665,
+    "larguras": [
+      240,
+      480
+    ]
+  },
+  "nascente": {
+    "largura": 3024,
+    "altura": 4032,
+    "larguras": [
+      400,
+      800
+    ]
+  },
+  "pasto-entardecer": {
+    "largura": 4032,
+    "altura": 1908,
+    "larguras": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "pasto-rebanho": {
+    "largura": 4032,
+    "altura": 1908,
+    "larguras": [
+      800,
+      1280,
+      1920
+    ]
+  },
+  "pasto-rebanho-retrato": {
+    "largura": 1653,
+    "altura": 1908,
+    "larguras": [
+      480,
+      660,
+      800
+    ]
+  },
+  "queijo-ondas": {
+    "largura": 2268,
+    "altura": 2903,
+    "larguras": [
+      480,
+      800,
+      1200
+    ]
+  },
+  "remanso": {
+    "largura": 3024,
+    "altura": 4032,
+    "larguras": [
+      400,
+      800
+    ]
+  },
+  "requeijao": {
+    "largura": 3024,
+    "altura": 3024,
+    "larguras": [
+      400,
+      800
+    ]
+  },
+  "vaca-jersey": {
+    "largura": 4032,
+    "altura": 3024,
+    "larguras": [
+      480,
+      800,
+      1200
+    ]
+  }
+}

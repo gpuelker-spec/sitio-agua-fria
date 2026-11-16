@@ -1,8 +1,11 @@
 import { expect, test } from "@playwright/test";
+import { semMapa, site } from "./conteudo.js";
 
-const URL_SITE = "https://gpuelker-spec.github.io/sitio-agua-fria/";
+// Ao ativar o domínio próprio, o endereço muda só em conteudo/site.json ("url") e em src/sentry.js.
+const URL_SITE = site.url;
 
 test.beforeEach(async ({ page }) => {
+  await semMapa(page);
   await page.goto("/index.html");
   await expect(page.locator("#inicio")).toBeAttached({ timeout: 15_000 });
 });

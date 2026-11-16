@@ -1,141 +1,155 @@
 # DESIGN.md: Sítio Água Fria
 
-Sistema visual do Laticínio Sítio Água Fria. Formato DESIGN.md: token, regra e porquê no mesmo arquivo, para que qualquer agente (Claude Design, Claude Code, outro modelo) tome a próxima decisão sem sair do sistema. O espelho navegável está no Design System "Sítio Água Fria" no Claude.
+Sistema visual do site do Laticínio Sítio Água Fria. Aqui ficam o token, a regra e o porquê, para que qualquer pessoa ou agente de IA tome a próxima decisão visual sem sair do sistema.
 
-Mesmo papel do `AGENTS.md`, mas para o **visual**: `AGENTS.md` diz como construir, este arquivo diz como deve parecer.
+`AGENTS.md` diz **como trabalhar e onde mexer**. Este arquivo diz **como deve parecer**.
 
-**De onde vem:** a marca real da pasta `marketing-comercial` (logo, selo, guia de design dos rótulos e as cores Pantone de cada produto). O site não inventa identidade; ele leva os rótulos para a web.
+**De onde vem:** do logo oficial (preto + turquesa, três ondas), dos rótulos das embalagens (uma cor Pantone por produto) e das fotos reais do sítio. O site não inventa identidade: ele mostra o que já existe.
 
 ---
 
-## 1. Tema visual e atmosfera
+## 1. Direção: "Luz do pasto"
 
-**Rústico contemporâneo, com a cara dos rótulos.** Papel cor de soro, tinta azul-noite, as três ondas turquesa do logo e títulos em slab com tinta gasta, como um rótulo impresso no sítio. O rústico vem da **matéria** (papel, tinta falhada, carimbo, fita "produto artesanal"); o moderno vem da **estrutura** (grid editorial assimétrico, tipografia grande, muito respiro, movimento ligado à rolagem).
+**Claro, fotográfico e editorial.** O site abre com a foto real do rebanho no pasto. Os títulos são grandes, em serifa fina, com uma palavra em itálico turquesa. Há muito espaço em branco e uma ideia por tela.
 
-- Contraste é a ideia central: slab pesada em caixa alta × grotesca limpa; papel claro × faixas `noite`; uma cor de produto por vez sobre o escuro.
-- Densidade baixa. Uma ideia por tela.
-- Nada de brilho, vidro, gradiente roxo, emoji ou card com borda colorida à esquerda.
+- **A foto é a protagonista.** O site anterior falava de pasto e de vacas sem mostrar nenhuma. Agora a foto vem antes do enfeite.
+- **O texto conduz.** Tipografia grande no lugar de ilustração, ícone ou efeito.
+- **A cor do rótulo é detalhe**, não fundo: uma bolinha ao lado do nome do queijo e o disco de quem ainda não tem foto.
+- **Uma faixa escura só**, no fim (contato e rodapé), que é onde o logo oficial em fundo preto aparece.
 
-**Motivos (da marca, em traço):**
+Motivos da marca usados:
 
 | Motivo | Forma | Onde |
 |---|---|---|
-| Água corrente | 3 ondas paralelas turquesa (as do logo) | Divisores, marcador de lista, rodapé |
-| Horizonte | Linha longa + sol nascendo | Herói e chamada final (o sol sobe com a rolagem) |
-| Carimbo | Anel com texto em volta + selo A2A2 no centro | Herói; gira só com a rolagem |
-| Disco do rótulo | Círculo na cor Pantone do produto | Cards de produto |
-| Fita | Faixa "PRODUTO ARTESANAL" | Base dos cards |
-| Genética (FIV) | Grade de pequenos círculos, poucos preenchidos | Bloco de genética |
+| Três ondas | Traço turquesa, as mesmas do logo | Chamada do topo, faixa de fatos, Onde comprar |
+| Selo em medalha | Selo oficial num disco claro com fio e sombra leve | Sobre a foto do topo e na seção de história |
+| Disco do rótulo | Círculo na cor Pantone do produto, com as ondas em baixo-relevo | Produto que ainda não tem foto |
+| Queijo com as ondas | Foto real da casca com as três ondas gravadas | Abertura da seção de queijos |
 
-## 2. Paleta e papéis
+## 2. Cores
 
-### Base
+Todas estão em [`estilo/1-tokens.css`](estilo/1-tokens.css). Use sempre a variável, nunca a cor solta.
 
 | Token | Hex | Papel |
 |---|---|---|
-| `soro` | `#F3ECDF` | Fundo da página (papel). |
-| `coalho` | `#FAF6EE` | Superfície elevada: mapa, campos. |
-| `noite` | `#020111` | Cor do logo e fundo dos rótulos de queijo. Texto principal, faixas escuras, rodapé, botão principal. |
-| `grafite` | `#231F20` | Fundo dos rótulos de pote (iogurte, requeijão, doce). |
-| `tinta` | `#4B4F5E` | Texto secundário em `soro`/`coalho`. |
-| `linha` | `#02011124` | Fios de 1px. |
-| `turquesa` | `#30B2C1` | Ondas do logo. **Em chão escuro** (texto, ênfase) ou como preenchimento (botão flutuante, `botao-claro`). |
-| `turquesa-texto` | `#17707F` | Turquesa para links e texto pequeno em papel. |
-| `nascente` | `#2094A8` | Ênfase (`em`) em papel. |
-| `ambar` | `#FBAF40` | Cor quente da linha curada. |
+| `--leite` | `#FBF8F1` | Fundo da página. |
+| `--nata` | `#F1EBDD` | Faixas alternadas (rebanho, outros produtos) e fundo de foto. |
+| `--noite` | `#020111` | Preto do logo: texto, botão principal, faixa de contato e rodapé. |
+| `--tinta` | `#474A59` | Texto secundário em fundo claro. |
+| `--linha` | `#02011122` | Fios de 1px. |
+| `--agua` | `#30B2C1` | Turquesa do logo: ondas, botão em fundo escuro, botão flutuante. |
+| `--agua-funda` | `#0F6B7A` | Turquesa para **texto** em fundo claro (destaque dos títulos, chamadas). |
+| `--ambar` | `#FBAF40` | Só a etiqueta "Novo". |
+| `--nevoa` | `#C9CCD9` | Texto secundário em fundo escuro. |
 
-### Cor do produto (Pantone dos rótulos)
+**Contraste (AA):** em fundo claro, texto só em `--noite`, `--tinta` ou `--agua-funda`. O turquesa claro `--agua` **nunca** é texto em fundo claro (não passa no contraste); lá ele é só traço. Em fundo escuro, texto em `--leite`, `--nevoa` ou `--agua`.
 
-Cada card ou etiqueta recebe **uma** cor via `style="--produto: #HEX"`. Nunca misture duas cores de produto no mesmo card.
+### Cor de cada produto
+
+Vem do rótulo da embalagem e fica em [`conteudo/produtos.json`](conteudo/produtos.json) (campo `cor`). O cartão recebe a cor pela variável `--produto`. Nunca use duas cores de produto no mesmo cartão.
 
 | Produto | Hex |
 |---|---|
 | Remanso, Horizonte, Horizontinho, Requeijão, Manteiga | `#FBAF40` |
 | Nascente | `#2094A8` |
-| Minas | `#73CEE1` |
+| Poente, Garoa | `#8ECC90` |
+| Brisa | `#A776A5` |
+| Coalho | `#EABD29` (a confirmar: ver `PENDENCIAS.md`) |
 | Iogurte natural | `#30B2C1` |
 | Iogurte de morango | `#EEA591` |
-| Poente | `#8ECC90` |
-| Garoa | `#8ECC90` (cor ainda em definição nos rótulos) |
-| Brisa | `#A776A5` |
 | Doce de leite | `#BB7727` |
-| Coalho | `#EABD29` (cor ainda em definição nos rótulos) |
-
-Regras: em papel, só `noite` e `tinta` carregam texto. Turquesa claro nunca é texto pequeno em `soro`; use `turquesa-texto`.
+| Sour cream | `#CFE2F4` |
 
 ## 3. Tipografia
 
-As fontes dos rótulos são comerciais; o site usa substitutas livres do Google Fonts com o mesmo desenho.
+Duas famílias, hospedadas no próprio site em `fontes/` (sem Google Fonts externo: mais rápido e sem enviar dados do visitante a terceiros). Licença livre (OFL), cópias em `fontes/LICENCA-*.txt`.
 
-| Família | Fonte | No rótulo | Uso |
-|---|---|---|---|
-| `display` | **Roboto Slab** 400–900 | Nexa Rust Slab Black | Títulos. `display-xl`/`display-l` em 900, caixa alta, tinta lisa. |
-| `texto` | **Work Sans** 400/500/600 | — | Parágrafos, botões, navegação. |
-| `lote` | **Barlow Condensed** 500–700 | Matahari Condensed | Kicker, tipo do queijo, fita, metadados. Caixa alta, espaçamento +0.1em. |
+| Família | Fonte | Uso |
+|---|---|---|
+| `--fonte-titulo` | **Fraunces** (variável, 100 a 900, normal e itálico) | Títulos, nomes de produto, menu do celular. |
+| `--fonte-texto` | **Figtree** (variável, 300 a 900) | Parágrafos, botões, chamadas, rótulos. |
 
-| Estilo | Família | Tamanho / altura | Peso |
-|---|---|---|---|
-| `display-xl` | display | clamp(48px, 8.2vw, 116px) / 0.92, caixa alta | 900 |
-| `display-l` | display | clamp(36px, 5.2vw, 72px) / 0.96, caixa alta | 900 |
-| `titulo` | display | clamp(30px, 3.4vw, 46px) / 1.05 | 800 |
-| `subtitulo` | display | 22px / 1.15 | 700 |
-| `corpo-l` | texto | 19px / 1.6 | 400 |
-| `corpo` | texto | 16px / 1.65 | 400 |
-| `lote` | lote | 15px / 1.2, caixa alta, +0.1em | 600 |
+A Fraunces do site é a versão de tamanho grande (traço fino e contrastado). Por isso:
 
-**Ênfase:** a palavra de destaque vai em `<em>`, **sem itálico**: muda só a cor (`nascente` em papel, `turquesa` no escuro).
+- **Títulos grandes** usam peso leve: 370 a 400.
+- **Títulos pequenos** (abaixo de 30px: subtítulos, nomes de produto) usam peso 500 a 560, senão o traço fica fino demais.
 
-**Sem textura nas letras:** a textura de tinta gasta ("ferrugem") foi retirada a pedido do Gustavo (Issue #24). Títulos sempre em tinta lisa.
+| Estilo | Tamanho / altura | Peso |
+|---|---|---|
+| `h1` | `clamp(44px, 7.6vw + 14px, 116px)` / 0.96 | 370 |
+| `.titulo` | `clamp(34px, 3.6vw + 18px, 62px)` / 1.02 | 380 |
+| `.titulo-longo` | `clamp(30px, 2.4vw + 18px, 50px)` / 1.07 | 380 |
+| `.subtitulo` | 24px / 1.15 | 540 |
+| `.produto-nome` | 23px / 1.1 | 560 |
+| texto | 17px / 1.6 | 400 |
+| `.texto-g` | 18px / 1.6 | 400 |
+| `.chamada` | 13px, maiúsculas, espaçamento 0.14em | 600 |
+
+**Destaque:** em cada título, uma palavra ou trecho fica em itálico turquesa. No conteúdo isso se escreve com asteriscos: `"Onde *comprar*"`.
 
 ## 4. Componentes
 
-- **Logo:** `logo-sitio.png` no menu (60px de altura, 44px no celular). `logo-selo.png` (fundo transparente) no rodapé, flutuando com a rolagem. Não redesenhar, não recolorir.
-- **Botão principal (`.botao`):** fundo `noite`, texto `soro`, `radius-pill`, 14px × 22px, Work Sans 600. Pressionado: `scale(0.97)`. Variante `.botao-claro`: fundo `turquesa`, texto `noite`, para chão escuro.
-- **Link de ação:** texto `noite` com sublinhado de 1px e seta →. A seta anda 3px no hover.
-- **Rótulo de queijo (`.queijo`):** o card é um mini-rótulo. Disco na cor `--produto` em cima; faixa `noite` com o lockup "·Sítio· Água Fria", nome em slab 900 caixa alta, tipo em `lote` na cor do produto; fita "Produto artesanal" na base.
-- **Etiqueta de pote (`.etiquetas li`):** fita na cor `--produto` do rótulo, texto `grafite` em `lote` caixa alta, cantos retos.
-- **Carimbo:** anel de texto em `lote` ("REBANHO 100% A2A2 · LEITE DO PRÓPRIO SÍTIO") com o selo `selo-a2a2.png` no centro. Gira com a rolagem, nunca sozinho.
-- **Selo em medalha (`.selo-medalha`):** os selos oficiais (`selo-a2a2.png`, `selo-sisp.png`, em `noite` sobre transparente) impressos num disco `coalho` com fio `linha` e sombra `papel`. Flutuam com a rolagem (`data-flutua`) e levantam no hover. Nunca como imagem retangular colada.
-- **Campo (`.campo`):** a cena do herói em traço: horizonte com sol `ambar`, sulcos do pasto em perspectiva, cerca, árvores, aspersores com jatos `turquesa` pontilhados (a água corre com a rolagem) e 3–4 vacas holandesas em traço com manchas `noite`. No celular o desenho fica maior e corta as pontas.
-- **Ondas (`.ondas`):** 3 traços turquesa paralelos; `.ondas-grande` como divisor de seção.
-- **Faixa escura:** chão `noite`, texto `soro`, ênfase `turquesa`, raio 0 nas bordas da tela.
+Todos em [`estilo/3-componentes.css`](estilo/3-componentes.css).
+
+- **Logo:** `marca/logo-sitio.webp` no cabeçalho (44px de altura no celular, 54px no computador). `marca/logo-selo.webp` no rodapé escuro. Não redesenhar nem recolorir.
+- **Botão (`.botao`):** pílula, fundo `--noite`, texto `--leite`, mínimo 48px de altura. Variante `.botao-claro` (fundo `--agua`, texto `--noite`) só em fundo escuro. `.botao-pequeno` no menu.
+- **Link de ação (`.link-seta`):** texto sublinhado com seta →. A seta anda 3px ao passar o mouse.
+- **Chamada (`.chamada`):** a linha pequena em maiúsculas acima de cada título.
+- **Foto (`.foto`):** cantos de 28px, sempre recortada com `object-fit: cover`. Legenda opcional em pílula clara no canto inferior esquerdo (`.legenda`).
+- **Selo em medalha (`.selo-medalha`):** disco `--leite` com o selo oficial dentro. O selo A2A2 tem baixa resolução: nunca mostrar com mais de 150px de largura.
+- **Cartão de queijo (`.produto`):** foto real (ou disco), nome com a bolinha na cor do rótulo, tipo em maiúsculas, tempo de maturação e o link "Pedir", que abre o WhatsApp já com o nome do queijo.
+- **Disco (`.disco`):** substitui a foto enquanto ela não existe. É honesto: não finge ser o produto.
+- **Item (`.item`):** linha de "outros produtos" com miniatura de 84px, nome, tamanhos e "Pedir".
+- **Etiqueta "Novo" (`.etiqueta-novo`):** pílula `--ambar`. Ligada pelo campo `"novo": true` do produto.
+- **Botão flutuante (`#wa-float`):** canto inferior direito. Some enquanto outro botão de pedido está na tela.
 
 ## 5. Layout
 
-- Grid de 12 colunas, largura máx. 1240px, calha `clamp(20px, 5vw, 72px)`.
-- **Assimetria**: título ocupa 7–8 colunas, texto de apoio em 4, deslocado. Evite tudo centralizado.
-- Espaçamento (4 em 4): 4, 8, 12, 16, 24, 32, 48, 64, 96, 128. Seções separadas por 72–128px.
-- Fotos em moldura de **arco** (topo arredondado `radius-arco`) ou retângulo com `radius-md`. Nunca círculo de avatar.
+- Celular primeiro (390px). Quebras em 760px, 900px e 1000px (menu em linha).
+- Conteúdo com largura máxima de 1296px e margem lateral `--calha` (20 a 72px). Toda seção tem um `.miolo` por dentro.
+- Seções separadas por `--espaco-secao` (64 a 128px). Fundos se alternam: `--leite`, `--nata`, e `--noite` só no fim.
+- Composição assimétrica em duas colunas (5/7 ou 7/5): foto de um lado, texto do outro. Evite tudo centralizado.
+- Grade de queijos: 2 colunas no celular, 3 no computador.
+- Cantos: 18px (`--raio`) em cartões, 28px (`--raio-g`) em fotos grandes, pílula em botões.
+- Profundidade: fios de 1px. Sombra só no que flutua (selo e botão flutuante).
 
-## 6. Profundidade e elevação
+## 6. Fotos
 
-- **Fios, não sombras.** Separação por `linha` de 1px.
-- Uma única sombra, `papel`, para o que flutua (botão flutuante, rótulo de seção): `0 1px 0 #02011114, 0 18px 40px -24px #02011166`.
-- Textura de papel: ruído muito sutil (opacidade ≤ 0.05) no fundo `soro`.
+- **Só fotos reais do sítio.** Nada de banco de imagens nem de imagem gerada por IA.
+- Preferir luz natural e o produto ou o lugar como é. Foto de celular vale.
+- Sem rosto de pessoas sem autorização de quem aparece.
+- Sem foto com preço à vista (cartazes de promoção).
+- Cada foto tem texto alternativo em português em `conteudo/fotos.json`, descrevendo só o que aparece.
+- Formatos AVIF e WebP, em mais de um tamanho. Só a foto do topo carrega com prioridade; as outras esperam a rolagem.
 
-## 7. Faça e não faça
+## 7. Movimento
+
+Regras em [`estilo/5-movimento.css`](estilo/5-movimento.css) e em `AGENTS.md`.
+
+- Discreto e só em CSS: blocos com a classe `.revela` sobem 28px e aparecem ao entrar na tela.
+- **Nunca travar a rolagem.** Nada de capturar `wheel`, `touchmove` ou teclas.
+- Quem pede menos movimento (`prefers-reduced-motion`) vê a página parada.
+- O conteúdo nunca depende de animação nem de JavaScript para aparecer.
+- Sem animação em loop (pulsar, girar, letreiro).
+
+## 8. Faça e não faça
 
 **Faça**
-- Use os nomes da paisagem (Nascente, Horizonte…) e a cor Pantone de cada rótulo como identidade dos produtos.
-- Use dados reais em `lote` (SISP 1774, desde 2017, A2A2) como textura gráfica.
-- Mantenha o tom do posicionamento: luz natural nas fotos, preto + turquesa, ondas.
+- Abra cada seção com uma chamada pequena e um título com uma palavra em destaque.
+- Use os nomes da paisagem (Nascente, Poente, Remanso...) e a cor do rótulo como identidade de cada queijo.
+- Mostre o produto real. Sem foto, use o disco e peça a foto (registre em `conteudo/pendencias.json`).
+- Mantenha o botão de pedido sempre a um toque de distância.
 
 **Não faça**
-- Gradiente roxo/azul, glassmorphism, neon, emoji, ícones genéricos de stock.
-- Ilustrações "fofinhas" de vaca. A vaca aparece por foto ou nem aparece.
-- Animação em loop para chamar atenção (pulsar, girar sozinho, marquee infinito).
-- Promessas de saúde no texto (ver posicionamento da marca).
-- Duas cores de produto no mesmo card; turquesa claro como texto pequeno no papel.
+- Gradiente roxo ou azul, efeito de vidro, neon, emoji, ícone genérico de banco.
+- Inter, Roboto ou Arial como fonte principal.
+- Ilustração de vaca. A vaca aparece por foto.
+- Turquesa claro (`--agua`) como texto em fundo claro.
+- Seção inteira em fundo escuro além do contato e do rodapé.
+- Preço, promessa de saúde ou qualquer informação ainda não confirmada (ver regras de conteúdo no `AGENTS.md`).
 
-## 8. Comportamento responsivo
+## 9. Guia de pedido para agentes
 
-- Celular primeiro: 390px. Quebras em 720px e 1080px.
-- Toque mínimo de 44px. O botão flutuante de pedido fica no canto inferior direito.
-- No celular o grid vira uma coluna; os títulos `display-xl` descem para 48px; fotos em arco ocupam a largura toda; os rótulos de queijo ficam em 2 colunas.
-
-## 9. Guia de prompt para agentes
-
-- "Nova seção no estilo Sítio Água Fria: papel `soro`, título Roboto Slab 900 caixa alta e uma palavra em `<em>` (cor `nascente`), kicker em Barlow Condensed caixa alta, ondas turquesa como divisor, layout assimétrico."
-- "Card de produto: rótulo `.queijo` com `--produto` na cor Pantone do rótulo, faixa `noite`, nome em slab, tipo em `lote`, fita 'Produto artesanal'."
-- "Faixa escura de destaque: chão `noite`, texto `soro`, ênfase `turquesa`, horizonte em traço."
-- Movimento: siga `AGENTS.md` → seção Movimento (motion-principles; sempre com `prefers-reduced-motion`).
+- "Nova seção no estilo Luz do pasto: fundo `--leite` ou `--nata`, `.chamada` em maiúsculas, `.titulo` em Fraunces com um trecho em `<em>`, foto real com cantos de 28px de um lado e texto do outro, textos vindos de `conteudo/site.json`."
+- "Produto novo: um bloco em `conteudo/produtos.json` com `cor` do rótulo e `foto` (ou `null` para usar o disco). Não mexa no HTML."
+- "Faixa escura: só para contato e rodapé. Fundo `--noite`, texto `--leite`, destaque `--agua`, botão `.botao-claro`."

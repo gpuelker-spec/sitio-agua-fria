@@ -1,0 +1,138 @@
+{
+  "_nota": [
+    "Perguntas em aberto para o Gustavo. O arquivo PENDENCIAS.md é gerado a partir daqui (npm run montar).",
+    "Cada campo { \"valor\": ..., \"pendente\": N } em site.json ou produtos.json aponta para a pergunta N.",
+    "Respondida a pergunta: troque os campos pelo valor final e apague o bloco dela aqui.",
+    "Pergunta nova: use o próximo número livre e nunca reaproveite um número antigo.",
+    "O repositório é público: escreva de forma neutra, sem dados sensíveis."
+  ],
+  "proximo_numero": 21,
+  "pendencias": [
+    {
+      "n": 2,
+      "titulo": "Texto sobre A2A2",
+      "pergunta": "O texto da seção A2A2 foi publicado sem as frases sobre digestão. Aprova essa versão ou quer mandar outra?",
+      "opcoes": ["Aprovo como está no site novo", "Mando outro texto (sem alegação de saúde)"],
+      "enquanto_isso": "O site usa o texto aprovado pela família, sem as frases sobre digestão, e avisa que não é leite sem lactose."
+    },
+    {
+      "n": 3,
+      "titulo": "Fundadores na história",
+      "pergunta": "A seção de história deve citar quem fundou o laticínio, ou continua sem nomes na parte da fundação?",
+      "opcoes": ["Continua sem nomes na fundação", "Citar os fundadores (a família envia o texto)"],
+      "enquanto_isso": "O texto da origem fica como a família aprovou, sem nomes na fundação."
+    },
+    {
+      "n": 4,
+      "titulo": "Nascente e Minas Frescal",
+      "pergunta": "Existem os rótulos Nascente e Minas Frescal. Hoje são dois produtos ou só o Nascente?",
+      "opcoes": ["Só o Nascente", "São dois produtos: incluir o Minas Frescal"],
+      "enquanto_isso": "O site mostra só o Nascente, como minas frescal."
+    },
+    {
+      "n": 5,
+      "titulo": "Cor do Coalho",
+      "pergunta": "Qual das quatro opções de cor do rótulo do Coalho foi escolhida?",
+      "opcoes": ["Azul-claro", "Amarelo", "Cinza-azulado", "Cinza"],
+      "enquanto_isso": "Amarelo (#EABD29), a cor que o site anterior já usava."
+    },
+    {
+      "n": 6,
+      "titulo": "Cor do Garoa",
+      "pergunta": "O Garoa continua no verde claro (Pantone 345C)?",
+      "opcoes": ["Sim, verde claro", "Mudou (informar a cor)"],
+      "enquanto_isso": "Verde claro (#8ECC90)."
+    },
+    {
+      "n": 7,
+      "titulo": "Selo SISP por produto",
+      "pergunta": "Em quais produtos o site pode mostrar o selo SISP individualmente?",
+      "opcoes": ["Não mostrar selo por produto", "Mostrar nos produtos que o Gustavo indicar"],
+      "enquanto_isso": "Nenhum produto mostra selo próprio. O site cita a inspeção SISP 1774 do laticínio, sem dizer que vale para a linha inteira."
+    },
+    {
+      "n": 8,
+      "titulo": "Maturação do Horizontinho",
+      "pergunta": "Quanto tempo o Horizontinho matura?",
+      "opcoes": ["3 a 4 meses", "Outro tempo (informar)"],
+      "enquanto_isso": "3 a 4 meses de maturação."
+    },
+    {
+      "n": 9,
+      "titulo": "Outros produtos da casa",
+      "pergunta": "Algum produto fora da lista atual deve entrar no site (por exemplo Gotas, queijo azul, kits sazonais)?",
+      "opcoes": ["Nenhum por enquanto", "Incluir os que o Gustavo indicar"],
+      "enquanto_isso": "Só entram os produtos da lista aprovada."
+    },
+    {
+      "n": 10,
+      "titulo": "Coalhada seca e sour cream",
+      "pergunta": "Coalhada seca 250 g e creme de iogurte (sour cream) 200 g entram no site com esses nomes e tamanhos?",
+      "opcoes": ["Sim, como estão", "Ajustar nome ou tamanho"],
+      "enquanto_isso": "Os dois aparecem em Outros produtos; o sour cream com a etiqueta Novo."
+    },
+    {
+      "n": 11,
+      "titulo": "Descrição de cada queijo",
+      "pergunta": "A família pode enviar uma linha de sabor ou uso para cada queijo?",
+      "opcoes": ["Enviar uma frase por queijo", "Deixar só nome e tipo"],
+      "enquanto_isso": "Cada queijo mostra nome, tipo e tempo de maturação, sem descrição de sabor."
+    },
+    {
+      "n": 12,
+      "titulo": "Fotos do rebanho",
+      "pergunta": "As fotos do rebanho e do pasto são de 2020 a 2022. Podem representar o sítio de hoje?",
+      "opcoes": ["Sim, pode usar", "Trocar por fotos novas"],
+      "enquanto_isso": "O site usa essas fotos, sem legenda com data."
+    },
+    {
+      "n": 13,
+      "titulo": "Fotos com pessoas",
+      "pergunta": "Há fotos da família ou da equipe que possam ser publicadas, com autorização de quem aparece?",
+      "opcoes": ["Não usar fotos de pessoas", "Usar as que o Gustavo enviar com autorização"],
+      "enquanto_isso": "O site não mostra rosto de ninguém."
+    },
+    {
+      "n": 14,
+      "titulo": "Prêmios",
+      "pergunta": "Existe prêmio ou reconhecimento que a família queira citar (concurso, queijo, ano)?",
+      "opcoes": ["Não citar", "Citar com os dados que o Gustavo enviar"],
+      "enquanto_isso": "O site não cita prêmio."
+    },
+    {
+      "n": 15,
+      "titulo": "Fotos que faltam",
+      "pergunta": "Faltam fotos de: Poente, Garoa, Horizontinho, Coalho, iogurte de morango, coalhada seca e sour cream. Dá para enviar?",
+      "opcoes": ["Enviar as fotos aos poucos", "Manter o disco colorido"],
+      "enquanto_isso": "Produto sem foto aparece com um disco na cor do rótulo e as três ondas da marca."
+    },
+    {
+      "n": 16,
+      "titulo": "Visitas",
+      "pergunta": "O texto da seção Visitas está aprovado? Há algo mais que possa ser dito sobre a experiência da visita?",
+      "opcoes": ["Aprovo o texto curto", "Mando outro texto"],
+      "enquanto_isso": "A seção diz só que a visita é com agendamento pelo WhatsApp."
+    },
+    {
+      "n": 17,
+      "titulo": "Nome dos pontos de venda",
+      "pergunta": "Os pontos de venda parceiros podem ser citados pelo nome?",
+      "opcoes": ["Manter sem nome", "Citar com autorização do parceiro"],
+      "enquanto_isso": "Aparece como \"Padaria parceira em Botucatu\", sem nome."
+    },
+    {
+      "n": 18,
+      "titulo": "Dias e horários",
+      "pergunta": "Quais os dias e horários de atendimento no WhatsApp e de retirada no sítio?",
+      "opcoes": ["Não mostrar horário", "Mostrar os horários que o Gustavo informar"],
+      "enquanto_isso": "O site não mostra horário."
+    },
+    {
+      "n": 19,
+      "titulo": "Endereço completo",
+      "pergunta": "O endereço completo continua no mapa e no rodapé (na história aparece só Pirambóia/SP)?",
+      "opcoes": ["Sim, manter no mapa e no rodapé", "Mostrar só Pirambóia/SP em todo o site"],
+      "enquanto_isso": "Mantido no mapa, em Onde comprar e no rodapé, como no site anterior."
+    }
+  ]
+}
