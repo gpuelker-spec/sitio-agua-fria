@@ -1,0 +1,208 @@
+{
+  "_nota": [
+    "TODOS os textos do site ficam aqui. Depois de mudar qualquer coisa, rode: npm run montar",
+    "Uma palavra entre *asteriscos* num título vira o destaque em itálico turquesa.",
+    "Campo no formato { \"valor\": ..., \"pendente\": N } = informação ainda não confirmada pelo Gustavo.",
+    "O site usa o \"valor\" (a opção segura) e a pergunta N está em conteudo/pendencias.json.",
+    "Quando o Gustavo responder: troque o campo pelo valor final (sem o \"pendente\") e apague a pergunta.",
+    "Regras de conteúdo (sem preço, sem alegação de saúde etc.) estão no AGENTS.md."
+  ],
+
+  "atualizado": "2026-11-15",
+  "url": "https://gpuelker-spec.github.io/sitio-agua-fria/",
+  "nome": "Sítio Água Fria",
+  "nome_completo": "Laticínio Sítio Água Fria",
+  "fundacao": "2017",
+  "sisp": "1774",
+
+  "contato": {
+    "whatsapp_numero": "5514981715427",
+    "whatsapp_exibicao": "(14) 98171-5427",
+    "telefone_internacional": "+55-14-98171-5427",
+    "mensagem_pedido": "Olá! Vim pelo site e quero fazer um pedido.",
+    "mensagem_produto": "Olá! Vim pelo site e quero pedir: {produto}.",
+    "mensagem_visita": "Olá! Vim pelo site e quero agendar uma visita ao sítio.",
+    "instagram": "laticiniositioaguafria"
+  },
+
+  "endereco": {
+    "_nota": "Na seção de história o endereço aparece só como Pirambóia/SP. O endereço completo fica no mapa e no rodapé.",
+    "rua": { "valor": "Rodovia Marechal Rondon, km 218", "pendente": 19 },
+    "rua_curta": { "valor": "Rod. Marechal Rondon, km 218", "pendente": 19 },
+    "cidade": "Pirambóia",
+    "estado": "SP",
+    "latitude": -22.9636734,
+    "longitude": -48.1857975,
+    "link_mapa": "https://maps.app.goo.gl/AoeBUp4ukStZk7P8A",
+    "atende": ["Botucatu", "Piracicaba", "Pirambóia"]
+  },
+
+  "seo": {
+    "titulo": "Sítio Água Fria — Queijos artesanais de leite A2A2 | Pirambóia/SP",
+    "descricao": "Queijos artesanais de leite 100% A2A2, iogurte e manteiga do Sítio Água Fria, no pé da Cuesta de Botucatu, em Pirambóia/SP. Pedidos pelo WhatsApp.",
+    "titulo_compartilhar": "Sítio Água Fria — Queijo feito com leite 100% A2A2",
+    "descricao_compartilhar": "Produção artesanal em pequenos lotes, no pé da Cuesta de Botucatu. Pedidos pelo WhatsApp (14) 98171-5427.",
+    "imagem_alt": "Logo do Sítio Água Fria, o texto Queijo feito com leite 100% A2A2 e o rebanho no pasto",
+    "descricao_negocio": "Laticínio artesanal de família desde 2017. Queijos de leite 100% A2A2 do próprio rebanho, com inspeção SISP 1774."
+  },
+
+  "menu": [
+    { "texto": "O sítio", "destino": "historia" },
+    { "texto": "Rebanho A2A2", "destino": "rebanho" },
+    { "texto": "Queijos", "destino": "queijos" },
+    { "texto": "Onde comprar", "destino": "onde-comprar" },
+    { "texto": "Visitas", "destino": "visitas" }
+  ],
+
+  "botoes": {
+    "menu_pedir": "Pedir pelo WhatsApp",
+    "flutuante": "Pedir",
+    "flutuante_leitor_de_tela": "Fazer pedido pelo WhatsApp",
+    "pedir_produto": "Pedir"
+  },
+
+  "topo": {
+    "chamada": "Laticínio artesanal · Pirambóia/SP · desde 2017",
+    "titulo": "Queijo feito com leite *100% A2A2*",
+    "texto": "Leite de rebanho próprio no pé da Cuesta de Botucatu, manejo em pasto irrigado e produção artesanal em pequenos lotes. Do nosso sítio direto para sua mesa.",
+    "botao": "Faça seu pedido",
+    "link": "Conheça nossos produtos",
+    "foto": "pasto-rebanho",
+    "foto_celular": "pasto-rebanho-retrato",
+    "legenda": "Nosso rebanho no pasto · Pirambóia/SP",
+    "selo_alt": "Selo Produto 100% A2A2"
+  },
+
+  "fatos": [
+    "Leite do próprio rebanho",
+    "Pasto irrigado o ano inteiro",
+    "Lotes pequenos, feitos à mão",
+    "Inspeção SISP 1774"
+  ],
+
+  "sobre": {
+    "_nota": "Textos revisados pela família. Não reescrever sem perguntar ao Gustavo.",
+    "chamada": "Nossa história",
+    "titulo": "Um laticínio de família, *desde 2017*",
+    "foto": "bezerro-2017",
+    "legenda": "No sítio, em 2017",
+    "origem_titulo": "Nossa origem",
+    "origem_texto": {
+      "valor": "Em 2017, no pé da Cuesta de Botucatu, em Pirambóia/SP, nascia nosso laticínio. É nesse microclima privilegiado que mantemos nossa essência e onde cada produto continua sendo feito do início ao fim.",
+      "pendente": 3
+    },
+    "equipe_titulo": "Quem faz acontecer",
+    "equipe": [
+      {
+        "nome": "Henrique",
+        "papel": "Mestre da produção artesanal, responsável por elaborar e moldar cada peça à mão."
+      },
+      {
+        "nome": "Raquel",
+        "papel": "Lidera a excelência do rebanho, cuidando da genética e da produção de embriões no próprio sítio."
+      },
+      { "nome": "Raquel e Gustavo", "papel": "À frente do atendimento e da gestão comercial." }
+    ],
+    "inspiracao_titulo": "A inspiração no campo",
+    "inspiracao_texto": "A paisagem e a atmosfera da Cuesta inspiram nossas criações. O nome de cada queijo — Nascente, Poente, Remanso, Garoa, Brisa e Horizonte — traduz em sabor o clima do nosso terroir.",
+    "selos_texto": "Rebanho 100% A2A2 e inspeção SISP — venda formal em todo o estado de São Paulo.",
+    "selo_a2a2_alt": "Produto 100% A2A2",
+    "selo_sisp_alt": "SISP — inspecionado pelo estado de São Paulo, nº 1774"
+  },
+
+  "rebanho": {
+    "_nota": "A2A2: NENHUMA alegação de saúde (digestão, intolerância, digestibilidade). Há teste automático para isso.",
+    "chamada": "Do pasto à genética",
+    "titulo": "O que significa *A2A2*",
+    "texto": {
+      "valor": "A2A2 é a forma natural da beta-caseína, principal proteína do leite. Nosso rebanho é 100% selecionado geneticamente para essa produção.",
+      "pendente": 2
+    },
+    "aviso_destaque": "Importante:",
+    "aviso": { "valor": "não é leite sem lactose.", "pendente": 2 },
+    "pilares": [
+      {
+        "numero": "01",
+        "nome": "Rebanho",
+        "texto": "100% A2A2, selecionado geneticamente.",
+        "foto": { "valor": "vaca-jersey", "pendente": 12 }
+      },
+      {
+        "numero": "02",
+        "nome": "Genética",
+        "texto": "Produção de embriões feita no próprio sítio.",
+        "foto": { "valor": "bezerro-recem-nascido", "pendente": 12 }
+      },
+      {
+        "numero": "03",
+        "nome": "Pasto",
+        "texto": "Verde e irrigado o ano inteiro.",
+        "foto": { "valor": "pasto-entardecer", "pendente": 12 }
+      }
+    ]
+  },
+
+  "queijos": {
+    "chamada": "Produtos",
+    "titulo": "Nossos queijos artesanais, *inspirados na paisagem da nossa terra*",
+    "texto": "Queijos de leite A2A2 em constante maturação — do frescor leve às peças mais curadas. A cada semana, novos lotes ficam no ponto ideal. Chame no WhatsApp para saber o que temos pronto hoje.",
+    "foto": "queijo-ondas",
+    "legenda": "As três ondas da marca, gravadas na casca"
+  },
+
+  "outros": {
+    "chamada": "Outros produtos",
+    "titulo": "Também sai da *nossa cozinha*",
+    "novo": "Novo"
+  },
+
+  "onde": {
+    "chamada": "Locais de venda",
+    "titulo": "Onde *comprar*",
+    "texto": "Os pedidos são feitos pelo WhatsApp. Você encontra nossos produtos nestes pontos:",
+    "pontos": [
+      {
+        "nome": { "valor": "Padaria parceira em Botucatu", "pendente": 17 },
+        "texto": "Nossos queijos na prateleira, toda semana."
+      },
+      {
+        "_nota": "Combinado: sem entrega na cidade. A linha de Piracicaba fica como está.",
+        "nome": "Piracicaba",
+        "texto": "Braço de vendas na cidade, com entrega combinada."
+      },
+      {
+        "nome": "No próprio sítio",
+        "texto": "{endereco} — Pirambóia/SP. Avise antes pelo WhatsApp para separarmos o pedido."
+      }
+    ],
+    "horario": { "valor": null, "pendente": 18 }
+  },
+
+  "visitas": {
+    "_nota": "Seção nova: o texto ainda precisa do OK da família (pendência 16). Não citar a área de degustação até confirmar a inauguração.",
+    "chamada": "Visitas",
+    "titulo": "Venha conhecer o sítio, *com hora marcada*",
+    "texto": {
+      "valor": "Recebemos visitas somente com agendamento. Combine o dia e o horário pelo WhatsApp antes de vir.",
+      "pendente": 16
+    },
+    "degustacao": { "valor": null, "pendente": 16 },
+    "botao": "Agendar pelo WhatsApp",
+    "foto": "entrada-sitio",
+    "legenda": "A porteira do sítio"
+  },
+
+  "pedido": {
+    "chamada": "Contato",
+    "titulo": "Faça seu *pedido*",
+    "texto": "Conte pra gente o que você procura. Teremos o maior prazer em separar seu pedido com o que há de mais fresco na semana.",
+    "botao": "WhatsApp {whatsapp}",
+    "mapa_titulo": "Mapa: Laticínio Sítio Água Fria, {endereco}, Pirambóia/SP",
+    "mapa_link": "Abrir no Google Maps"
+  },
+
+  "rodape": {
+    "texto": "Laticínio Sítio Água Fria · {endereco_curto}, Pirambóia/SP · Inspecionado SISP 1774",
+    "selo_alt": "Selo Sítio Água Fria"
+  }
+}

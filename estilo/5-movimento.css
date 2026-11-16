@@ -1,0 +1,60 @@
+/* MOVIMENTO: discreto, só em CSS, e nunca esconde conteúdo de quem não tem suporte.
+   Regras:
+   - NUNCA travar a rolagem (nada de capturar wheel, touchmove ou teclas).
+   - Tudo fica dentro de "prefers-reduced-motion: no-preference": quem pede menos movimento vê a página parada.
+   - Animar só opacity, translate e scale. */
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* o menu do celular desce do topo */
+  @supports selector(:popover-open) {
+    @media (max-width: 999px) {
+      .menu {
+        transition:
+          translate 0.28s cubic-bezier(0.2, 0.7, 0.2, 1),
+          opacity 0.2s,
+          display 0.28s allow-discrete,
+          overlay 0.28s allow-discrete;
+        translate: 0 -16px;
+        opacity: 0;
+      }
+
+      .menu:popover-open {
+        translate: 0 0;
+        opacity: 1;
+      }
+
+      @starting-style {
+        .menu:popover-open {
+          translate: 0 -16px;
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  /* blocos com a classe .revela sobem de leve ao entrar na tela.
+     Só onde o navegador liga a animação à rolagem; nos outros, o bloco simplesmente está lá. */
+  @supports (animation-timeline: view()) {
+    .revela {
+      animation: surgir linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+
+    @keyframes surgir {
+      from {
+        opacity: 0;
+        translate: 0 28px;
+      }
+
+      to {
+        opacity: 1;
+        translate: 0 0;
+      }
+    }
+  }
+}

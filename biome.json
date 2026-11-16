@@ -7,9 +7,11 @@
   },
   "files": {
     "includes": [
-      "motion.js",
-      "motion.css",
-      "site.css",
+      "site.js",
+      "estilo/**",
+      "modelo/**",
+      "scripts/**",
+      "conteudo/**",
       "src/**",
       "tests/**",
       "*.config.js",
@@ -17,11 +19,9 @@
       "biome.json",
       "knip.json",
       "package.json",
-      "!support.js",
-      "!react*.js",
-      "!ds-*",
       "!index.html",
-      "!sentry.min.js"
+      "!sentry.min.js",
+      "!img"
     ]
   },
   "formatter": {
@@ -33,7 +33,10 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "preset": "recommended"
+      "preset": "recommended",
+      "style": {
+        "noDescendingSpecificity": "off"
+      }
     }
   },
   "javascript": {

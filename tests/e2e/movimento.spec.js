@@ -1,127 +1,77 @@
 import { expect, test } from "@playwright/test";
+import { abrir } from "./conteudo.js";
 
-// Os testes não dependem do Google Maps: o iframe do mapa é bloqueado.
-test.beforeEach(async ({ page }) => {
-  await page.route(/google\.com\/maps|maps\.google\.com/, (route) => route.abort());
-});
-
-async function abrir(page) {
-  const erros = [];
-  page.on("pageerror", (e) => erros.push(e.message));
-  await page.goto("/index.html");
-  await expect(page.locator("#inicio")).toBeAttached({ timeout: 15_000 });
-  return erros;
-}
-
-test("carregamento: skeleton e barra de progresso saem quando o site fica pronto", async ({ page }) => {
-  const erros = await abrir(page);
-  await expect(page.locator("#mo-skeleton")).toHaveCount(0, { timeout: 10_000 });
-  await expect(page.locator("#mo-progress")).toHaveCount(0, { timeout: 10_000 });
-  expect(erros).toEqual([]);
-});
-
-test("entrada: o herói aparece em cascata depois do carregamento", async ({ page }) => {
-  await abrir(page);
-  const heroi = page.locator("#inicio .rv");
-  await expect(heroi).not.toHaveCount(0);
-  const total = await heroi.count();
-  for (let i = 0; i < total; i++) {
-    await expect(heroi.nth(i)).toHaveClass(/is-in/, { timeout: 10_000 });
-  }
-});
+const noFim = (page) =>
+  page.evaluate(() => window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2);
 
 test("lazy loading: só a foto principal carrega com prioridade, o resto espera a rolagem", async ({
   page,
 }) => {
   await abrir(page);
-  await expect(page.locator('img[src="f1.jpg"]')).toHaveAttribute("fetchpriority", "high");
-  await expect(page.locator('img[src="f1.jpg"]')).not.toHaveAttribute("loading", "lazy");
-  for (const src of ["f7.jpg", "f3.jpg", "f4.jpg", "selo-a2a2.png", "selo-sisp.png", "logo-selo.png"]) {
-    const img = page.locator(`img[src="${src}"]:not(.carimbo img)`); // o selo do herói é acima da dobra
-    await expect(img).toHaveAttribute("loading", "lazy");
-    await expect(img).toHaveAttribute("width", /\d+/);
-    await expect(img).toHaveAttribute("height", /\d+/);
+  const principal = page.locator(".heroi-cena picture img");
+  await expect(principal).toHaveAttribute("fetchpriority", "high");
+  await expect(principal).not.toHaveAttribute("loading", "lazy");
+
+  // tudo depois do topo espera a rolagem e já reserva o espaço (largura e altura), para a página não pular
+  const depois = page.locator("main .secao img, footer img");
+  const total = await depois.count();
+  expect(total).toBeGreaterThanOrEqual(10);
+  for (let i = 0; i < total; i++) {
+    await expect(depois.nth(i)).toHaveAttribute("loading", "lazy");
+    await expect(depois.nth(i)).toHaveAttribute("width", /\d+/);
+    await expect(depois.nth(i)).toHaveAttribute("height", /\d+/);
   }
   await expect(page.locator("iframe")).toHaveAttribute("loading", "lazy");
 });
 
-test("skeleton por elemento: cada foto troca o placeholder pela imagem ao carregar", async ({ page }) => {
+test("as fotos são servidas em AVIF e WebP, em mais de um tamanho", async ({ page }) => {
   await abrir(page);
-  const fotos = page.locator(".sk:has(img)");
+  const fotos = page.locator("picture");
   const total = await fotos.count();
-  expect(total).toBeGreaterThanOrEqual(4);
+  expect(total).toBeGreaterThanOrEqual(10);
   for (let i = 0; i < total; i++) {
-    await fotos.nth(i).scrollIntoViewIfNeeded();
-    await expect(fotos.nth(i)).toHaveClass(/is-loaded/, { timeout: 10_000 });
-    await expect(fotos.nth(i).locator("img")).toHaveClass(/is-loaded/);
+    const avif = fotos.nth(i).locator('source[type="image/avif"]').first();
+    await expect(avif).toHaveAttribute("srcset", /\.avif \d+w/);
+    await expect(fotos.nth(i).locator("img")).toHaveAttribute("srcset", /\.webp \d+w/);
+    await expect(fotos.nth(i).locator("img")).toHaveAttribute("sizes", /.+/);
   }
 });
 
-test("rolagem: os blocos entram ao aparecer e o botão flutuante entra e sai", async ({ page }) => {
+test("rolagem: nada trava até o fim e o botão flutuante entra e sai", async ({ page }) => {
   await abrir(page);
   const botao = page.locator("#wa-float");
-  await expect(botao).toHaveClass(/is-hidden/); // escondido no topo
+  await expect(botao).toHaveClass(/escondido/); // some no topo, onde já existe o botão de pedido
 
   // rolagem rápida até o fim: nada pode travar ou devolver a página
-  for (let i = 0; i < 40; i++) {
+  let apareceu = false;
+  for (let i = 0; i < 80; i++) {
     await page.mouse.wheel(0, 400);
     await page.waitForTimeout(60);
-    if (await page.evaluate(() => window.scrollY + window.innerHeight >= document.body.scrollHeight - 2))
-      break;
+    if (!apareceu) apareceu = !(await botao.getAttribute("class"))?.includes("escondido");
+    if (await noFim(page)) break;
   }
-  await expect
-    .poll(() => page.evaluate(() => window.scrollY + window.innerHeight >= document.body.scrollHeight - 2))
-    .toBe(true);
-  await expect(page.locator("#contato .contato-texto")).toHaveClass(/is-in/, { timeout: 5_000 });
-  await expect(page.locator(".rv:not(.is-in)")).toHaveCount(0, { timeout: 5_000 });
-  await expect(botao).toHaveClass(/is-hidden/); // sai na seção Contato
+  await expect.poll(() => noFim(page)).toBe(true);
+  expect(apareceu, "o botão flutuante deveria aparecer no meio da página").toBe(true);
+  await expect(botao).toHaveClass(/escondido/); // some na seção de contato
 
-  await page.mouse.wheel(0, -1600);
-  await expect(botao).not.toHaveClass(/is-hidden/, { timeout: 5_000 }); // volta ao subir
+  await page.mouse.wheel(0, -2400);
+  await expect(botao).not.toHaveClass(/escondido/, { timeout: 5_000 }); // volta ao subir
 });
 
-test("transição leve: rótulo da seção aparece pequeno e some, sem travar a rolagem", async ({ page }) => {
+test("a rolagem acontece na hora e não é revertida", async ({ page }) => {
   await abrir(page);
-  const rotulo = page.locator('[data-corte="rotulo"]');
-  await expect(rotulo).not.toHaveClass(/is-on/); // não aparece ao abrir a página
-
   const antes = await page.evaluate(() => window.scrollY);
-  // rola até a primeira seção depois do herói
-  const ate = await page.evaluate(() => document.querySelector("#historia").getBoundingClientRect().top);
-  await page.mouse.wheel(0, Math.max(900, ate - 200));
-  // a rolagem acontece na hora e não é revertida
+  await page.mouse.wheel(0, 1200);
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(antes + 500);
-  await page.waitForTimeout(300);
+  await page.waitForTimeout(400);
   expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(antes + 500);
-
-  await expect(rotulo).toHaveClass(/is-on/);
-  await expect(page.locator('[data-corte="texto"]')).not.toBeEmpty();
-  // é um rótulo pequeno, não um overlay de tela cheia
-  const caixa = await rotulo.boundingBox();
-  const tela = page.viewportSize();
-  expect(caixa.height).toBeLessThan(80);
-  expect(caixa.width).toBeLessThan(tela.width * 0.8);
-  await expect(rotulo).not.toHaveClass(/is-on/, { timeout: 4_000 }); // some sozinho
-});
-
-test("campo do herói: vacas e aspersores; a água e os selos se mexem com a rolagem", async ({ page }) => {
-  await abrir(page);
-  const vacas = await page.locator(".campo .vaca").count();
-  expect(vacas).toBeGreaterThanOrEqual(3);
-  expect(vacas).toBeLessThanOrEqual(4);
-  await expect(page.locator(".campo .jato")).not.toHaveCount(0);
-
-  const selo = page.locator(".selo-medalha").first();
-  await selo.scrollIntoViewIfNeeded();
-  const antes = await selo.evaluate((el) => el.style.translate);
-  await page.mouse.wheel(0, 300);
-  await expect.poll(() => selo.evaluate((el) => el.style.translate)).not.toBe(antes);
-  expect(
-    await page
-      .locator(".campo .jato")
-      .first()
-      .evaluate((el) => el.style.strokeDashoffset),
-  ).not.toBe("");
+  // nenhum overlay de tela cheia cobre a página durante a rolagem
+  const cobre = await page.evaluate(() => {
+    const el = document.elementFromPoint(window.innerWidth / 2, window.innerHeight / 2);
+    const estilo = getComputedStyle(el);
+    return estilo.position === "fixed" && el.getBoundingClientRect().height >= window.innerHeight;
+  });
+  expect(cobre).toBe(false);
 });
 
 test("teclado rola a página normalmente", async ({ page }) => {
@@ -131,13 +81,19 @@ test("teclado rola a página normalmente", async ({ page }) => {
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(1000);
 });
 
-test("link do herói leva à seção certa", async ({ page }) => {
+test("teclado: o primeiro Tab mostra o link de pular para o conteúdo", async ({ page }) => {
+  await abrir(page);
+  await page.keyboard.press("Tab");
+  const pular = page.getByRole("link", { name: "Pular para o conteúdo" });
+  await expect(pular).toBeFocused();
+  await expect(pular).toBeInViewport();
+});
+
+test("link do herói leva à seção de queijos", async ({ page }) => {
   await abrir(page);
   await page.getByRole("link", { name: "Conheça nossos produtos" }).click();
   await expect
-    .poll(() =>
-      page.evaluate(() => Math.abs(document.querySelector("#produtos").getBoundingClientRect().top)),
-    )
+    .poll(() => page.evaluate(() => Math.abs(document.querySelector("#queijos").getBoundingClientRect().top)))
     .toBeLessThan(200);
 });
 
@@ -146,25 +102,17 @@ test.describe("movimento reduzido", () => {
     await page.emulateMedia({ reducedMotion: "reduce" });
   });
 
-  test("tudo aparece sem animação e sem rótulo de transição", async ({ page }) => {
+  test("tudo aparece sem animação", async ({ page }) => {
     const erros = await abrir(page);
-    await expect(page.locator("#mo-skeleton")).toHaveCount(0, { timeout: 10_000 });
-    await expect(page.locator(".rv:not(.is-in)")).toHaveCount(0);
-    const animacoes = await page.evaluate(() =>
-      [...document.querySelectorAll(".sk")].map((el) => getComputedStyle(el).animationName),
+    const blocos = await page.evaluate(() =>
+      [...document.querySelectorAll(".revela")].map((el) => {
+        const estilo = getComputedStyle(el);
+        return { animacao: estilo.animationName, opacidade: estilo.opacity };
+      }),
     );
-    expect(animacoes.every((n) => n === "none")).toBe(true);
-    // rolar não mostra o rótulo nem gira o carimbo
-    await page.mouse.wheel(0, 1500);
-    await page.waitForTimeout(400);
-    await expect(page.locator('[data-corte="rotulo"]')).not.toHaveClass(/is-on/);
-    expect(await page.locator(".carimbo svg").evaluate((el) => el.style.transform)).toBe("");
-    expect(
-      await page
-        .locator(".selo-medalha")
-        .first()
-        .evaluate((el) => el.style.translate),
-    ).toBe("");
+    expect(blocos.length).toBeGreaterThan(5);
+    expect(blocos.every((b) => b.animacao === "none" && b.opacidade === "1")).toBe(true);
+    expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe("auto");
     expect(erros).toEqual([]);
   });
 

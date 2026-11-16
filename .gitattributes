@@ -1,0 +1,7 @@
+# Fim de linha LF em qualquer sistema (o Biome e o "npm run montar:conferir" contam com isso).
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.webp binary
+*.avif binary
+*.woff2 binary

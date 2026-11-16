@@ -1,0 +1,154 @@
+{
+  "_nota": [
+    "Um bloco por produto, na ordem em que aparece no site. Depois de mudar, rode: npm run montar",
+    "cor: a cor Pantone do rótulo do produto, em hexadecimal. foto: nome em conteudo/fotos.json, ou null.",
+    "Sem foto, o produto aparece com um disco na cor do rótulo e as três ondas da marca.",
+    "SEM PREÇO: os preços mudam e o pedido é feito pelo WhatsApp. Há teste automático para isso.",
+    "descricao: uma linha sobre sabor ou uso. Só preencher com texto passado pela família (não inventar).",
+    "selo_sisp: guardado para uso futuro. O site hoje não mostra selo por produto (pendência 7)."
+  ],
+
+  "queijos": [
+    {
+      "id": "nascente",
+      "nome": "Nascente",
+      "tipo": { "valor": "Minas frescal", "pendente": 4 },
+      "detalhe": null,
+      "descricao": { "valor": null, "pendente": 11 },
+      "cor": "#2094A8",
+      "foto": "nascente",
+      "selo_sisp": { "valor": false, "pendente": 7 }
+    },
+    {
+      "id": "poente",
+      "nome": "Poente",
+      "tipo": "Minas padrão",
+      "detalhe": null,
+      "descricao": { "valor": null, "pendente": 11 },
+      "cor": "#8ECC90",
+      "foto": { "valor": null, "pendente": 15 },
+      "selo_sisp": true
+    },
+    {
+      "id": "remanso",
+      "nome": "Remanso",
+      "tipo": "Meia cura",
+      "detalhe": null,
+      "descricao": { "valor": null, "pendente": 11 },
+      "cor": "#FBAF40",
+      "foto": "remanso",
+      "selo_sisp": true
+    },
+    {
+      "id": "garoa",
+      "nome": "Garoa",
+      "tipo": "Mussarela",
+      "detalhe": null,
+      "descricao": { "valor": null, "pendente": 11 },
+      "cor": { "valor": "#8ECC90", "pendente": 6 },
+      "foto": { "valor": null, "pendente": 15 },
+      "selo_sisp": true
+    },
+    {
+      "id": "brisa",
+      "nome": "Brisa",
+      "tipo": "Brie",
+      "detalhe": null,
+      "descricao": { "valor": null, "pendente": 11 },
+      "cor": "#A776A5",
+      "foto": "brisa",
+      "selo_sisp": true
+    },
+    {
+      "id": "horizontinho",
+      "nome": "Horizontinho",
+      "tipo": "Queijo artesanal",
+      "detalhe": { "valor": "3 a 4 meses de maturação", "pendente": 8 },
+      "descricao": { "valor": null, "pendente": 11 },
+      "cor": "#FBAF40",
+      "foto": { "valor": null, "pendente": 15 },
+      "selo_sisp": true
+    },
+    {
+      "id": "horizonte",
+      "nome": "Horizonte",
+      "tipo": "Tipo parmesão",
+      "detalhe": "10 a 12 meses de maturação",
+      "descricao": { "valor": null, "pendente": 11 },
+      "cor": "#FBAF40",
+      "foto": "horizonte",
+      "selo_sisp": true
+    },
+    {
+      "id": "coalho",
+      "nome": "Coalho",
+      "tipo": "Queijo coalho",
+      "detalhe": null,
+      "descricao": { "valor": null, "pendente": 11 },
+      "cor": { "valor": "#EABD29", "pendente": 5 },
+      "foto": { "valor": null, "pendente": 15 },
+      "selo_sisp": { "valor": false, "pendente": 7 }
+    },
+    {
+      "id": "requeijao",
+      "nome": "Requeijão",
+      "tipo": "De corte",
+      "detalhe": null,
+      "descricao": { "valor": null, "pendente": 11 },
+      "cor": "#FBAF40",
+      "foto": "requeijao",
+      "selo_sisp": { "valor": false, "pendente": 7 }
+    }
+  ],
+
+  "outros": [
+    {
+      "id": "iogurte-natural",
+      "nome": "Iogurte natural",
+      "tamanhos": "500 ml e 1 L",
+      "cor": "#30B2C1",
+      "foto": "iogurte",
+      "novo": false
+    },
+    {
+      "id": "iogurte-morango",
+      "nome": "Iogurte de morango",
+      "tamanhos": "500 ml e 1 L",
+      "cor": "#EEA591",
+      "foto": { "valor": null, "pendente": 15 },
+      "novo": false
+    },
+    {
+      "id": "manteiga",
+      "nome": "Manteiga",
+      "tamanhos": "200 g",
+      "cor": "#FBAF40",
+      "foto": "manteiga",
+      "novo": false
+    },
+    {
+      "id": "doce-de-leite",
+      "nome": "Doce de leite",
+      "tamanhos": "280 g e 400 g · feito com açúcar orgânico",
+      "cor": "#BB7727",
+      "foto": "doce-de-leite",
+      "novo": false
+    },
+    {
+      "id": "coalhada-seca",
+      "nome": { "valor": "Coalhada seca", "pendente": 10 },
+      "tamanhos": "250 g",
+      "cor": "#D9D2C0",
+      "foto": { "valor": null, "pendente": 15 },
+      "novo": false
+    },
+    {
+      "id": "sour-cream",
+      "nome": { "valor": "Creme de iogurte (sour cream)", "pendente": 10 },
+      "tamanhos": "200 g",
+      "cor": "#CFE2F4",
+      "foto": { "valor": null, "pendente": 15 },
+      "novo": true
+    }
+  ]
+}

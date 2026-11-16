@@ -19,7 +19,7 @@ export default defineConfig({
     { name: "celular", use: { ...devices["Pixel 7"] } },
   ],
   webServer: {
-    command: `python3 -m http.server ${PORT}`,
+    command: "node scripts/servir.mjs",
     url: `http://localhost:${PORT}/index.html`,
     reuseExistingServer: !process.env.CI,
   },
